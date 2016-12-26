@@ -1,0 +1,34 @@
+
+ui.pack.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blank_map
+  rotate: false
+  xy: 2, 44
+  size: 635, 463
+  orig: 635, 463
+  offset: 0, 0
+  index: -1
+chevron_arrow
+  rotate: false
+  xy: 2, 2
+  size: 56, 40
+  orig: 56, 40
+  offset: 0, 0
+  index: -1
+town_icon
+  rotate: false
+  xy: 639, 362
+  size: 92, 54
+  orig: 92, 54
+  offset: 0, 0
+  index: -1
+world_map
+  rotate: false
+  xy: 639, 418
+  size: 118, 89
+  orig: 118, 89
+  offset: 0, 0
+  index: -1

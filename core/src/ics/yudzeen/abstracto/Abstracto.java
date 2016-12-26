@@ -4,47 +4,37 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import ics.yudzeen.abstracto.screens.HomeScreen;
+import ics.yudzeen.abstracto.screens.MenuScreen;
+import ics.yudzeen.abstracto.utils.Assets;
 
 public class Abstracto extends Game {
 
-	private static final String TAG = Abstracto.class.getName();
+	public static final String TAG = Abstracto.class.getName();
 
-	HomeScreen homeScreen;
-
-	boolean paused;
+	private SpriteBatch batch;
+	private Assets assets;
 
 	@Override
 	public void create () {
-		homeScreen = new HomeScreen(this);
-		setScreen(homeScreen);
-		paused = false;
+		assets = Assets.getInstance();
+		batch = new SpriteBatch();
+		setScreen(new MenuScreen(this));
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 	}
 
 	@Override
 	public void render () {
-		Gdx.app.setLogLevel(Application.LOG_DEBUG);
-
-		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClearColor(74/255.0f,143/255.0f,231/255.0f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render();
 	}
 
-	@Override
-	public void pause() {
-		paused = true;
-		super.pause();
+	public SpriteBatch getBatch() {
+		return batch;
 	}
 
-	@Override
-	public void resume() {
-		paused = false;
-		super.resume();
-	}
+	public Assets getAssets() { return assets; }
 
-	@Override
-	public void dispose () {
-
-	}
 }
