@@ -27,6 +27,7 @@ public class Abstracto extends Game {
 		assets.init(new AssetManager());
 		batch = new SpriteBatch();
 		setScreen(new TitleScreen(this));
+		Gdx.input.setCatchBackKey(true);
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 	}
 
