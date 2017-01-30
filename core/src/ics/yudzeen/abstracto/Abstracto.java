@@ -3,11 +3,16 @@ package ics.yudzeen.abstracto;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import ics.yudzeen.abstracto.screens.MenuScreen;
+import ics.yudzeen.abstracto.screens.TitleScreen;
 import ics.yudzeen.abstracto.utils.Assets;
+
+/**
+ * Main game class file
+ */
 
 public class Abstracto extends Game {
 
@@ -19,8 +24,9 @@ public class Abstracto extends Game {
 	@Override
 	public void create () {
 		assets = Assets.getInstance();
+		assets.init(new AssetManager());
 		batch = new SpriteBatch();
-		setScreen(new MenuScreen(this));
+		setScreen(new TitleScreen(this));
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 	}
 

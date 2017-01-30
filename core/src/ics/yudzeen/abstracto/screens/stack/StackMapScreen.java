@@ -9,21 +9,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import ics.yudzeen.abstracto.Abstracto;
-import ics.yudzeen.abstracto.screens.GameScreen;
+import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Add Class Description
+ * Screen of stack map
  */
 
-public class StackMapScreen extends GameScreen {
+public class StackMapScreen extends AbstractoScreen {
 
     public StackMapScreen(Abstracto game) {
         super(game);
     }
 
+    /*
     @Override
     public void show() {
         super.show();
@@ -72,5 +73,6 @@ public class StackMapScreen extends GameScreen {
         applicationButton.setPosition(200, simulatorButton.getY() - simulatorButton.getHeight() - 20);
         stage.addActor(applicationButton);
     }
+    */
 
 }

@@ -1,7 +1,7 @@
 package ics.yudzeen.abstracto.utils;
 
 /**
- * Add Class Description
+ * Constants of the game
  */
 
 public class GameConstants {

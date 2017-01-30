@@ -14,22 +14,18 @@ import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Add Class Description
+ * Screen of world map
  */
 
-public class WorldMapScreen extends GameScreen {
+public class WorldMapScreen extends AbstractoScreen {
 
     public WorldMapScreen(Abstracto game) {
         super(game);
     }
 
     @Override
-    public void show() {
-        super.show();
-        buildStage();
-    }
-
-    private void buildStage() {
+    protected void buildStage() {
+        super.buildStage();
         buildBackground();
         buildMapButtons();
     }

@@ -19,7 +19,8 @@ public class DesktopLauncher {
 			settings.maxHeight = 1024;
 			settings.duplicatePadding = false;
 			settings.debug = DRAW_DEBUG_OUTLINE;
-			TexturePacker.processIfModified(settings, "../../desktop/assets-raw/images/ui", "../../android/assets/images", "ui.pack");
+			TexturePacker.processIfModified(settings, "../../desktop/assets-raw/images/ui", "images", "ui.pack");
+			TexturePacker.processIfModified(settings, "../../desktop/assets-raw/images/simulator", "images", "simulator.pack");
 		}
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

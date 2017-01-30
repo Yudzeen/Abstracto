@@ -6,16 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Disposable;
-
-import ics.yudzeen.abstracto.utils.Assets;
-import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Add Class Description
+ * Factory for creating text and image buttons
  */
 
 public class ButtonFactory {

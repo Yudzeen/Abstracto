@@ -10,16 +10,16 @@ import ics.yudzeen.abstracto.utils.Assets;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Add Class Description
+ * Abstract class of screens
  */
 
-public abstract class GameScreen implements Screen {
+public abstract class AbstractoScreen implements Screen {
 
     protected Abstracto game;
     protected Assets assets;
     protected Stage stage;
 
-    public GameScreen(Abstracto game) {
+    public AbstractoScreen(Abstracto game) {
         this.game = game;
         assets = game.getAssets();
     }
@@ -28,6 +28,7 @@ public abstract class GameScreen implements Screen {
     public void show() {
         stage = new Stage(new StretchViewport(GameConstants.WIDTH, GameConstants.HEIGHT), game.getBatch());
         Gdx.input.setInputProcessor(stage);
+        buildStage();
     }
 
     @Override
@@ -48,7 +49,7 @@ public abstract class GameScreen implements Screen {
 
     @Override
     public void resume() {
-
+        buildStage();
     }
 
     @Override
@@ -59,5 +60,9 @@ public abstract class GameScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    protected void buildStage() {
+        stage.clear();
     }
 }

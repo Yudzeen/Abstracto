@@ -5,14 +5,12 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
- * Add Class Description
+ * Utility for managing assets
  */
 
 public class Assets implements AssetErrorListener, Disposable {
@@ -26,12 +24,10 @@ public class Assets implements AssetErrorListener, Disposable {
     public AssetButtons buttons;
     public AssetImages images;
 
-    private Assets() {
-        init();
-    }
+    private Assets() { }
 
-    private void init() {
-        assetManager = new AssetManager();
+    public void init(AssetManager assetManager) {
+        this.assetManager = assetManager;
         assetManager.setErrorListener(this);
 
         assetManager.load(GameConstants.TEXTURE_ATLAS_UI, TextureAtlas.class);
@@ -68,25 +64,48 @@ public class Assets implements AssetErrorListener, Disposable {
 
     public class AssetButtons {
 
-        public final AtlasRegion map;
-        public final AtlasRegion forward_arrow;
-        public final AtlasRegion back_arrow;
-        public final AtlasRegion town_icon;
+        // Title Screen
+        public AtlasRegion start;
+        public AtlasRegion about;
+
+        // Home Screen
+        public AtlasRegion profile;
+        public AtlasRegion achievements;
+        public AtlasRegion map;
+
+        public AtlasRegion forward_arrow;
+        public AtlasRegion back;
+        public AtlasRegion town_icon;
 
         public AssetButtons(TextureAtlas atlas) {
+            start = atlas.findRegion("button_start");
+            about = atlas.findRegion("button_about");
+            profile = atlas.findRegion("button_profile");
+            achievements = atlas.findRegion("button_achievements");
             map = atlas.findRegion("world_map");
+
+
             forward_arrow = atlas.findRegion("chevron_arrow");
-            back_arrow = atlas.findRegion("chevron_arrow");
-            back_arrow.flip(true, false);
+            back = atlas.findRegion("chevron_arrow");
+            back.flip(true, false);
             town_icon = atlas.findRegion("town_icon");
         }
     }
 
     public class AssetImages {
 
-        public final AtlasRegion blank_map;
+        public AtlasRegion title;
+        public AtlasRegion location_home;
+        public AtlasRegion character;
+
+        public AtlasRegion blank_map;
+
 
         public AssetImages(TextureAtlas atlas) {
+            title = atlas.findRegion("title");
+            location_home = atlas.findRegion("location_home");
+            character = atlas.findRegion("character");
+
             blank_map = atlas.findRegion("blank_map");
         }
     }
