@@ -3,6 +3,7 @@ package ics.yudzeen.abstracto.screens.stack;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -24,22 +25,17 @@ public class StackMapScreen extends AbstractoScreen {
         super(game);
     }
 
-    /*
     @Override
-    public void show() {
-        super.show();
-        buildStage();
-    }
-
-    private void buildStage() {
-        buildTitle();
+    protected void buildStage() {
+        super.buildStage();
+        buildLocation();
         buildButtons();
     }
 
-    private void buildTitle() {
-        Label titleLabel = new Label("Stackville", new Label.LabelStyle(new BitmapFont(), Color.GREEN));
-        titleLabel.setPosition(GameConstants.WIDTH/2 - titleLabel.getWidth()/2, GameConstants.HEIGHT - 50);
-        stage.addActor(titleLabel);
+    private void buildLocation() {
+        Image location = new Image(assets.images.location_stack);
+        location.setPosition(0, GameConstants.HEIGHT - location.getHeight());
+        stage.addActor(location);
     }
 
     private void buildButtons() {
@@ -55,24 +51,48 @@ public class StackMapScreen extends AbstractoScreen {
         });
         stage.addActor(worldMapButton);
 
-        final TextButton guruButton = ButtonFactory.createTextButton("Stack Guru");
-        guruButton.setPosition(200, GameConstants.HEIGHT - 200);
+        // Guru button
+        ImageButton guruButton = ButtonFactory.createImageButton(assets.buttons.guru);
+        guruButton.setPosition(75, GameConstants.HEIGHT/2);
+        guruButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: guru screen
+            }
+        });
         stage.addActor(guruButton);
 
-        TextButton simulatorButton = ButtonFactory.createTextButton("Stack Simulator");
-        simulatorButton.setPosition(200, guruButton.getY() - guruButton.getHeight() - 20);
+        // Town plaza button
+        ImageButton townPlazaButton = ButtonFactory.createImageButton(assets.buttons.townplaza);
+        townPlazaButton.setPosition(250, 75);
+        townPlazaButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: town plaza screen
+            }
+        });
+        stage.addActor(townPlazaButton);
+
+        // Simulator button
+        ImageButton simulatorButton = ButtonFactory.createImageButton(assets.buttons.simulator);
+        simulatorButton.setPosition(GameConstants.WIDTH/2 + 10, GameConstants.HEIGHT/2 + 80);
         simulatorButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new StackSimulatorScreen(game));
+                // TODO: simulator screen
             }
         });
         stage.addActor(simulatorButton);
 
-        TextButton applicationButton = ButtonFactory.createTextButton("Stack Applications");
-        applicationButton.setPosition(200, simulatorButton.getY() - simulatorButton.getHeight() - 20);
-        stage.addActor(applicationButton);
+        // Monster fight button
+        ImageButton monsterFightButton = ButtonFactory.createImageButton(assets.buttons.monsterfight);
+        monsterFightButton.setPosition(GameConstants.WIDTH/2 + 200, GameConstants.HEIGHT/2 - 30);
+        monsterFightButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: monster fight screen
+            }
+        });
+        stage.addActor(monsterFightButton);
     }
-    */
-
 }
