@@ -73,6 +73,12 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion achievements;
         public AtlasRegion map;
 
+        // ADT Screen
+        public AtlasRegion guru;
+        public AtlasRegion simulator;
+        public AtlasRegion townplaza;
+        public AtlasRegion monsterfight;
+
         public AtlasRegion forward_arrow;
         public AtlasRegion back;
         public AtlasRegion town_icon;
@@ -83,28 +89,32 @@ public class Assets implements AssetErrorListener, Disposable {
             profile = atlas.findRegion("button_profile");
             achievements = atlas.findRegion("button_achievements");
             map = atlas.findRegion("world_map");
+            guru = atlas.findRegion("button_guru");
+            simulator = atlas.findRegion("button_simulator");
+            townplaza = atlas.findRegion("button_townplaza");
+            monsterfight = atlas.findRegion("button_monsterfight");
 
-
-            forward_arrow = atlas.findRegion("chevron_arrow");
-            back = atlas.findRegion("chevron_arrow");
-            back.flip(true, false);
             town_icon = atlas.findRegion("town_icon");
         }
     }
 
     public class AssetImages {
 
-        public AtlasRegion title;
-        public AtlasRegion location_home;
+        public AtlasRegion title_main;
+        public AtlasRegion title_map;
         public AtlasRegion character;
+
+        public AtlasRegion location_home;
+        public AtlasRegion location_stack;
 
         public AtlasRegion blank_map;
 
-
         public AssetImages(TextureAtlas atlas) {
-            title = atlas.findRegion("title");
-            location_home = atlas.findRegion("location_home");
+            title_main = atlas.findRegion("title_main");
+            title_map = atlas.findRegion("title_map");
             character = atlas.findRegion("character");
+            location_home = atlas.findRegion("location_home");
+            location_stack = atlas.findRegion("location_stackville");
 
             blank_map = atlas.findRegion("blank_map");
         }
