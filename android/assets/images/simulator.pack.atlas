@@ -1,0 +1,27 @@
+
+simulator.pack.png
+size: 128,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+add_node
+  rotate: false
+  xy: 2, 63
+  size: 60, 59
+  orig: 60, 59
+  offset: 0, 0
+  index: -1
+blank_node
+  rotate: false
+  xy: 2, 2
+  size: 60, 59
+  orig: 60, 59
+  offset: 0, 0
+  index: -1
+stack_container
+  rotate: false
+  xy: 2, 124
+  size: 106, 320
+  orig: 106, 320
+  offset: 0, 0
+  index: -1

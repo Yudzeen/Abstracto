@@ -6,84 +6,119 @@ filter: Nearest,Nearest
 repeat: none
 blank_map
   rotate: false
-  xy: 2, 261
+  xy: 2, 425
   size: 635, 463
   orig: 635, 463
   offset: 0, 0
   index: -1
 button_about
   rotate: false
-  xy: 533, 211
+  xy: 533, 375
   size: 82, 48
   orig: 82, 48
   offset: 0, 0
   index: -1
 button_achievements
   rotate: false
-  xy: 2, 133
+  xy: 2, 255
   size: 225, 73
   orig: 225, 73
+  offset: 0, 0
+  index: -1
+button_guru
+  rotate: false
+  xy: 229, 209
+  size: 126, 55
+  orig: 126, 55
+  offset: 0, 0
+  index: -1
+button_monsterfight
+  rotate: false
+  xy: 363, 273
+  size: 126, 55
+  orig: 126, 55
   offset: 0, 0
   index: -1
 button_profile
   rotate: false
-  xy: 2, 58
+  xy: 2, 180
   size: 225, 73
   orig: 225, 73
   offset: 0, 0
   index: -1
+button_simulator
+  rotate: false
+  xy: 2, 59
+  size: 126, 55
+  orig: 126, 55
+  offset: 0, 0
+  index: -1
 button_start
   rotate: false
-  xy: 639, 267
+  xy: 639, 431
   size: 150, 89
   orig: 150, 89
   offset: 0, 0
   index: -1
+button_townplaza
+  rotate: false
+  xy: 2, 2
+  size: 126, 55
+  orig: 126, 55
+  offset: 0, 0
+  index: -1
 character
   rotate: false
-  xy: 639, 358
+  xy: 639, 522
   size: 167, 366
   orig: 167, 366
   offset: 0, 0
   index: -1
-chevron_arrow
-  rotate: false
-  xy: 808, 595
-  size: 56, 40
-  orig: 56, 40
-  offset: 0, 0
-  index: -1
 exit_icon
   rotate: false
-  xy: 927, 697
+  xy: 927, 861
   size: 61, 27
   orig: 61, 27
   offset: 0, 0
   index: -1
 location_home
   rotate: false
-  xy: 229, 144
+  xy: 229, 266
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
-title
+location_stackville
   rotate: false
-  xy: 2, 208
+  xy: 2, 116
+  size: 132, 62
+  orig: 132, 62
+  offset: 0, 0
+  index: -1
+title_main
+  rotate: false
+  xy: 2, 372
   size: 529, 51
   orig: 529, 51
   offset: 0, 0
   index: -1
+title_map
+  rotate: false
+  xy: 2, 330
+  size: 512, 40
+  orig: 512, 40
+  offset: 0, 0
+  index: -1
 town_icon
   rotate: false
-  xy: 2, 2
+  xy: 808, 745
   size: 92, 54
   orig: 92, 54
   offset: 0, 0
   index: -1
 world_map
   rotate: false
-  xy: 808, 637
+  xy: 808, 801
   size: 117, 87
   orig: 117, 87
   offset: 0, 0
