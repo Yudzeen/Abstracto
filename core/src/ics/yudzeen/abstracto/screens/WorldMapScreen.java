@@ -27,7 +27,14 @@ public class WorldMapScreen extends AbstractoScreen {
     protected void buildStage() {
         super.buildStage();
         buildBackground();
+        buildTitle();
         buildMapButtons();
+    }
+
+    private void buildTitle() {
+        Image title = new Image(assets.images.title_map);
+        title.setPosition(GameConstants.WIDTH/2 - title.getWidth()/2, 5);
+        stage.addActor(title);
     }
 
     private void buildBackground() {
