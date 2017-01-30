@@ -1,9 +1,13 @@
 package ics.yudzeen.abstracto.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+
+import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.utils.Assets;
@@ -26,7 +30,15 @@ public abstract class AbstractoScreen implements Screen {
 
     @Override
     public void show() {
-        stage = new Stage(new StretchViewport(GameConstants.WIDTH, GameConstants.HEIGHT), game.getBatch());
+        stage = new Stage(new StretchViewport(GameConstants.WIDTH, GameConstants.HEIGHT), game.getBatch()) {
+            @Override
+            public boolean keyDown(int keyCode) {
+                if(keyCode == Input.Keys.BACK) {
+                    backKeyPressed();
+                }
+                return super.keyDown(keyCode);
+            }
+        };
         Gdx.input.setInputProcessor(stage);
         buildStage();
     }
@@ -64,5 +76,9 @@ public abstract class AbstractoScreen implements Screen {
 
     protected void buildStage() {
         stage.clear();
+    }
+
+    protected void backKeyPressed() {
+        game.setScreen(new TitleScreen(game));
     }
 }
