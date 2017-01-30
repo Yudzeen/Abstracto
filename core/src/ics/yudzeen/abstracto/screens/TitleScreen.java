@@ -31,7 +31,7 @@ public class TitleScreen extends AbstractoScreen {
     }
 
     private void buildTitle() {
-        Image title = new Image(assets.images.title);
+        Image title = new Image(assets.images.title_main);
         title.setPosition(GameConstants.WIDTH/2 - title.getWidth()/2, GameConstants.HEIGHT - 150);
         stage.addActor(title);
     }
