@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import ics.yudzeen.abstracto.Abstracto;
+import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -73,6 +74,12 @@ public class WorldMapScreen extends AbstractoScreen {
 
         ImageButton queueMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
         queueMapButton.setPosition(150, 100);
+        queueMapButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(new QueueMapScreen(game));
+            }
+        });
         stage.addActor(queueMapButton);
         Label queueMapLabel = new Label("Queue City", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         queueMapLabel.setPosition(queueMapButton.getX() + queueMapButton.getWidth()/2 - queueMapLabel.getWidth()/2, queueMapButton.getY() - 15);
@@ -80,6 +87,14 @@ public class WorldMapScreen extends AbstractoScreen {
 
         ImageButton graphMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
         graphMapButton.setPosition(GameConstants.WIDTH/2 + 185, GameConstants.HEIGHT/2 + 30);
+        queueMapButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: graph screen
+            }
+        });
+        // TODO: Remove Later
+        graphMapButton.setDisabled(true);
         stage.addActor(graphMapButton);
         Label graphMapLabel = new Label("Graphopolis", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         graphMapLabel.setPosition(graphMapButton.getX() + graphMapButton.getWidth()/2 - graphMapLabel.getWidth()/2, graphMapButton.getY() - 15);
@@ -88,6 +103,14 @@ public class WorldMapScreen extends AbstractoScreen {
 
         ImageButton treeMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
         treeMapButton.setPosition(GameConstants.WIDTH/2 + 210, GameConstants.HEIGHT/2 - 140);
+        treeMapButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: tree screen
+            }
+        });
+        // TODO: Remove Later
+        treeMapButton.setDisabled(true);
         stage.addActor(treeMapButton);
         Label treeMapLabel = new Label("Tree Town", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         treeMapLabel.setPosition(treeMapButton.getX() + treeMapButton.getWidth()/2 - treeMapLabel.getWidth()/2, treeMapButton.getY() - 15);
