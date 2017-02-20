@@ -106,6 +106,7 @@ public class Assets implements AssetErrorListener, Disposable {
 
         public AtlasRegion location_home;
         public AtlasRegion location_stack;
+        public AtlasRegion location_queue;
 
         public AtlasRegion blank_map;
 
@@ -115,6 +116,7 @@ public class Assets implements AssetErrorListener, Disposable {
             character = atlas.findRegion("character");
             location_home = atlas.findRegion("location_home");
             location_stack = atlas.findRegion("location_stackville");
+            location_queue = atlas.findRegion("location_queuecity");
 
             blank_map = atlas.findRegion("blank_map");
         }
