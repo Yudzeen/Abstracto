@@ -35,6 +35,7 @@ public class ButtonFactory {
         textButtonStyle.up = new TextureRegionDrawable(background);
         textButtonStyle.down = new TextureRegionDrawable(background).tint(Color.GRAY);
         textButtonStyle.over = new TextureRegionDrawable(background).tint(Color.LIGHT_GRAY);
+        textButtonStyle.disabled = new TextureRegionDrawable(background).tint(Color.DARK_GRAY);
         textButtonStyle.font = new BitmapFont();
 
         return new TextButton(text, textButtonStyle);
@@ -54,6 +55,7 @@ public class ButtonFactory {
         imageButtonStyle.up = new TextureRegionDrawable(region);
         imageButtonStyle.down = new TextureRegionDrawable(region).tint(Color.GRAY);
         imageButtonStyle.over = new TextureRegionDrawable(region).tint(Color.LIGHT_GRAY);
+        imageButtonStyle.disabled = new TextureRegionDrawable(region).tint(Color.DARK_GRAY);
 
         return new ImageButton(imageButtonStyle);
     }
