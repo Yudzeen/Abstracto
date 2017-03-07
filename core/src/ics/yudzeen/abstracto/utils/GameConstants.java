@@ -16,5 +16,7 @@ public class GameConstants {
     public static final int MARGIN = 10;
 
     public static final String TEXTURE_ATLAS_UI = "images/ui.pack.atlas";
+    public static final String TEXTURE_ATLAS_SIMULATOR = "images/simulator.pack.atlas";
+    public static final String TEXTURE_ATLAS_GAME = "images/game.pack.atlas";
 
 }
