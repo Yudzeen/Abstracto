@@ -21,6 +21,7 @@ public class DesktopLauncher {
 			settings.debug = DRAW_DEBUG_OUTLINE;
 			TexturePacker.processIfModified(settings, "../../desktop/assets-raw/images/ui", "images", "ui.pack");
 			TexturePacker.processIfModified(settings, "../../desktop/assets-raw/images/simulator", "images", "simulator.pack");
+			TexturePacker.processIfModified(settings, "../../desktop/assets-raw/images/game", "images", "game.pack");
 		}
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

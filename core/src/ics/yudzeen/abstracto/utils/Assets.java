@@ -5,8 +5,10 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
@@ -23,6 +25,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
     public AssetButtons buttons;
     public AssetImages images;
+    public AssetSimulator simulator;
+    public AssetGames games;
+    public AssetFonts fonts;
 
     private Assets() { }
 
@@ -31,6 +36,8 @@ public class Assets implements AssetErrorListener, Disposable {
         assetManager.setErrorListener(this);
 
         assetManager.load(GameConstants.TEXTURE_ATLAS_UI, TextureAtlas.class);
+        assetManager.load(GameConstants.TEXTURE_ATLAS_GAME, TextureAtlas.class);
+        assetManager.load(GameConstants.TEXTURE_ATLAS_SIMULATOR, TextureAtlas.class);
 
         assetManager.finishLoading();
         Gdx.app.debug(TAG, "# of assets loaded: " + assetManager.getAssetNames().size);
@@ -38,14 +45,20 @@ public class Assets implements AssetErrorListener, Disposable {
             Gdx.app.debug(TAG, "Asset: " + asset);
         }
 
-        TextureAtlas atlas = assetManager.get(GameConstants.TEXTURE_ATLAS_UI);
+        TextureAtlas uiAtlas = assetManager.get(GameConstants.TEXTURE_ATLAS_UI);
         // Pixel smoothing
-        for (Texture texture: atlas.getTextures()) {
+        for (Texture texture: uiAtlas.getTextures()) {
             texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
 
-        buttons = new AssetButtons(atlas);
-        images = new AssetImages(atlas);
+        TextureAtlas gameAtlas = assetManager.get(GameConstants.TEXTURE_ATLAS_GAME);
+        TextureAtlas simulatorAtlas = assetManager.get(GameConstants.TEXTURE_ATLAS_SIMULATOR);
+
+        fonts = new AssetFonts();
+        buttons = new AssetButtons(uiAtlas);
+        images = new AssetImages(uiAtlas);
+        simulator = new AssetSimulator(simulatorAtlas);
+        games = new AssetGames(gameAtlas);
     }
 
     public static Assets getInstance() {
@@ -60,6 +73,30 @@ public class Assets implements AssetErrorListener, Disposable {
     @Override
     public void error(AssetDescriptor asset, Throwable throwable) {
         Gdx.app.error(TAG, "Couldn't load asset: '" + asset.fileName + "'", throwable);
+    }
+
+    public class AssetFonts {
+        public BitmapFont defaultSmall;
+        public BitmapFont defaultNormal;
+        public BitmapFont defaultBig;
+        public BitmapFont defaultVeryBig;
+
+        public AssetFonts() {
+            defaultSmall = new BitmapFont();
+            defaultNormal = new BitmapFont();
+            defaultBig = new BitmapFont();
+            defaultVeryBig = new BitmapFont();
+
+            defaultSmall.getData().setScale(0.75f);
+            defaultNormal.getData().setScale(1.0f);
+            defaultBig.getData().setScale(2.00f);
+            defaultVeryBig.getData().setScale(3.00f);
+
+            defaultSmall.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            defaultNormal.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            defaultBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            defaultVeryBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
     }
 
     public class AssetButtons {
@@ -119,6 +156,38 @@ public class Assets implements AssetErrorListener, Disposable {
             location_queue = atlas.findRegion("location_queuecity");
 
             blank_map = atlas.findRegion("blank_map");
+        }
+    }
+
+    public class AssetSimulator {
+
+        public AtlasRegion add_node;
+        public AtlasRegion blank_node;
+        public AtlasRegion stack_container;
+
+        public AssetSimulator(TextureAtlas atlas) {
+            add_node = atlas.findRegion("add_node");
+            blank_node = atlas.findRegion("blank_node");
+            stack_container = atlas.findRegion("stack_container");
+        }
+    }
+
+    public class AssetGames {
+
+        public AtlasRegion heart;
+        public AtlasRegion pause;
+        public AtlasRegion stopwatch;
+
+        public AtlasRegion push;
+        public AtlasRegion pop;
+
+        public AssetGames(TextureAtlas atlas) {
+            heart = atlas.findRegion("heart");
+            pause = atlas.findRegion("pause");
+            stopwatch = atlas.findRegion("stopwatch");
+
+            push = atlas.findRegion("push");
+            pop = atlas.findRegion("pop");
         }
     }
 }
