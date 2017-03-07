@@ -52,7 +52,7 @@ public class StackMapScreen extends AbstractoScreen {
         stage.addActor(worldMapButton);
 
         // Guru button
-        ImageButton guruButton = ButtonFactory.createImageButton(assets.buttons.guru);
+        final ImageButton guruButton = ButtonFactory.createImageButton(assets.buttons.guru);
         guruButton.setPosition(75, GameConstants.HEIGHT/2);
         guruButton.addListener(new ChangeListener() {
             @Override
@@ -69,6 +69,8 @@ public class StackMapScreen extends AbstractoScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // TODO: town plaza screen
+                // temporary
+                game.setScreen(new StackPostfixExpressionGameScreen(game));
             }
         });
         stage.addActor(townPlazaButton);

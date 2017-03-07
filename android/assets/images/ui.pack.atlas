@@ -27,14 +27,14 @@ button_achievements
   index: -1
 button_guru
   rotate: false
-  xy: 229, 209
+  xy: 363, 273
   size: 126, 55
   orig: 126, 55
   offset: 0, 0
   index: -1
 button_monsterfight
   rotate: false
-  xy: 363, 273
+  xy: 2, 59
   size: 126, 55
   orig: 126, 55
   offset: 0, 0
@@ -48,7 +48,7 @@ button_profile
   index: -1
 button_simulator
   rotate: false
-  xy: 2, 59
+  xy: 363, 216
   size: 126, 55
   orig: 126, 55
   offset: 0, 0
@@ -88,9 +88,16 @@ location_home
   orig: 132, 62
   offset: 0, 0
   index: -1
-location_stackville
+location_queuecity
   rotate: false
   xy: 2, 116
+  size: 132, 62
+  orig: 132, 62
+  offset: 0, 0
+  index: -1
+location_stackville
+  rotate: false
+  xy: 229, 202
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
