@@ -6,7 +6,7 @@ filter: Nearest,Nearest
 repeat: none
 add_node
   rotate: false
-  xy: 2, 63
+  xy: 2, 59
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
@@ -14,14 +14,14 @@ add_node
 blank_node
   rotate: false
   xy: 2, 2
-  size: 60, 59
-  orig: 60, 59
+  size: 55, 55
+  orig: 55, 55
   offset: 0, 0
   index: -1
 stack_container
   rotate: false
-  xy: 2, 124
-  size: 106, 320
-  orig: 106, 320
+  xy: 2, 120
+  size: 94, 307
+  orig: 94, 307
   offset: 0, 0
   index: -1
