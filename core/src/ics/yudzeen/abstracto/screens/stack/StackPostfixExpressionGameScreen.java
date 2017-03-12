@@ -108,6 +108,8 @@ public class StackPostfixExpressionGameScreen extends AbstractoScreen {
         stage.addActor(text);
     }
 
-
-
+    @Override
+    protected void backKeyPressed() {
+        game.setScreen(new StackMapScreen(game));
+    }
 }

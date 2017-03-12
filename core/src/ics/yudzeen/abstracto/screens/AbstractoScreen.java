@@ -3,6 +3,8 @@ package ics.yudzeen.abstracto.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
@@ -52,6 +54,7 @@ public abstract class AbstractoScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
+        stage.getViewport().setScreenSize(width, height);
     }
 
     @Override
@@ -79,6 +82,6 @@ public abstract class AbstractoScreen implements Screen {
     }
 
     protected void backKeyPressed() {
-        game.setScreen(new TitleScreen(game));
+        game.setScreen(new HomeScreen(game));
     }
 }

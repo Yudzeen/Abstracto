@@ -58,4 +58,9 @@ public class TitleScreen extends AbstractoScreen {
         });
         stage.addActor(aboutButton);
     }
+
+    @Override
+    protected void backKeyPressed() {
+        Gdx.app.exit();
+    }
 }

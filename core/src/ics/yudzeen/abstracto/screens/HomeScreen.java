@@ -83,4 +83,9 @@ public class HomeScreen extends AbstractoScreen {
         });
         stage.addActor(achievementsButton);
     }
+
+    @Override
+    protected void backKeyPressed() {
+        game.setScreen(new TitleScreen(game));
+    }
 }
