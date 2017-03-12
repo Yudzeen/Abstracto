@@ -81,7 +81,7 @@ public class StackMapScreen extends AbstractoScreen {
         simulatorButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO: simulator screen
+                game.setScreen(new StackSimulatorScreen(game));
             }
         });
         stage.addActor(simulatorButton);

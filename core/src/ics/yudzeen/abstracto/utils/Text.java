@@ -3,6 +3,7 @@ package ics.yudzeen.abstracto.utils;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 
@@ -20,6 +21,9 @@ public class Text extends Actor {
         this.text = text;
         this.font = font;
         this.color = color;
+        GlyphLayout layout = new GlyphLayout(font, text);
+        this.setWidth(layout.width);
+        this.setHeight(layout.height);
     }
 
     @Override
