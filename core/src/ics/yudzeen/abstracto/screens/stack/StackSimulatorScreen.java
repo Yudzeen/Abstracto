@@ -36,6 +36,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     NodeFactory nodeFactory;
     StackContainer stackContainer;
+    Image trashCan;
 
     public StackSimulatorScreen(Abstracto game) {
         super(game);
@@ -50,6 +51,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
         buildTitle();
         buildAddNodeButton();
         buildStackContainer();
+        buildTrashCan();
     }
 
     private void buildBackground() {
@@ -87,7 +89,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     private void buildAddNodeButton() {
         ImageButton addNodeButton = ButtonFactory.createImageButton(assets.simulator.add_node);
-        addNodeButton.setPosition(10,10);
+        addNodeButton.setPosition(10,GameConstants.HEIGHT-addNodeButton.getHeight()-60);
         addNodeButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -97,13 +99,19 @@ public class StackSimulatorScreen extends AbstractoScreen {
         stage.addActor(addNodeButton);
     }
 
+    private void buildTrashCan() {
+        trashCan = new Image(assets.simulator.trash);
+        trashCan.setPosition(10,10);
+        stage.addActor(trashCan);
+    }
+
     @Override
     protected void backKeyPressed() {
         game.setScreen(new StackMapScreen(game));
     }
 
     private void spawnNode() {
-        final Node node = nodeFactory.createNode("1");
+        final Node node = nodeFactory.createNode("-");
         node.setPosition(GameConstants.WIDTH/2 - node.getWidth()/2, GameConstants.HEIGHT/2 - node.getHeight()/2);
         addNodeListeners(node);
         stage.addActor(node);
@@ -118,33 +126,41 @@ public class StackSimulatorScreen extends AbstractoScreen {
             }
             @Override
             public void dragStop(InputEvent event, float x, float y, int pointer) {
-                Circle circle = new Circle(node.getX(), node.getY(), node.getHeight()/2);
-                Rectangle rectangle = new Rectangle(stackContainer.getX(), stackContainer.getY(), stackContainer.getWidth(), stackContainer.getHeight());
-                if(Intersector.overlaps(circle, rectangle)) {
+                Circle nodeCircle = new Circle(node.getX()+node.getWidth()/2, node.getY()+node.getHeight()/2, node.getHeight()/2);
+                Rectangle stackRectangle = new Rectangle(stackContainer.getX(), stackContainer.getY(), stackContainer.getWidth(), stackContainer.getHeight());
+                if(Intersector.overlaps(nodeCircle, stackRectangle)) {
                     if(stackContainer.push(node.getText().toString())){
                         node.remove();
                     }
                 }
-            }
-        });
-        node.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if(getTapCount() == 2) {
-                    Gdx.input.getTextInput(node.getTextInputAdapter(), "Enter node name", node.getText().toString(), "Enter node name");
-                    Gdx.app.debug(TAG, "Node renaming, Entered: " + node.getTextInputAdapter().getText());
-                    if(node.getTextInputAdapter().getText() != null) {
-                        node.setText(node.getTextInputAdapter().getText());
-                    }
+                Rectangle trashRectangle = new Rectangle(trashCan.getX(), trashCan.getY(), trashCan.getWidth(), trashCan.getHeight());
+                if(Intersector.overlaps(nodeCircle, trashRectangle)) {
+                    node.remove();
                 }
             }
         });
         node.addListener(new ActorGestureListener(){
             @Override
             public boolean longPress(Actor actor, float x, float y) {
-                node.remove();
+                renameNode(node);
                 return true;
             }
         });
+        node.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if(getTapCount() == 2) {
+                    renameNode(node);
+                }
+            }
+        });
+    }
+
+    public void renameNode(Node node) {
+        Gdx.input.getTextInput(node.getTextInputAdapter(), "Enter node name", node.getText().toString().equals("-") ? "":node.getText().toString(), "Enter node name");
+        Gdx.app.debug(TAG, "Node renaming, Entered: " + node.getTextInputAdapter().getText());
+        if(node.getTextInputAdapter().getText() != null) {
+            node.setText(node.getTextInputAdapter().getText());
+        }
     }
 }

@@ -52,7 +52,9 @@ public class StackContainer extends Actor {
     public boolean push(String s) {
         if(list.size() < MAX_SIZE) {
             list.add(list.size(), s);
-            nodesList.add(nodeFactory.createNode(s));
+            Node node = nodeFactory.createNode("-");
+            node.setText(s);
+            nodesList.add(node);
             return true;
         }
         return false;
@@ -84,7 +86,8 @@ public class StackContainer extends Actor {
                         super.clicked(event, x, y);
                         pop();
                         node.remove();
-                        final Node newNode = nodeFactory.createNode(node.getText().toString());
+                        final Node newNode = nodeFactory.createNode("-");
+                        newNode.setText(node.getText().toString());
                         newNode.setPosition(getX()+getWidth()/2-newNode.getWidth()/2, getY()+10+getHeight());
                         screen.addNodeListeners(newNode);
                         getStage().addActor(newNode);
