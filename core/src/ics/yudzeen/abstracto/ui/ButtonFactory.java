@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -22,10 +23,9 @@ public class ButtonFactory {
 
     private ButtonFactory() {}
 
-    public static TextButton createTextButton(String text, int width, int height, Color color) {
-
+    public static TextButton createTextButton(String text, int width, int height, Color bgColor, Color fontColor, BitmapFont font) {
         Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
-        pixmap.setColor(color);
+        pixmap.setColor(bgColor);
         pixmap.fill();
 
         TextureRegion background = new TextureRegion(new Texture(pixmap));
@@ -36,9 +36,14 @@ public class ButtonFactory {
         textButtonStyle.down = new TextureRegionDrawable(background).tint(Color.GRAY);
         textButtonStyle.over = new TextureRegionDrawable(background).tint(Color.LIGHT_GRAY);
         textButtonStyle.disabled = new TextureRegionDrawable(background).tint(Color.DARK_GRAY);
-        textButtonStyle.font = new BitmapFont();
+        textButtonStyle.font = font;
+        textButtonStyle.fontColor = fontColor;
 
         return new TextButton(text, textButtonStyle);
+    }
+
+    public static TextButton createTextButton(String text, int width, int height, Color color) {
+        return createTextButton(text, width, height, color, Color.BLACK, new BitmapFont());
     }
 
     public static TextButton createTextButton(String text) {
