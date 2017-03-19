@@ -33,5 +33,29 @@ public class Text extends Actor {
         font.draw(batch, text, getX(), getY());
     }
 
+    public String getText() {
+        return text;
+    }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public BitmapFont getFont() {
+        return font;
+    }
+
+    public void setFont(BitmapFont font) {
+        this.font = font;
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }
