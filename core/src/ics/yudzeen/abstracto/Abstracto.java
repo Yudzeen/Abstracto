@@ -21,6 +21,12 @@ public class Abstracto extends Game {
 	private SpriteBatch batch;
 	private Assets assets;
 
+	public AndroidInterfaces androidInterfaces;
+
+	public Abstracto(AndroidInterfaces androidInterfaces) {
+		this.androidInterfaces = androidInterfaces;
+	}
+
 	@Override
 	public void create () {
 		assets = Assets.getInstance();
