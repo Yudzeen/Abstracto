@@ -28,8 +28,6 @@ import ics.yudzeen.abstracto.utils.Text;
 * Screen of the stack simulator
  */
 
-// // TODO: 12/03/2017 Instructions/Controls
-
 public class StackSimulatorScreen extends AbstractoScreen {
 
     public static final String TAG = StackSimulatorScreen.class.getName();
@@ -124,6 +122,12 @@ public class StackSimulatorScreen extends AbstractoScreen {
                 Gdx.app.debug(TAG, node.toString());
                 node.moveBy(x - node.getWidth() / 2, y - node.getHeight() / 2);
             }
+
+            @Override
+            public void dragStart(InputEvent event, float x, float y, int pointer) {
+                node.toFront();
+            }
+
             @Override
             public void dragStop(InputEvent event, float x, float y, int pointer) {
                 Circle nodeCircle = new Circle(node.getX()+node.getWidth()/2, node.getY()+node.getHeight()/2, node.getHeight()/2);
@@ -131,6 +135,9 @@ public class StackSimulatorScreen extends AbstractoScreen {
                 if(Intersector.overlaps(nodeCircle, stackRectangle)) {
                     if(stackContainer.push(node.getText().toString())){
                         node.remove();
+                    }
+                    else {
+                        node.setPosition(GameConstants.WIDTH/2-node.getWidth()/2, GameConstants.HEIGHT/2-node.getHeight()/2);
                     }
                 }
                 Rectangle trashRectangle = new Rectangle(trashCan.getX(), trashCan.getY(), trashCan.getWidth(), trashCan.getHeight());

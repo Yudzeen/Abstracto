@@ -57,7 +57,10 @@ public class StackContainer extends Actor {
             nodesList.add(node);
             return true;
         }
-        return false;
+        else {
+            game.androidInterfaces.toast("Stack Overflow!");
+            return false;
+        }
     }
 
     public String pop() {
