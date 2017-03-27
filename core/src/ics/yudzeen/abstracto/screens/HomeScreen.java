@@ -1,14 +1,8 @@
 package ics.yudzeen.abstracto.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import ics.yudzeen.abstracto.Abstracto;
@@ -35,18 +29,27 @@ public class HomeScreen extends AbstractoScreen {
         buildButtons();
     }
 
+    /**
+     * Add location image to stage
+     */
     private void buildLocation() {
         Image location = new Image(assets.images.location_home);
         location.setPosition(0, GameConstants.HEIGHT - location.getHeight());
         stage.addActor(location);
     }
 
+    /**
+     * Add character image to stage
+     */
     private void buildCharacter() {
         Image character = new Image(assets.images.character);
         character.setPosition(150, 0);
         stage.addActor(character);
     }
 
+    /**
+     * Add buttons to stage to stage
+     */
     private void buildButtons() {
         // World map button
         ImageButton worldMapButton = ButtonFactory.createImageButton(assets.buttons.map);

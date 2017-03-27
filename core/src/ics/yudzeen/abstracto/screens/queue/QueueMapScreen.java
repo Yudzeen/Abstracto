@@ -28,12 +28,18 @@ public class QueueMapScreen extends AbstractoScreen {
         buildButtons();
     }
 
+    /**
+     * Add the location image to the stage
+     */
     private void buildLocation() {
         Image location = new Image(assets.images.location_queue);
         location.setPosition(0, GameConstants.HEIGHT - location.getHeight());
         stage.addActor(location);
     }
 
+    /**
+     * Add buttons to the stage
+     */
     private void buildButtons() {
         // World map button
         ImageButton worldMapButton = ButtonFactory.createImageButton(assets.buttons.map);

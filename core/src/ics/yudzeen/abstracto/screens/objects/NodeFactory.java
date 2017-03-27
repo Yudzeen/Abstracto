@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import ics.yudzeen.abstracto.Abstracto;
 
 /**
- * Created by Yujin on 07/03/2017.
+ * A factory the creates image text button of nodes
  */
 
 public class NodeFactory {

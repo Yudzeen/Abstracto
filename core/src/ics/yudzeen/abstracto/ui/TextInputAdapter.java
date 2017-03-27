@@ -3,7 +3,7 @@ package ics.yudzeen.abstracto.ui;
 import com.badlogic.gdx.Input;
 
 /**
- * Created by Yujin on 11/03/2017.
+ * Used for text inputs
  */
 
 public class TextInputAdapter implements Input.TextInputListener {

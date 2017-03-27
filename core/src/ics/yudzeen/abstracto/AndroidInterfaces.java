@@ -1,7 +1,7 @@
 package ics.yudzeen.abstracto;
 
 /**
- * Created by Yujin on 19/03/2017.
+ * Interface for android functionalities
  */
 
 public interface AndroidInterfaces {

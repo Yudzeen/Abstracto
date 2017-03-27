@@ -81,6 +81,14 @@ public abstract class AbstractoScreen implements Screen {
         stage.clear();
     }
 
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
     protected void backKeyPressed() {
         game.setScreen(new HomeScreen(game));
     }

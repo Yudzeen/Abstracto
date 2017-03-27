@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Align;
 import ics.yudzeen.abstracto.ui.TextInputAdapter;
 
 /**
- * Created by Yujin on 07/03/2017.
+ * An image text button of a node
  */
 
 public class Node extends ImageTextButton {

@@ -30,12 +30,18 @@ public class TitleScreen extends AbstractoScreen {
         buildButtons();
     }
 
+    /**
+     * Add title image
+     */
     private void buildTitle() {
         Image title = new Image(assets.images.title_main);
         title.setPosition(GameConstants.WIDTH/2 - title.getWidth()/2, GameConstants.HEIGHT - 150);
         stage.addActor(title);
     }
 
+    /**
+     * Add buttons
+     */
     private void buildButtons() {
         ImageButton startButton = ButtonFactory.createImageButton(assets.buttons.start);
         startButton.setPosition(GameConstants.WIDTH/2 - startButton.getWidth()/2, GameConstants.HEIGHT/2 - startButton.getHeight()/2 - 50);

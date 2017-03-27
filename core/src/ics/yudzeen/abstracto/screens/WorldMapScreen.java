@@ -32,12 +32,18 @@ public class WorldMapScreen extends AbstractoScreen {
         buildMapButtons();
     }
 
+    /**
+     *  Add title image
+     */
     private void buildTitle() {
         Image title = new Image(assets.images.title_map);
         title.setPosition(GameConstants.WIDTH/2 - title.getWidth()/2, 5);
         stage.addActor(title);
     }
 
+    /**
+     * Add background image
+     */
     private void buildBackground() {
         Image backgroundImage = new Image(assets.images.blank_map);
         backgroundImage.setWidth(GameConstants.WIDTH);
@@ -45,6 +51,9 @@ public class WorldMapScreen extends AbstractoScreen {
         stage.addActor(backgroundImage);
     }
 
+    /**
+     * Add map buttons
+     */
     private void buildMapButtons() {
         ImageButton homeMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
         homeMapButton.setPosition(GameConstants.WIDTH/2 - homeMapButton.getWidth()/2 - 30, GameConstants.HEIGHT/2 - homeMapButton.getHeight()/2);
