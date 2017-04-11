@@ -1,6 +1,8 @@
 package ics.yudzeen.abstracto.screens;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -28,8 +30,22 @@ public class WorldMapScreen extends AbstractoScreen {
     protected void buildStage() {
         super.buildStage();
         buildBackground();
+        buildMapImage();
         buildTitle();
         buildMapButtons();
+    }
+
+    /**
+     * Add background
+     */
+    private void buildBackground() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
+        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
+        pixmap.fill();
+        Image background = new Image(new Texture(pixmap));
+        background.setPosition(0,0);
+        stage.addActor(background);
+        pixmap.dispose();
     }
 
     /**
@@ -42,13 +58,13 @@ public class WorldMapScreen extends AbstractoScreen {
     }
 
     /**
-     * Add background image
+     * Add map image
      */
-    private void buildBackground() {
-        Image backgroundImage = new Image(assets.images.blank_map);
-        backgroundImage.setWidth(GameConstants.WIDTH);
-        backgroundImage.setPosition(GameConstants.WIDTH/2 - backgroundImage.getWidth()/2, GameConstants.HEIGHT/2 - backgroundImage.getHeight()/2);
-        stage.addActor(backgroundImage);
+    private void buildMapImage() {
+        Image mapImage = new Image(assets.images.blank_map);
+        mapImage.setWidth(GameConstants.WIDTH);
+        mapImage.setPosition(GameConstants.WIDTH/2 - mapImage.getWidth()/2, GameConstants.HEIGHT/2 - mapImage.getHeight()/2);
+        stage.addActor(mapImage);
     }
 
     /**
@@ -60,7 +76,8 @@ public class WorldMapScreen extends AbstractoScreen {
         homeMapButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new HomeScreen(game));
+                //game.setScreen(new HomeScreen(game));
+                game.setScreen(new TitleScreen(game));
             }
         });
         stage.addActor(homeMapButton);
@@ -89,6 +106,8 @@ public class WorldMapScreen extends AbstractoScreen {
                 game.setScreen(new QueueMapScreen(game));
             }
         });
+        // TODO: Remove Later
+        queueMapButton.setDisabled(true);
         stage.addActor(queueMapButton);
         Label queueMapLabel = new Label("Queue City", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
         queueMapLabel.setPosition(queueMapButton.getX() + queueMapButton.getWidth()/2 - queueMapLabel.getWidth()/2, queueMapButton.getY() - 15);

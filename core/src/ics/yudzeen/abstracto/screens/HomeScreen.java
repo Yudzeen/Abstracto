@@ -1,5 +1,8 @@
 package ics.yudzeen.abstracto.screens;
 
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -24,9 +27,23 @@ public class HomeScreen extends AbstractoScreen {
     @Override
     protected void buildStage() {
         super.buildStage();
+        buildBackground();
         buildLocation();
         buildCharacter();
         buildButtons();
+    }
+
+    /**
+     * Add background
+     */
+    private void buildBackground() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
+        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
+        pixmap.fill();
+        Image background = new Image(new Texture(pixmap));
+        background.setPosition(0,0);
+        stage.addActor(background);
+        pixmap.dispose();
     }
 
     /**

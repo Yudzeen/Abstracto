@@ -2,6 +2,7 @@ package ics.yudzeen.abstracto.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -90,6 +91,10 @@ public abstract class AbstractoScreen implements Screen {
     }
 
     protected void backKeyPressed() {
-        game.setScreen(new HomeScreen(game));
+        game.setScreen(new TitleScreen(game));
+    }
+
+    public InputProcessor getInputProcessor() {
+        return stage;
     }
 }

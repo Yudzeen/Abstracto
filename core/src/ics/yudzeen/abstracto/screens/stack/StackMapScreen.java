@@ -1,17 +1,16 @@
 package ics.yudzeen.abstracto.screens.stack;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
+import ics.yudzeen.abstracto.screens.stack.postfix.PostfixExpressionGameScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
@@ -28,8 +27,22 @@ public class StackMapScreen extends AbstractoScreen {
     @Override
     protected void buildStage() {
         super.buildStage();
+        buildBackground();
         buildLocation();
         buildButtons();
+    }
+
+    /**
+     * Add background
+     */
+    private void buildBackground() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
+        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
+        pixmap.fill();
+        Image background = new Image(new Texture(pixmap));
+        background.setPosition(0,0);
+        stage.addActor(background);
+        pixmap.dispose();
     }
 
     private void buildLocation() {
@@ -70,7 +83,7 @@ public class StackMapScreen extends AbstractoScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 // TODO: town plaza screen
                 // temporary
-                game.setScreen(new StackPostfixExpressionGameScreen(game));
+                game.setScreen(new PostfixExpressionGameScreen(game));
             }
         });
         stage.addActor(townPlazaButton);
@@ -81,7 +94,7 @@ public class StackMapScreen extends AbstractoScreen {
         simulatorButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.setScreen(new StackSimulatorScreen(game));
+                game.setScreen(new ics.yudzeen.abstracto.screens.stack.simulator.StackSimulatorScreen(game));
             }
         });
         stage.addActor(simulatorButton);
@@ -96,5 +109,10 @@ public class StackMapScreen extends AbstractoScreen {
             }
         });
         stage.addActor(monsterFightButton);
+    }
+
+    @Override
+    protected void backKeyPressed() {
+        game.setScreen(new WorldMapScreen(game));
     }
 }

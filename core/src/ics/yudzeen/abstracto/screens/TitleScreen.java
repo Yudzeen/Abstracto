@@ -1,11 +1,15 @@
 package ics.yudzeen.abstracto.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
@@ -26,8 +30,22 @@ public class TitleScreen extends AbstractoScreen {
     @Override
     protected void buildStage() {
         super.buildStage();
+        buildBackground();
         buildTitle();
         buildButtons();
+    }
+
+    /**
+     * Add background
+     */
+    private void buildBackground() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
+        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
+        pixmap.fill();
+        Image background = new Image(new Texture(pixmap));
+        background.setPosition(0,0);
+        stage.addActor(background);
+        pixmap.dispose();
     }
 
     /**
@@ -49,7 +67,8 @@ public class TitleScreen extends AbstractoScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.debug(TAG, "Start button clicked.");
-                game.setScreen(new HomeScreen(game));
+                //game.setScreen(new HomeScreen(game));
+                game.setScreen(new WorldMapScreen(game));
             }
         });
         stage.addActor(startButton);
