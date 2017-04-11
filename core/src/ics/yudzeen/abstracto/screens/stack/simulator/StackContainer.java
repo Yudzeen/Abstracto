@@ -1,33 +1,25 @@
-package ics.yudzeen.abstracto.screens.stack;
+package ics.yudzeen.abstracto.screens.stack.simulator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ics.yudzeen.abstracto.Abstracto;
-import ics.yudzeen.abstracto.screens.objects.Node;
-import ics.yudzeen.abstracto.screens.objects.NodeFactory;
 
 /**
  * Created by Yujin on 11/03/2017.
  */
 
-public class StackContainer extends Actor {
+class StackContainer extends Actor {
 
     public String TAG = StackContainer.class.getName();
 
-    public int MAX_SIZE = 5;
+    public static final int MAX_SIZE = 5;
 
     Abstracto game;
     StackSimulatorScreen screen;
@@ -55,6 +47,7 @@ public class StackContainer extends Actor {
             Node node = nodeFactory.createNode("-");
             node.setText(s);
             nodesList.add(node);
+            game.androidInterfaces.toast("\""+ s + "\" pushed");
             return true;
         }
         else {
@@ -64,7 +57,8 @@ public class StackContainer extends Actor {
     }
 
     public String pop() {
-        nodesList.remove(nodesList.size()-1);
+        Node node = nodesList.remove(nodesList.size()-1);
+        game.androidInterfaces.toast("\""+ node.getText() + "\"  popped");
         return list.remove(list.size()-1);
     }
 

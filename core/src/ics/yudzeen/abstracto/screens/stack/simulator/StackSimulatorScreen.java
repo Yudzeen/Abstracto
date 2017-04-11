@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack;
+package ics.yudzeen.abstracto.screens.stack.simulator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -18,11 +19,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
-import ics.yudzeen.abstracto.screens.objects.Node;
-import ics.yudzeen.abstracto.screens.objects.NodeFactory;
+import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
+import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
-import ics.yudzeen.abstracto.utils.Text;
 
 /**
 * Screen of the stack simulator
@@ -38,7 +38,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     public StackSimulatorScreen(Abstracto game) {
         super(game);
-        nodeFactory = new NodeFactory(game);
+        nodeFactory = new NodeFactory(game.getAssets());
     }
 
     @Override
@@ -74,8 +74,8 @@ public class StackSimulatorScreen extends AbstractoScreen {
     }
 
     private void buildTitle() {
-        Text title = new Text("Stack Simulator", assets.fonts.defaultBig, Color.WHITE);
-        title.setPosition(10, GameConstants.HEIGHT - 10);
+        Label title = LabelFactory.createLabel("Stack Simulator", assets.fonts.defaultBig, Color.WHITE);
+        title.setPosition(10, GameConstants.HEIGHT - title.getHeight() - 5);
         stage.addActor(title);
     }
 

@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.objects;
+package ics.yudzeen.abstracto.screens.stack.simulator;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.utils.Align;
@@ -10,7 +10,6 @@ import ics.yudzeen.abstracto.ui.TextInputAdapter;
  */
 
 public class Node extends ImageTextButton {
-
 
     private NodeTextInputAdapter textInputAdapter;
 
