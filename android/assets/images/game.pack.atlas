@@ -1,19 +1,33 @@
 
 game.pack.png
-size: 512,64
+size: 1024,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+gray_circle
+  rotate: false
+  xy: 396, 7
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
 heart
   rotate: false
-  xy: 436, 24
+  xy: 550, 24
   size: 37, 38
   orig: 37, 38
   offset: 0, 0
   index: -1
+light_yellow_circle
+  rotate: false
+  xy: 453, 7
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
 pause
   rotate: false
-  xy: 396, 24
+  xy: 510, 24
   size: 38, 38
   orig: 38, 38
   offset: 0, 0

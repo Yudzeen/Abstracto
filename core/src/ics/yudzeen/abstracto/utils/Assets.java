@@ -52,7 +52,16 @@ public class Assets implements AssetErrorListener, Disposable {
         }
 
         TextureAtlas gameAtlas = assetManager.get(GameConstants.TEXTURE_ATLAS_GAME);
+        // Pixel smoothing
+        for (Texture texture: gameAtlas.getTextures()) {
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
+
         TextureAtlas simulatorAtlas = assetManager.get(GameConstants.TEXTURE_ATLAS_SIMULATOR);
+        // Pixel smoothing
+        for (Texture texture: simulatorAtlas.getTextures()) {
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
 
         fonts = new AssetFonts();
         buttons = new AssetButtons(uiAtlas);
@@ -80,22 +89,26 @@ public class Assets implements AssetErrorListener, Disposable {
         public BitmapFont defaultNormal;
         public BitmapFont defaultBig;
         public BitmapFont defaultVeryBig;
+        public BitmapFont defaultLarge;
 
         public AssetFonts() {
             defaultSmall = new BitmapFont();
             defaultNormal = new BitmapFont();
             defaultBig = new BitmapFont();
             defaultVeryBig = new BitmapFont();
+            defaultLarge = new BitmapFont();
 
             defaultSmall.getData().setScale(0.75f);
             defaultNormal.getData().setScale(1.0f);
             defaultBig.getData().setScale(2.00f);
             defaultVeryBig.getData().setScale(3.00f);
+            defaultLarge.getData().setScale(4.00f);
 
             defaultSmall.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             defaultNormal.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             defaultBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             defaultVeryBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+            defaultLarge.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         }
     }
 
@@ -183,6 +196,9 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion push;
         public AtlasRegion pop;
 
+        public AtlasRegion gray_circle;
+        public AtlasRegion light_yellow_circle;
+
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
             pause = atlas.findRegion("pause");
@@ -190,6 +206,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
             push = atlas.findRegion("push");
             pop = atlas.findRegion("pop");
+
+            gray_circle = atlas.findRegion("gray_circle");
+            light_yellow_circle = atlas.findRegion("light_yellow_circle");
         }
     }
 }
