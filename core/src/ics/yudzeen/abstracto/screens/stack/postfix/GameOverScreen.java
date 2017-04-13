@@ -10,10 +10,10 @@ import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Created by Yujin on 02/04/2017.
+ * Game over screen
  */
 
-public class GameOverScreen extends AbstractoScreen {
+class GameOverScreen extends AbstractoScreen {
 
     public static final String TAG = GameOverScreen.class.getName();
 

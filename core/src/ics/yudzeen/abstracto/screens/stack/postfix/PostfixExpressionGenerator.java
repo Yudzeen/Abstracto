@@ -11,7 +11,7 @@ import java.util.Stack;
  * This class generates postfix expressions.
  */
 
-public class PostfixExpressionGenerator {
+class PostfixExpressionGenerator {
 
     public static final String TAG = PostfixExpressionGenerator.class.getName();
 

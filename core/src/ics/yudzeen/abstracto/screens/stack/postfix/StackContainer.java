@@ -1,6 +1,5 @@
 package ics.yudzeen.abstracto.screens.stack.postfix;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -8,14 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 import java.util.List;
 
-import ics.yudzeen.abstracto.screens.stack.simulator.Node;
-import ics.yudzeen.abstracto.screens.stack.simulator.NodeFactory;
-
 /**
  * The stack container for the postfix expression game
  */
 
-public class StackContainer extends Actor {
+class StackContainer extends Actor {
 
     public static final String TAG = StackContainer.class.getName();
 

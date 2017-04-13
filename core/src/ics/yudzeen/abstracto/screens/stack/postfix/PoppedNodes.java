@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * Popped nodes class
  */
 
-public class PoppedNodes extends Actor {
+class PoppedNodes extends Actor {
 
     public static final String TAG = PoppedNodes.class.getName();
 

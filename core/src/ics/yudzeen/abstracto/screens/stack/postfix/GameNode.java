@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * Node for postfix expression game
  */
 
-public class GameNode extends Actor {
+class GameNode extends Actor {
 
     public static final String TAG = GameNode.class.getName();
 
