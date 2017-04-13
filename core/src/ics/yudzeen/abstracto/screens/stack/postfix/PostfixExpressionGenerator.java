@@ -78,6 +78,7 @@ public class PostfixExpressionGenerator {
             }
             randomExpressionsList.add(expression);
         }
+        replaceDivisionByZeroExpressions(randomExpressionsList);
         return randomExpressionsList;
     }
 
@@ -109,5 +110,59 @@ public class PostfixExpressionGenerator {
             }
         }
         return false;
+    }
+
+    /**
+     * Replaces division by zero expressions
+     * @param randomExpressionsList
+     */
+    private void replaceDivisionByZeroExpressions(List<String> randomExpressionsList) {
+        for (int i = 0; i < randomExpressionsList.size(); i++) {
+            String expression = randomExpressionsList.get(i);
+            while(!isSolvable(expression)) {
+                Gdx.app.debug(TAG, "Division by zero, replacing: " + expression);
+                expression = getRandomExpressions(1).get(0);
+                Gdx.app.debug(TAG, "with " + expression);
+            }
+        }
+    }
+
+    /**
+     * To catch division by zero
+     * @param expression
+     * @return
+     */
+    private boolean isSolvable(String expression) {
+        Stack<String> stack = new Stack<String>();
+
+        for (int i = 0; i < expression.length(); i++) {
+            String s = Character.toString(expression.charAt(i));
+            if(arrayContains(OPERANDS, s)) {
+                stack.push(s);
+            }
+            else {
+                int b = Integer.parseInt(stack.pop());
+                int a = Integer.parseInt(stack.pop());
+                switch (s) {
+                    case "+":
+                        stack.push(Integer.toString(a+b));
+                        break;
+                    case "-":
+                        stack.push(Integer.toString(a-b));
+                        break;
+                    case "*":
+                        stack.push(Integer.toString(a*b));
+                        break;
+                    case "/":
+                        if(b==0){
+                            return false;
+                        }
+                        stack.push(Integer.toString(a/b));
+                        break;
+
+                }
+            }
+        }
+        return true;
     }
 }

@@ -18,7 +18,7 @@ class GameController {
 
     public static final int MAX_LIVES = 3;
     public static final int TIME_LIMIT = 60; // seconds
-    public static final int NUM_EXPRESSIONS = 5;
+    public static final int NUM_EXPRESSIONS = 10;
 
     public static final int POP_FAILED = 0;
     public static final int POP_1 = 1;
@@ -58,7 +58,7 @@ class GameController {
         isGameStarted = false;
         readySetGoText = "Ready";
         PostfixExpressionGenerator pfeGenerator = new PostfixExpressionGenerator();
-        expressionsList = pfeGenerator.getRandomExpressions(5);
+        expressionsList = pfeGenerator.getRandomExpressions(NUM_EXPRESSIONS);
         currentExpression = getCurrentExpressionAsList();
         answersList = pfeGenerator.generateAnswers(currentExpression);
         stack = new ArrayList<String>();
@@ -114,7 +114,6 @@ class GameController {
             Gdx.app.debug(TAG, "Stack: " + stack.toString());
             Gdx.app.debug(TAG, "Curr exp: " + currentExpression.toString());
             Gdx.app.debug(TAG, "Popped Nodes:" + Arrays.toString(poppedObjects));
-            //gameScreen.gameRenderer.removeNode(0);
             return true;
         }
         else {
@@ -202,7 +201,6 @@ class GameController {
         }
         else if (operation.equals("/")) {
             answer = x / y;
-            // FIXME: 10/04/2017 division by zero
         }
         else {
             Gdx.app.error(TAG, "Solving Operation Error: Invalid Operation");
