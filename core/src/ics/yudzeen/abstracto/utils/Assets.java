@@ -199,6 +199,9 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion gray_circle;
         public AtlasRegion light_yellow_circle;
 
+        public AtlasRegion retry_icon;
+        public AtlasRegion exit_icon;
+
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
             pause = atlas.findRegion("pause");
@@ -209,6 +212,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
             gray_circle = atlas.findRegion("gray_circle");
             light_yellow_circle = atlas.findRegion("light_yellow_circle");
+
+            retry_icon = atlas.findRegion("retry_icon");
+            exit_icon = atlas.findRegion("exit_icon");
         }
     }
 }

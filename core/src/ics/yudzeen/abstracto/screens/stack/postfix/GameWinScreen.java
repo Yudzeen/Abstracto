@@ -17,16 +17,16 @@ import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Game over screen
+ * Game win Screen
  */
 
-class GameOverScreen extends AbstractoScreen {
+class GameWinScreen extends AbstractoScreen {
 
-    public static final String TAG = GameOverScreen.class.getName();
+    public static final String TAG = GameWinScreen.class.getName();
 
     private Image backgroundImage;
 
-    private Label gameOverLabel;
+    private Label gameWinLabel;
 
     private ImageButton retryButton;
     private Label retryLabel;
@@ -34,14 +34,14 @@ class GameOverScreen extends AbstractoScreen {
     private ImageButton exitButton;
     private Label exitLabel;
 
-    public GameOverScreen(Abstracto game) {
+    public GameWinScreen(Abstracto game) {
         super(game);
         init();
     }
 
     private void init() {
         initBackgroundImage();
-        initGameOverLabel();
+        initGameWinLabel();
         initRetryButton();
         initRetryLabel();
         initExitButton();
@@ -57,10 +57,10 @@ class GameOverScreen extends AbstractoScreen {
         pixmap.dispose();
     }
 
-    private void initGameOverLabel() {
-        gameOverLabel = LabelFactory.createLabel("GAME OVER!", assets.fonts.defaultVeryBig, Color.WHITE);
-        gameOverLabel.setPosition(GameConstants.WIDTH/2-gameOverLabel.getWidth()/2,
-                GameConstants.HEIGHT/2-gameOverLabel.getHeight()/2);
+    private void initGameWinLabel() {
+        gameWinLabel = LabelFactory.createLabel("GAME WIN!", assets.fonts.defaultVeryBig, Color.WHITE);
+        gameWinLabel.setPosition(GameConstants.WIDTH/2- gameWinLabel.getWidth()/2,
+                GameConstants.HEIGHT/2- gameWinLabel.getHeight()/2);
     }
 
     private void initRetryButton() {
@@ -111,7 +111,7 @@ class GameOverScreen extends AbstractoScreen {
 
         stage.addActor(backgroundImage);
 
-        stage.addActor(gameOverLabel);
+        stage.addActor(gameWinLabel);
 
         stage.addActor(retryButton);
         stage.addActor(retryLabel);

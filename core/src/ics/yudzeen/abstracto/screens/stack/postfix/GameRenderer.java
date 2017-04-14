@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -24,6 +26,7 @@ import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.Assets;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
@@ -66,12 +69,8 @@ class GameRenderer {
 
     private Image lineImage;
     private Image squareImage;
-    private Image circleImage1, circleImage2;
 
     private PoppedNodes poppedNodes;
-
-    private boolean gameWon;
-    private boolean gameLost;
 
     public GameRenderer(PostfixExpressionGameScreen gameScreen, GameController gameController) {
         this.gameScreen = gameScreen;
@@ -150,7 +149,7 @@ class GameRenderer {
             GameNode node = nodesQueue.remove(0);
             String nodeText = node.getText();
             // soft fix for bug when trying to push while merging
-            if(nodeText.equals("+") || nodeText.equals("-") || nodeText.equals("*") || nodeText.equals("/")) {
+            if(nodeText.equals("+") || nodeText.equals("-") || nodeText.equals("*") || nodeText.equals("/") && nodesQueue.size() != 1) {
                 GameNode newNode = new GameNode(gameScreen, gameController.peekStack());
                 newNode.setPosition(node.getX(), node.getY());
                 node.remove();
@@ -290,7 +289,7 @@ class GameRenderer {
         stage.addActor(stackContainer);
         stage.addActor(pushButton);
         stage.addActor(popButton);
-        stage.addActor(pauseButton);
+        //stage.addActor(pauseButton);
         //stage.addActor(expressionsLeftText);
         stage.addActor(readySetGoText);
 
@@ -324,13 +323,14 @@ class GameRenderer {
             updateLives();
             //updateExpressionsLeft();
             updateNodesQueue();
-            updateStack();
             if (gameController.hasWin()) {
                 Gdx.app.debug(TAG, "Game won.");
-                switchScreen(new GameOverScreen(gameScreen.getGame()));
+                disableButtons();
+                switchScreen(new GameWinScreen(gameScreen.getGame()));
             }
             if (gameController.hasLose()) {
                 Gdx.app.debug(TAG, "Game lost.");
+                disableButtons();
                 switchScreen(new GameOverScreen(gameScreen.getGame()));
             }
         }
@@ -394,14 +394,6 @@ class GameRenderer {
         }
     }
 
-    private void updateStack() {
-
-    }
-
-    private void updatePoppedNodes() {
-
-    }
-
     private void dimBackground() {
         Stage stage = gameScreen.getStage();
         stage.addActor(blackImage);
@@ -420,9 +412,10 @@ class GameRenderer {
     }
 
     public void switchScreen(final AbstractoScreen nextScreen) {
-        Stage stage= gameScreen.getStage();
+        Stage stage = gameScreen.getStage();
         stage.getRoot().getColor().a = 1;
         SequenceAction sequenceAction = new SequenceAction();
+        sequenceAction.addAction(delay(5.0f));
         sequenceAction.addAction(fadeOut(2.0f));
         sequenceAction.addAction(run(new Runnable() {
             @Override
@@ -431,6 +424,11 @@ class GameRenderer {
             }
         }));
         stage.getRoot().addAction(sequenceAction);
+    }
+
+    public void disableButtons() {
+        pushButton.setTouchable(Touchable.disabled);
+        popButton.setTouchable(Touchable.disabled);
     }
 
 }
