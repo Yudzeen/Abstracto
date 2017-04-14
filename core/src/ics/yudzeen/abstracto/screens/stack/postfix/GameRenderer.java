@@ -72,6 +72,9 @@ class GameRenderer {
 
     private PoppedNodes poppedNodes;
 
+    private boolean gameWon;
+    private boolean gameLost;
+
     public GameRenderer(PostfixExpressionGameScreen gameScreen, GameController gameController) {
         this.gameScreen = gameScreen;
         this.gameController = gameController;
@@ -323,12 +326,14 @@ class GameRenderer {
             updateLives();
             //updateExpressionsLeft();
             updateNodesQueue();
-            if (gameController.hasWin()) {
+            if (gameController.hasWin() && !gameWon) {
+                gameWon = true;
                 Gdx.app.debug(TAG, "Game won.");
                 disableButtons();
                 switchScreen(new GameWinScreen(gameScreen.getGame()));
             }
-            if (gameController.hasLose()) {
+            if (gameController.hasLose() && !gameLost) {
+                gameLost = true;
                 Gdx.app.debug(TAG, "Game lost.");
                 disableButtons();
                 switchScreen(new GameOverScreen(gameScreen.getGame()));
