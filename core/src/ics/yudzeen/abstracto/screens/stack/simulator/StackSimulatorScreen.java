@@ -13,7 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
@@ -32,75 +31,87 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     public static final String TAG = StackSimulatorScreen.class.getName();
 
-    NodeFactory nodeFactory;
-    StackContainer stackContainer;
-    Image trashCan;
+    private NodeFactory nodeFactory;
+
+    private Image backgroundImage;
+
+    private Image titleBar;
+    private Label titleLabel;
+
+    private ImageButton addNodeButton;
+
+    private Image trashcanImage;
+
+    private StackContainer stackContainer;
 
     public StackSimulatorScreen(Abstracto game) {
         super(game);
+        init();
+    }
+
+    private void init() {
         nodeFactory = new NodeFactory(game.getAssets());
+
+        initBackgroundImage();
+        initTitleBar();
+        initTitleLabel();
+        initStackContainer();
+        initAddNodeButton();
+        initTrashCanImage();
     }
 
     @Override
     protected void buildStage() {
         super.buildStage();
-        buildBackground();
-        buildTitleBar();
-        buildTitle();
-        buildAddNodeButton();
-        buildStackContainer();
-        buildTrashCan();
-    }
-
-    private void buildBackground() {
-        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        Texture texture = new Texture(pixmap);
-        texture.draw(pixmap,0,0);
-        Image background = new Image(texture);
-        stage.addActor(background);
-    }
-
-    private void buildTitleBar() {
-        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, 45, Pixmap.Format.RGB888);
-        pixmap.setColor(new Color(74/255.0f,143/255.0f,231/255.0f,1));
-        pixmap.fill();
-        Texture texture = new Texture(pixmap);
-        texture.draw(pixmap,0,0);
-        Image background = new Image(texture);
-        background.setPosition(0,GameConstants.HEIGHT-background.getHeight());
-        stage.addActor(background);
-    }
-
-    private void buildTitle() {
-        Label title = LabelFactory.createLabel("Stack Simulator", assets.fonts.defaultBig, Color.WHITE);
-        title.setPosition(10, GameConstants.HEIGHT - title.getHeight() - 5);
-        stage.addActor(title);
-    }
-
-    private void buildStackContainer() {
-        stackContainer = new StackContainer(game, this, nodeFactory);
-        stackContainer.setPosition(GameConstants.WIDTH-stackContainer.getWidth()-50, 10);
+        stage.addActor(backgroundImage);
+        stage.addActor(titleBar);
+        stage.addActor(titleLabel);
+        stage.addActor(addNodeButton);
+        stage.addActor(trashcanImage);
         stage.addActor(stackContainer);
     }
 
-    private void buildAddNodeButton() {
-        ImageButton addNodeButton = ButtonFactory.createImageButton(assets.simulator.add_node);
+    private void initBackgroundImage() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGB888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        backgroundImage = new Image(new Texture(pixmap));
+        pixmap.dispose();
+    }
+
+    private void initTitleBar() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, 45, Pixmap.Format.RGB888);
+        pixmap.setColor(new Color(74/255.0f,143/255.0f,231/255.0f,1));
+        pixmap.fill();
+        titleBar = new Image(new Texture(pixmap));
+        titleBar.setPosition(0,GameConstants.HEIGHT-titleBar.getHeight());
+        pixmap.dispose();
+    }
+
+    private void initTitleLabel() {
+        titleLabel = LabelFactory.createLabel("Stack Simulator", assets.fonts.defaultBig, Color.WHITE);
+        titleLabel.setPosition(10, GameConstants.HEIGHT - titleLabel.getHeight() - 5);
+    }
+
+    private void initStackContainer() {
+        stackContainer = new StackContainer(game, this, nodeFactory);
+        stackContainer.setPosition(GameConstants.WIDTH-stackContainer.getWidth()-50, 10);
+    }
+
+    private void initAddNodeButton() {
+        addNodeButton = ButtonFactory.createImageButton(assets.simulator.add_node);
         addNodeButton.setPosition(10,GameConstants.HEIGHT-addNodeButton.getHeight()-60);
-        addNodeButton.addListener(new ChangeListener() {
+        addNodeButton.addListener(new ClickListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
+            public void clicked(InputEvent event, float x, float y) {
                 spawnNode();
             }
         });
-        stage.addActor(addNodeButton);
     }
 
-    private void buildTrashCan() {
-        trashCan = new Image(assets.simulator.trash);
-        trashCan.setPosition(10,10);
-        stage.addActor(trashCan);
+    private void initTrashCanImage() {
+        trashcanImage = new Image(assets.simulator.trash);
+        trashcanImage.setPosition(10,10);
     }
 
     @Override
@@ -140,8 +151,9 @@ public class StackSimulatorScreen extends AbstractoScreen {
                         node.setPosition(GameConstants.WIDTH/2-node.getWidth()/2, GameConstants.HEIGHT/2-node.getHeight()/2);
                     }
                 }
-                Rectangle trashRectangle = new Rectangle(trashCan.getX(), trashCan.getY(), trashCan.getWidth(), trashCan.getHeight());
+                Rectangle trashRectangle = new Rectangle(trashcanImage.getX(), trashcanImage.getY(), trashcanImage.getWidth(), trashcanImage.getHeight());
                 if(Intersector.overlaps(nodeCircle, trashRectangle)) {
+                    game.androidInterfaces.toast("\""+ node.getText() + "\" deleted.");
                     node.remove();
                 }
             }

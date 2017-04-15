@@ -3,17 +3,17 @@ package ics.yudzeen.abstracto.screens;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
+import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
@@ -22,126 +22,174 @@ import ics.yudzeen.abstracto.utils.GameConstants;
 
 public class WorldMapScreen extends AbstractoScreen {
 
+    public static final String TAG = WorldMapScreen.class.getName();
+
+    private Image backgroundImage;
+    private Image mapImage;
+    private Image titleImage;
+
+    private ImageButton homeButton;
+    private Label homeLabel;
+
+    private ImageButton stackvilleButton;
+    private Label stackvilleLabel;
+
+    private ImageButton queuecityButton;
+    private Label queuecityLabel;
+
+    private ImageButton graphopolisButton;
+    private Label graphopolisLabel;
+
+    private ImageButton treetownButton;
+    private Label treetownLabel;
+
     public WorldMapScreen(Abstracto game) {
         super(game);
+        init();
+    }
+
+    private void init() {
+        initBackgroundImage();
+        initTitleImage();
+        initTitleImage();
+        initMapImage();
+        initHomeButton();
+        initHomeLabel();
+        initStackvilleButton();
+        initStackvilleLabel();
+        initQueuecityButton();
+        initQueuecityLabel();
+        initGraphopolisButton();
+        initGraphopolisLabel();
+        initTreetownButton();
+        initTreetownLabel();
     }
 
     @Override
     protected void buildStage() {
         super.buildStage();
-        buildBackground();
-        buildMapImage();
-        buildTitle();
-        buildMapButtons();
+        stage.addActor(backgroundImage);
+        stage.addActor(mapImage);
+        stage.addActor(titleImage);
+        stage.addActor(homeButton);
+        stage.addActor(homeLabel);
+        stage.addActor(stackvilleButton);
+        stage.addActor(stackvilleLabel);
+        stage.addActor(queuecityButton);
+        stage.addActor(queuecityLabel);
+
+        graphopolisButton.setDisabled(true);
+        stage.addActor(graphopolisButton);
+        stage.addActor(graphopolisLabel);
+
+        treetownButton.setDisabled(true);
+        stage.addActor(treetownButton);
+        stage.addActor(treetownLabel);
     }
 
-    /**
-     * Add background
-     */
-    private void buildBackground() {
+    private void initBackgroundImage() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
         pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
         pixmap.fill();
-        Image background = new Image(new Texture(pixmap));
-        background.setPosition(0,0);
-        stage.addActor(background);
+        backgroundImage = new Image(new Texture(pixmap));
+        backgroundImage.setPosition(0,0);
         pixmap.dispose();
     }
 
-    /**
-     *  Add title image
-     */
-    private void buildTitle() {
-        Image title = new Image(assets.images.title_map);
-        title.setPosition(GameConstants.WIDTH/2 - title.getWidth()/2, 5);
-        stage.addActor(title);
+    private void initTitleImage() {
+        titleImage = new Image(assets.images.title_map);
+        titleImage.setPosition(GameConstants.WIDTH/2 - titleImage.getWidth()/2, 5);
     }
 
-    /**
-     * Add map image
-     */
-    private void buildMapImage() {
-        Image mapImage = new Image(assets.images.blank_map);
+    private void initMapImage() {
+        mapImage = new Image(assets.images.blank_map);
         mapImage.setWidth(GameConstants.WIDTH);
         mapImage.setPosition(GameConstants.WIDTH/2 - mapImage.getWidth()/2, GameConstants.HEIGHT/2 - mapImage.getHeight()/2);
-        stage.addActor(mapImage);
     }
 
-    /**
-     * Add map buttons
-     */
-    private void buildMapButtons() {
-        ImageButton homeMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
-        homeMapButton.setPosition(GameConstants.WIDTH/2 - homeMapButton.getWidth()/2 - 30, GameConstants.HEIGHT/2 - homeMapButton.getHeight()/2);
-        homeMapButton.addListener(new ChangeListener() {
+    private void initHomeButton() {
+        homeButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
+        homeButton.setPosition(GameConstants.WIDTH/2 - homeButton.getWidth()/2 - 30, GameConstants.HEIGHT/2 - homeButton.getHeight()/2);
+        homeButton.addListener(new ClickListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                //game.setScreen(new HomeScreen(game));
+            public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new TitleScreen(game));
             }
         });
-        stage.addActor(homeMapButton);
-        Label homeLabel = new Label("Home", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        homeLabel.setPosition(homeMapButton.getX() + homeMapButton.getWidth()/2 - homeLabel.getWidth()/2, homeMapButton.getY() - 15);
-        stage.addActor(homeLabel);
+    }
 
-        ImageButton stackMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
-        stackMapButton.setPosition(110, GameConstants.HEIGHT - 120);
-        stackMapButton.addListener(new ChangeListener() {
+    private void initHomeLabel() {
+        homeLabel = LabelFactory.createLabel("Home", Color.DARK_GRAY);
+        homeLabel.setPosition(homeButton.getX() + (homeButton.getWidth()-homeLabel.getWidth())/2,
+                homeButton.getY()-15);
+    }
+
+    private void initStackvilleButton() {
+        stackvilleButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
+        stackvilleButton.setPosition(110, GameConstants.HEIGHT - 120);
+        stackvilleButton.addListener(new ClickListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
+            public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new StackMapScreen(game));
             }
         });
-        stage.addActor(stackMapButton);
-        Label stackMapLabel = new Label("Stackville", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        stackMapLabel.setPosition(stackMapButton.getX() + stackMapButton.getWidth()/2 - stackMapLabel.getWidth()/2, stackMapButton.getY() - 15);
-        stage.addActor(stackMapLabel);
+    }
 
-        ImageButton queueMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
-        queueMapButton.setPosition(150, 100);
-        queueMapButton.addListener(new ChangeListener() {
+    private void initStackvilleLabel() {
+        stackvilleLabel = LabelFactory.createLabel("Stackville", Color.DARK_GRAY);
+        stackvilleLabel.setPosition(stackvilleButton.getX() + (stackvilleButton.getWidth()- stackvilleLabel.getWidth())/2,
+                stackvilleButton.getY() - 15);
+    }
+
+    private void initQueuecityButton() {
+        queuecityButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
+        queuecityButton.setPosition(150, 100);
+        queuecityButton.addListener(new ClickListener() {
             @Override
-            public void changed(ChangeEvent event, Actor actor) {
+            public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new QueueMapScreen(game));
             }
         });
-        // TODO: Remove Later
-        queueMapButton.setDisabled(true);
-        stage.addActor(queueMapButton);
-        Label queueMapLabel = new Label("Queue City", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        queueMapLabel.setPosition(queueMapButton.getX() + queueMapButton.getWidth()/2 - queueMapLabel.getWidth()/2, queueMapButton.getY() - 15);
-        stage.addActor(queueMapLabel);
-
-        ImageButton graphMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
-        graphMapButton.setPosition(GameConstants.WIDTH/2 + 185, GameConstants.HEIGHT/2 + 30);
-        queueMapButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                // TODO: graph screen
-            }
-        });
-        // TODO: Remove Later
-        graphMapButton.setDisabled(true);
-        stage.addActor(graphMapButton);
-        Label graphMapLabel = new Label("Graphopolis", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        graphMapLabel.setPosition(graphMapButton.getX() + graphMapButton.getWidth()/2 - graphMapLabel.getWidth()/2, graphMapButton.getY() - 15);
-        stage.addActor(graphMapLabel);
-
-
-        ImageButton treeMapButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
-        treeMapButton.setPosition(GameConstants.WIDTH/2 + 210, GameConstants.HEIGHT/2 - 140);
-        treeMapButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                // TODO: tree screen
-            }
-        });
-        // TODO: Remove Later
-        treeMapButton.setDisabled(true);
-        stage.addActor(treeMapButton);
-        Label treeMapLabel = new Label("Tree Town", new Label.LabelStyle(new BitmapFont(), Color.DARK_GRAY));
-        treeMapLabel.setPosition(treeMapButton.getX() + treeMapButton.getWidth()/2 - treeMapLabel.getWidth()/2, treeMapButton.getY() - 15);
-        stage.addActor(treeMapLabel);
     }
+
+    private void initQueuecityLabel() {
+        queuecityLabel = LabelFactory.createLabel("Queue City", Color.DARK_GRAY);
+        queuecityLabel.setPosition(queuecityButton.getX() + (queuecityButton.getWidth()-queuecityLabel.getWidth())/2,
+                queuecityButton.getY() - 15);
+    }
+
+    private void initGraphopolisButton() {
+        graphopolisButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
+        graphopolisButton.setPosition(GameConstants.WIDTH/2 + 185, GameConstants.HEIGHT/2 + 30);
+        graphopolisButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // TODO: 14/04/2017 Graph screen
+            }
+        });
+    }
+
+    private void initGraphopolisLabel() {
+        graphopolisLabel = LabelFactory.createLabel("Graphopolis", Color.DARK_GRAY);
+        graphopolisLabel.setPosition(graphopolisButton.getX() + (graphopolisButton.getWidth() - graphopolisLabel.getWidth())/2,
+                graphopolisButton.getY() - 15);
+    }
+
+    private void initTreetownButton() {
+        treetownButton = ButtonFactory.createImageButton(assets.buttons.town_icon);
+        treetownButton.setPosition(GameConstants.WIDTH/2 + 210, GameConstants.HEIGHT/2 - 140);
+        treetownButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // TODO: 14/04/2017 Tree screen
+            }
+        });
+    }
+
+    private void initTreetownLabel() {
+        treetownLabel = LabelFactory.createLabel("Tree Town", Color.DARK_GRAY);
+        treetownLabel.setPosition(treetownButton.getX() + (treetownButton.getWidth() - treetownLabel.getWidth())/2,
+                treetownButton.getY() - 15);
+    }
+
 }

@@ -5,26 +5,30 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 /**
- * Created by Yujin on 27/03/2017.
+ * Factory for creating labels
  */
 
 public class LabelFactory {
 
-    public static Color DEFAULT_COLOR = Color.BLACK;
-    public static BitmapFont DEFAULT_FONT = new BitmapFont();
+    private static Color DEFAULT_COLOR = Color.BLACK;
+    private static BitmapFont DEFAULT_FONT = new BitmapFont();
+
+    private LabelFactory() {}
 
     public static Label createLabel(CharSequence text, BitmapFont bitmapFont, Color color) {
         Label.LabelStyle style = new Label.LabelStyle();
         style.font = bitmapFont;
         style.fontColor = color;
 
-        Label label = new Label(text, style);
-
-        return label;
+        return new Label(text, style);
     }
 
     public static Label createLabel(CharSequence text) {
         return createLabel(text, DEFAULT_FONT, DEFAULT_COLOR);
+    }
+
+    public static Label createLabel(CharSequence text, Color color) {
+        return createLabel(text, DEFAULT_FONT, color);
     }
 
     public static Label createLabel(CharSequence text, BitmapFont bitmapFont) {

@@ -85,10 +85,25 @@ public class Assets implements AssetErrorListener, Disposable {
     }
 
     public class AssetFonts {
+        /**
+         * 0.75x of the normal size
+         */
         public BitmapFont defaultSmall;
+        /**
+         * normal sized font
+         */
         public BitmapFont defaultNormal;
+        /**
+         * 2x
+         */
         public BitmapFont defaultBig;
+        /**
+         * 3x
+         */
         public BitmapFont defaultVeryBig;
+        /**
+         * 4x
+         */
         public BitmapFont defaultLarge;
 
         public AssetFonts() {

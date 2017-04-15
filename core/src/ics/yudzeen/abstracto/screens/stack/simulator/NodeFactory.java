@@ -18,7 +18,7 @@ public class NodeFactory {
 
     Assets assets;
 
-    public NodeFactory(Assets assets) {
+    NodeFactory(Assets assets) {
         this.assets = assets;
     }
 
@@ -28,7 +28,7 @@ public class NodeFactory {
      * @param isDisabled button
      * @return Node
      */
-    public Node createNode(String text, boolean isDisabled) {
+    Node createNode(String text, boolean isDisabled) {
         TextureRegion textureRegion = assets.simulator.blank_node;
         ImageTextButton.ImageTextButtonStyle style = new ImageTextButton.ImageTextButtonStyle();
         style.up = new TextureRegionDrawable(textureRegion);
@@ -47,7 +47,7 @@ public class NodeFactory {
      * @param text
      * @return Node
      */
-    public Node createNode(String text) {
+    Node createNode(String text) {
         return createNode(text, DEFAULT_DISABLED);
     }
 

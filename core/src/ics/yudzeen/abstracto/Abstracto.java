@@ -1,28 +1,21 @@
 package ics.yudzeen.abstracto;
 
 import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 
 import ics.yudzeen.abstracto.screens.DirectedGame;
 import ics.yudzeen.abstracto.screens.TitleScreen;
-import ics.yudzeen.abstracto.screens.transitions.Fade;
 import ics.yudzeen.abstracto.screens.transitions.ScreenTransition;
 import ics.yudzeen.abstracto.screens.transitions.Slice;
-import ics.yudzeen.abstracto.screens.transitions.Slide;
 import ics.yudzeen.abstracto.utils.Assets;
 
 /**
  * Main game class file
  */
-
-// TODO: 03/04/2017 transition
-// TODO: 04/04/2017 revamp ui
 
 public class Abstracto extends DirectedGame {
 

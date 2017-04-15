@@ -12,14 +12,14 @@ import java.util.List;
 import ics.yudzeen.abstracto.Abstracto;
 
 /**
- * Created by Yujin on 11/03/2017.
+ * Stack container of the simulator
  */
 
 class StackContainer extends Actor {
 
     public String TAG = StackContainer.class.getName();
 
-    public static final int MAX_SIZE = 5;
+    private static final int MAX_SIZE = 5;
 
     Abstracto game;
     StackSimulatorScreen screen;
@@ -30,7 +30,7 @@ class StackContainer extends Actor {
 
     ArrayList<Node> nodesList;
 
-    public StackContainer(Abstracto game, StackSimulatorScreen screen, NodeFactory nodeFactory) {
+    StackContainer(Abstracto game, StackSimulatorScreen screen, NodeFactory nodeFactory) {
         this.game = game;
         this.nodeFactory = nodeFactory;
         this.screen = screen;
@@ -41,13 +41,13 @@ class StackContainer extends Actor {
         setHeight(texture.getRegionHeight());
     }
 
-    public boolean push(String s) {
+    boolean push(String s) {
         if(list.size() < MAX_SIZE) {
             list.add(list.size(), s);
             Node node = nodeFactory.createNode("-");
             node.setText(s);
             nodesList.add(node);
-            game.androidInterfaces.toast("\""+ s + "\" pushed");
+            game.androidInterfaces.toast("\""+ s + "\" pushed.");
             return true;
         }
         else {
@@ -56,9 +56,9 @@ class StackContainer extends Actor {
         }
     }
 
-    public String pop() {
+    String pop() {
         Node node = nodesList.remove(nodesList.size()-1);
-        game.androidInterfaces.toast("\""+ node.getText() + "\"  popped");
+        game.androidInterfaces.toast("\""+ node.getText() + "\"  popped.");
         return list.remove(list.size()-1);
     }
 

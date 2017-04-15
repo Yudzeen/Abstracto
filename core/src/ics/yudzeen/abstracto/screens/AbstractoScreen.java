@@ -65,7 +65,7 @@ public abstract class AbstractoScreen implements Screen {
 
     @Override
     public void resume() {
-        buildStage();
+            buildStage();
     }
 
     @Override

@@ -1,9 +1,9 @@
 package ics.yudzeen.abstracto;
 
 /**
- * Interface for android functionalities
+ * Interface for android functions
  */
 
 public interface AndroidInterfaces {
-    public void toast(final String text);
+    void toast(final String text);
 }

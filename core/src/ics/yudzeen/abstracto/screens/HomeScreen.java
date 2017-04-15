@@ -20,56 +20,65 @@ public class HomeScreen extends AbstractoScreen {
 
     public static final String TAG = HomeScreen.class.getName();
 
+    private Image backgroundImage;
+    private Image locationLabel;
+    private Image characterImage;
+
+    private ImageButton worldMapButton;
+    private ImageButton profileButton;
+    private ImageButton achievementsButton;
+
     public HomeScreen(Abstracto game) {
         super(game);
+        init();
+    }
+
+    private void init() {
+        initBackgroundImage();
+        initLocationLabel();
+        initCharacterImage();
+        initWorldMapButton();
+        initProfileButton();
+        initAchievementsButton();
     }
 
     @Override
     protected void buildStage() {
         super.buildStage();
-        buildBackground();
-        buildLocation();
-        buildCharacter();
-        buildButtons();
+        stage.addActor(backgroundImage);
+        stage.addActor(locationLabel);
+        stage.addActor(characterImage);
+        stage.addActor(worldMapButton);
+        stage.addActor(profileButton);
+        stage.addActor(achievementsButton);
     }
 
-    /**
-     * Add background
-     */
-    private void buildBackground() {
+    @Override
+    protected void backKeyPressed() {
+        game.setScreen(new TitleScreen(game));
+    }
+
+    private void initBackgroundImage() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
         pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
         pixmap.fill();
-        Image background = new Image(new Texture(pixmap));
-        background.setPosition(0,0);
-        stage.addActor(background);
+        backgroundImage = new Image(new Texture(pixmap));
+        backgroundImage.setPosition(0,0);
         pixmap.dispose();
     }
 
-    /**
-     * Add location image to stage
-     */
-    private void buildLocation() {
-        Image location = new Image(assets.images.location_home);
-        location.setPosition(0, GameConstants.HEIGHT - location.getHeight());
-        stage.addActor(location);
+    private void initLocationLabel() {
+        locationLabel = new Image(assets.images.location_home);
+        locationLabel.setPosition(0, GameConstants.HEIGHT - locationLabel.getHeight());
     }
 
-    /**
-     * Add character image to stage
-     */
-    private void buildCharacter() {
-        Image character = new Image(assets.images.character);
-        character.setPosition(150, 0);
-        stage.addActor(character);
+    private void initCharacterImage() {
+        characterImage = new Image(assets.images.character);
+        characterImage.setPosition(150, 0);
     }
 
-    /**
-     * Add buttons to stage to stage
-     */
-    private void buildButtons() {
-        // World map button
-        ImageButton worldMapButton = ButtonFactory.createImageButton(assets.buttons.map);
+    private void initWorldMapButton() {
+        worldMapButton = ButtonFactory.createImageButton(assets.buttons.map);
         worldMapButton.setPosition(GameConstants.WIDTH - worldMapButton.getWidth() - 10,
                 GameConstants.HEIGHT - worldMapButton.getHeight() - 10);
         worldMapButton.addListener(new ChangeListener() {
@@ -78,10 +87,10 @@ public class HomeScreen extends AbstractoScreen {
                 game.setScreen(new WorldMapScreen(game));
             }
         });
-        stage.addActor(worldMapButton);
+    }
 
-        // My profile button
-        ImageButton profileButton = ButtonFactory.createImageButton(assets.buttons.profile);
+    private void initProfileButton() {
+        profileButton = ButtonFactory.createImageButton(assets.buttons.profile);
         profileButton.setPosition(GameConstants.WIDTH/2 + 10, GameConstants.HEIGHT/2 + 30);
         profileButton.addListener(new ChangeListener() {
             @Override
@@ -89,10 +98,10 @@ public class HomeScreen extends AbstractoScreen {
                 // TODO: my profile
             }
         });
-        stage.addActor(profileButton);
+    }
 
-        // Achievements button
-        ImageButton achievementsButton = ButtonFactory.createImageButton(assets.buttons.achievements);
+    private void initAchievementsButton() {
+        achievementsButton = ButtonFactory.createImageButton(assets.buttons.achievements);
         achievementsButton.setPosition(profileButton.getX() + profileButton.getWidth()/2 - achievementsButton.getWidth()/2,
                 profileButton.getY() - profileButton.getHeight() - 20);
         achievementsButton.addListener(new ChangeListener() {
@@ -101,11 +110,6 @@ public class HomeScreen extends AbstractoScreen {
                 // TODO: achievements
             }
         });
-        stage.addActor(achievementsButton);
     }
 
-    @Override
-    protected void backKeyPressed() {
-        game.setScreen(new TitleScreen(game));
-    }
 }
