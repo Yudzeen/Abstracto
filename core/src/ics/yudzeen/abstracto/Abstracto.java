@@ -58,4 +58,10 @@ public class Abstracto extends DirectedGame {
 
 	public Assets getAssets() { return assets; }
 
+	@Override
+	public void dispose() {
+		super.dispose();
+		assets.dispose();
+		batch.dispose();
+	}
 }
