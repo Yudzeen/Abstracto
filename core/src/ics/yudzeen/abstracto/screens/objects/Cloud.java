@@ -36,7 +36,7 @@ public class Cloud extends Actor {
         setHeight(texture.getRegionHeight());
         setX(random.nextInt(850));
         setY(GameConstants.HEIGHT - getHeight() - 20);
-        animationSpeed = random.nextInt(100) + 50;
+        animationSpeed = random.nextInt(50) + 50;
     }
 
     private void init() {
@@ -70,7 +70,7 @@ public class Cloud extends Actor {
         }
         else {
             setX(GameConstants.WIDTH + 100);
-            animationSpeed = random.nextInt(100) + 50;
+            animationSpeed = random.nextInt(50) + 50;
         }
     }
 }

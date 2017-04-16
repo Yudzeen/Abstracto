@@ -97,7 +97,7 @@ public class TitleScreen extends AbstractoScreen {
 
     private void initAboutButton() {
         aboutButton = ButtonFactory.createImageButton(assets.buttons.about);
-        aboutButton.setPosition(GameConstants.WIDTH - aboutButton.getWidth() - 130, 55);
+        aboutButton.setPosition(GameConstants.WIDTH - aboutButton.getWidth() - 35, 80);
         aboutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
