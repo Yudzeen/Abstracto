@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Interpolation;
 
 import ics.yudzeen.abstracto.screens.DirectedGame;
 import ics.yudzeen.abstracto.screens.TitleScreen;
+import ics.yudzeen.abstracto.screens.transitions.Fade;
 import ics.yudzeen.abstracto.screens.transitions.ScreenTransition;
 import ics.yudzeen.abstracto.screens.transitions.Slice;
 import ics.yudzeen.abstracto.utils.Assets;
@@ -37,8 +38,8 @@ public class Abstracto extends DirectedGame {
 		batch = new SpriteBatch();
 		Gdx.input.setCatchBackKey(true);
 
-		ScreenTransition transition = Slice.init(2, Slice.UP_DOWN, 10, Interpolation.pow5Out);
-		//ScreenTransition transition = Fade.init(2);
+		//ScreenTransition transition = Slice.init(2, Slice.UP_DOWN, 10, Interpolation.pow5Out);
+		ScreenTransition transition = Fade.init(2);
 		//ScreenTransition transition = Slide.init(2, Slide.UP, true, Interpolation.pow5Out);
 		setScreen(new TitleScreen(this), transition);
 

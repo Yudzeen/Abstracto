@@ -6,127 +6,182 @@ filter: Nearest,Nearest
 repeat: none
 blank_map
   rotate: false
-  xy: 2, 425
+  xy: 2, 77
   size: 635, 463
   orig: 635, 463
   offset: 0, 0
   index: -1
 button_about
   rotate: false
-  xy: 533, 375
-  size: 82, 48
-  orig: 82, 48
-  offset: 0, 0
-  index: -1
-button_achievements
-  rotate: false
-  xy: 2, 255
-  size: 225, 73
-  orig: 225, 73
+  xy: 854, 917
+  size: 101, 105
+  orig: 101, 105
   offset: 0, 0
   index: -1
 button_guru
   rotate: false
-  xy: 363, 273
-  size: 126, 55
-  orig: 126, 55
-  offset: 0, 0
-  index: -1
-button_monsterfight
-  rotate: false
-  xy: 2, 59
+  xy: 854, 579
   size: 126, 55
   orig: 126, 55
   offset: 0, 0
   index: -1
 button_profile
   rotate: false
-  xy: 2, 180
+  xy: 533, 2
   size: 225, 73
   orig: 225, 73
   offset: 0, 0
   index: -1
-button_simulator
-  rotate: false
-  xy: 363, 216
-  size: 126, 55
-  orig: 126, 55
-  offset: 0, 0
-  index: -1
 button_start
   rotate: false
-  xy: 639, 431
-  size: 150, 89
-  orig: 150, 89
+  xy: 819, 93
+  size: 175, 88
+  orig: 175, 88
   offset: 0, 0
   index: -1
-button_townplaza
+cloud01
   rotate: false
-  xy: 2, 2
-  size: 126, 55
-  orig: 126, 55
+  xy: 639, 78
+  size: 178, 78
+  orig: 178, 78
   offset: 0, 0
   index: -1
-character
+cloud02
   rotate: false
-  xy: 639, 522
-  size: 167, 366
-  orig: 167, 366
+  xy: 819, 3
+  size: 198, 88
+  orig: 198, 88
   offset: 0, 0
   index: -1
 exit_icon
   rotate: false
-  xy: 927, 861
+  xy: 957, 995
   size: 61, 27
   orig: 61, 27
   offset: 0, 0
   index: -1
+female
+  rotate: false
+  xy: 813, 183
+  size: 172, 357
+  orig: 172, 357
+  offset: 0, 0
+  index: -1
+grassland
+  rotate: false
+  xy: 2, 542
+  size: 850, 480
+  orig: 850, 480
+  offset: 0, 0
+  index: -1
 location_home
   rotate: false
-  xy: 229, 266
+  xy: 854, 764
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
 location_queuecity
   rotate: false
-  xy: 2, 116
+  xy: 854, 700
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
 location_stackville
   rotate: false
-  xy: 229, 202
+  xy: 854, 636
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
+teacher
+  rotate: false
+  xy: 639, 158
+  size: 172, 382
+  orig: 172, 382
+  offset: 0, 0
+  index: -1
 title_main
   rotate: false
-  xy: 2, 372
+  xy: 2, 24
   size: 529, 51
   orig: 529, 51
   offset: 0, 0
   index: -1
+world_map
+  rotate: false
+  xy: 854, 828
+  size: 117, 87
+  orig: 117, 87
+  offset: 0, 0
+  index: -1
+
+ui.pack2.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button_monsterfight
+  rotate: false
+  xy: 759, 168
+  size: 126, 55
+  orig: 126, 55
+  offset: 0, 0
+  index: -1
+button_simulator
+  rotate: false
+  xy: 769, 111
+  size: 126, 55
+  orig: 126, 55
+  offset: 0, 0
+  index: -1
+button_townplaza
+  rotate: false
+  xy: 585, 23
+  size: 126, 55
+  orig: 126, 55
+  offset: 0, 0
+  index: -1
+cloud03
+  rotate: false
+  xy: 585, 80
+  size: 182, 85
+  orig: 182, 85
+  offset: 0, 0
+  index: -1
+male
+  rotate: false
+  xy: 585, 167
+  size: 172, 341
+  orig: 172, 341
+  offset: 0, 0
+  index: -1
+old_guy
+  rotate: false
+  xy: 759, 225
+  size: 172, 283
+  orig: 172, 283
+  offset: 0, 0
+  index: -1
 title_map
   rotate: false
-  xy: 2, 330
+  xy: 2, 2
   size: 512, 40
   orig: 512, 40
   offset: 0, 0
   index: -1
 town_icon
   rotate: false
-  xy: 808, 745
+  xy: 769, 55
   size: 92, 54
   orig: 92, 54
   offset: 0, 0
   index: -1
-world_map
+tree
   rotate: false
-  xy: 808, 801
-  size: 117, 87
-  orig: 117, 87
+  xy: 2, 44
+  size: 581, 464
+  orig: 581, 464
   offset: 0, 0
   index: -1

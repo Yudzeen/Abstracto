@@ -8,7 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ics.yudzeen.abstracto.Abstracto;
+import ics.yudzeen.abstracto.screens.objects.Cloud;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
@@ -21,10 +25,13 @@ public class TitleScreen extends AbstractoScreen {
     public static final String TAG = TitleScreen.class.getName();
 
     private Image backgroundImage;
+    private Image treeImage;
     private Image titleImage;
+    private Image maleCharacterImage;
 
     private ImageButton startButton;
     private ImageButton aboutButton;
+    private List<Cloud> cloudList;
 
     public TitleScreen(Abstracto game) {
         super(game);
@@ -34,42 +41,52 @@ public class TitleScreen extends AbstractoScreen {
     private void init() {
         initBackgroundImage();
         initTitleImage();
+        initTreeImage();
+        initMaleCharacterImage();
         initStartButton();
         initAboutButton();
+        initClouds();
     }
 
     @Override
     protected void buildStage() {
         super.buildStage();
+
         stage.addActor(backgroundImage);
-        stage.addActor(titleImage);
+
+        for (Cloud cloud: cloudList) {
+            stage.addActor(cloud);
+        }
+
+        stage.addActor(treeImage);
         stage.addActor(startButton);
         stage.addActor(aboutButton);
-    }
-
-    @Override
-    protected void backKeyPressed() {
-        Gdx.app.exit();
+        stage.addActor(maleCharacterImage);
+        stage.addActor(titleImage);
     }
 
     private void initBackgroundImage() {
-        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
-        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
-        pixmap.fill();
-        backgroundImage = new Image(new Texture(pixmap));
-        backgroundImage.setPosition(0,0);
-        pixmap.dispose();
+        backgroundImage = new Image(assets.images.grassland);
     }
 
     private void initTitleImage() {
         titleImage = new Image(assets.images.title_main);
-        titleImage.setPosition(GameConstants.WIDTH/2 - titleImage.getWidth()/2, GameConstants.HEIGHT - 150);
+        titleImage.setPosition(10, 10);
+    }
+
+    private void initTreeImage() {
+        treeImage = new Image(assets.images.tree);
+        treeImage.setPosition(275, 30);
+    }
+
+    private void initMaleCharacterImage() {
+        maleCharacterImage = new Image(assets.images.male);
+        maleCharacterImage.setPosition(GameConstants.WIDTH/2 - 50, treeImage.getY());
     }
 
     private void initStartButton() {
         startButton = ButtonFactory.createImageButton(assets.buttons.start);
-        startButton.setPosition(GameConstants.WIDTH/2 - startButton.getWidth()/2,
-                GameConstants.HEIGHT/2 - startButton.getHeight()/2 - 50);
+        startButton.setPosition(GameConstants.WIDTH/2 + 110, GameConstants.HEIGHT - startButton.getHeight() - 160);
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -80,14 +97,27 @@ public class TitleScreen extends AbstractoScreen {
 
     private void initAboutButton() {
         aboutButton = ButtonFactory.createImageButton(assets.buttons.about);
-        aboutButton.setPosition(GameConstants.WIDTH/2 - aboutButton.getWidth()/2,
-                startButton.getY() - aboutButton.getHeight() - 20);
+        aboutButton.setPosition(GameConstants.WIDTH - aboutButton.getWidth() - 130, 55);
         aboutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO: 14/04/2017 About screen
+                // TODO: 16/04/2017 About screen
             }
         });
     }
+
+    private void initClouds() {
+        cloudList = new ArrayList<>();
+        cloudList.add(new Cloud(game, Cloud.TYPE_1));
+        cloudList.add(new Cloud(game, Cloud.TYPE_2));
+        cloudList.add(new Cloud(game, Cloud.TYPE_3));
+    }
+
+    @Override
+    protected void backKeyPressed() {
+        Gdx.app.exit();
+    }
+
+
 
 }

@@ -134,8 +134,6 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion about;
 
         // Home Screen
-        public AtlasRegion profile;
-        public AtlasRegion achievements;
         public AtlasRegion map;
 
         // ADT Screen
@@ -151,8 +149,6 @@ public class Assets implements AssetErrorListener, Disposable {
         public AssetButtons(TextureAtlas atlas) {
             start = atlas.findRegion("button_start");
             about = atlas.findRegion("button_about");
-            profile = atlas.findRegion("button_profile");
-            achievements = atlas.findRegion("button_achievements");
             map = atlas.findRegion("world_map");
             guru = atlas.findRegion("button_guru");
             simulator = atlas.findRegion("button_simulator");
@@ -165,6 +161,10 @@ public class Assets implements AssetErrorListener, Disposable {
 
     public class AssetImages {
 
+        // Title Screen
+        public AtlasRegion grassland;
+        public AtlasRegion tree;
+
         public AtlasRegion title_main;
         public AtlasRegion title_map;
         public AtlasRegion character;
@@ -174,8 +174,25 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion location_queue;
 
         public AtlasRegion blank_map;
+        public AtlasRegion cloud01;
+        public AtlasRegion cloud02;
+        public AtlasRegion cloud03;
+
+        // humans
+        public AtlasRegion male;
+        public AtlasRegion female;
+        public AtlasRegion teacher;
+        public AtlasRegion old_guy;
 
         public AssetImages(TextureAtlas atlas) {
+            grassland = atlas.findRegion("grassland");
+            tree = atlas.findRegion("tree");
+
+            male = atlas.findRegion("male");
+            female = atlas.findRegion("female");
+            teacher = atlas.findRegion("teacher");
+            old_guy = atlas.findRegion("old_guy");
+
             title_main = atlas.findRegion("title_main");
             title_map = atlas.findRegion("title_map");
             character = atlas.findRegion("character");
@@ -184,6 +201,12 @@ public class Assets implements AssetErrorListener, Disposable {
             location_queue = atlas.findRegion("location_queuecity");
 
             blank_map = atlas.findRegion("blank_map");
+
+            cloud01 = atlas.findRegion("cloud01");
+            cloud02 = atlas.findRegion("cloud02");
+            cloud03 = atlas.findRegion("cloud03");
+
+
         }
     }
 
