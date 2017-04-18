@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.postfix;
+package ics.yudzeen.abstracto.screens.stack.apps.postfix;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.Assets;
@@ -330,13 +328,13 @@ class GameRenderer {
                 gameWon = true;
                 Gdx.app.debug(TAG, "Game won.");
                 disableButtons();
-                switchScreen(new GameWinScreen(gameScreen.getGame()));
+                toGameWinScreen();
             }
             if (gameController.hasLose() && !gameLost) {
                 gameLost = true;
                 Gdx.app.debug(TAG, "Game lost.");
                 disableButtons();
-                switchScreen(new GameOverScreen(gameScreen.getGame()));
+                toGameOverScreen();
             }
         }
         else {
@@ -416,7 +414,22 @@ class GameRenderer {
 
     }
 
-    public void switchScreen(final AbstractoScreen nextScreen) {
+    public void toGameOverScreen() {
+        Stage stage = gameScreen.getStage();
+        stage.getRoot().getColor().a = 1;
+        SequenceAction sequenceAction = new SequenceAction();
+        sequenceAction.addAction(delay(1.0f));
+        sequenceAction.addAction(fadeOut(2.0f));
+        sequenceAction.addAction(run(new Runnable() {
+            @Override
+            public void run() {
+                gameScreen.getGame().setScreen(new GameOverScreen(gameScreen.getGame()));
+            }
+        }));
+        stage.getRoot().addAction(sequenceAction);
+    }
+
+    private void toGameWinScreen() {
         Stage stage = gameScreen.getStage();
         stage.getRoot().getColor().a = 1;
         SequenceAction sequenceAction = new SequenceAction();
@@ -425,14 +438,16 @@ class GameRenderer {
         sequenceAction.addAction(run(new Runnable() {
             @Override
             public void run() {
-                gameScreen.getGame().setScreen(nextScreen);
+                gameScreen.getGame().setScreen(new GameWinScreen(gameScreen.getGame()));
             }
         }));
         stage.getRoot().addAction(sequenceAction);
     }
 
     public void disableButtons() {
+        pushButton.setDisabled(true);
         pushButton.setTouchable(Touchable.disabled);
+        popButton.setDisabled(true);
         popButton.setTouchable(Touchable.disabled);
     }
 

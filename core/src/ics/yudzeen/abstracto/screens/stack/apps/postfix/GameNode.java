@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.postfix;
+package ics.yudzeen.abstracto.screens.stack.apps.postfix;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

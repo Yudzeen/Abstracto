@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.postfix;
+package ics.yudzeen.abstracto.screens.stack.apps.postfix;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
