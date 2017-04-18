@@ -103,7 +103,7 @@ public class GameOverScreen extends AbstractoScreen {
     }
 
     private void onRetryButtonClicked() {
-        game.setScreen(new PostfixExpressionGameScreen(game));
+        game.setScreen(new BalancingSymbolsGameScreen(game));
     }
 
     private void onExitButtonClicked() {

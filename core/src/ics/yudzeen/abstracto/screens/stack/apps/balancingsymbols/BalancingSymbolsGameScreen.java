@@ -29,7 +29,7 @@ public class BalancingSymbolsGameScreen extends AbstractoScreen {
     public void render(float delta) {
         super.render(delta);
         gameController.update(delta);
-        gameRenderer.render();
+        gameRenderer.render(stage);
     }
 
     @Override

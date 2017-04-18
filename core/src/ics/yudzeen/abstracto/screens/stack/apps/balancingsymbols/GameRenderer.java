@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -21,6 +22,10 @@ import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.Assets;
 import ics.yudzeen.abstracto.utils.GameConstants;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
 /**
  * Renderer of the game
@@ -93,15 +98,27 @@ class GameRenderer {
         }
     }
 
-    public void render() {
+    public void render(Stage stage) {
         if (!gameController.gameOver) {
             renderTimer();
             renderLives();
             renderNodesQueue();
         }
         else {
-            Abstracto game = gameScreen.getGame();
-            game.setScreen(new GameOverScreen(game, gameController.gameWin));
+            disablePushAndPopButtons(true);
+            final Abstracto game = gameScreen.getGame();
+            stage.getRoot().getColor().a = 1;
+            SequenceAction sequenceAction = new SequenceAction();
+            float delay = gameController.gameWin ? 5.0f : 1.5f;
+            sequenceAction.addAction(delay(delay));
+            sequenceAction.addAction(fadeOut(2.0f));
+            sequenceAction.addAction(run(new Runnable() {
+                @Override
+                public void run() {
+                    game.setScreen(new GameOverScreen(game, gameController.gameWin));
+                }
+            }));
+            stage.addAction(sequenceAction);
         }
     }
 
@@ -217,6 +234,7 @@ class GameRenderer {
             float nodeWidth = node.getWidth();
             float nodeHeight = node.getHeight();
             if(i==0) {
+                node.setCurrentNode(true);
                 node.setPosition(GameConstants.WIDTH/2 - nodeWidth/2, GameConstants.HEIGHT - nodeHeight - 70);
             }
             else {
@@ -229,7 +247,11 @@ class GameRenderer {
         if (gameController.onPushPressed()) {
             disablePushAndPopButtons(true);
             GameNode node = nodesQueue.remove(0);
+            node.setCurrentNode(false);
             stackContainer.push(node);
+        }
+        else {
+            renderLives();
         }
     }
 
@@ -238,11 +260,16 @@ class GameRenderer {
             disablePushAndPopButtons(true);
             poppingNode = stackContainer.pop();
         }
+        else {
+            renderLives();
+        }
     }
 
-    void pop() {
+    void removeMergingNodes() {
         poppingNode.remove();
-        nodesQueue.remove(0).remove();
+        GameNode node = nodesQueue.remove(0);
+        node.setCurrentNode(false);
+        node.remove();
     }
 
     void disablePushAndPopButtons(boolean disable) {
@@ -259,6 +286,13 @@ class GameRenderer {
             popButton.setDisabled(false);
         }
 
+    }
+
+    GameNode getCurrentNode() {
+        if (!nodesQueue.isEmpty())
+            return nodesQueue.get(0);
+        else
+            return null;
     }
 
 }

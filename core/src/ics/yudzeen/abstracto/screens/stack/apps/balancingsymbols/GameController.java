@@ -163,6 +163,6 @@ class GameController {
     private void debugInfo() {
         Gdx.app.debug(TAG, "Current Expression: " + getCurrentExpression());
         Gdx.app.debug(TAG, "Stack: " + stack);
-        Gdx.app.debug(TAG, "Anwers: " + getCurrentAnswers());
+        Gdx.app.debug(TAG, "Answers: " + getCurrentAnswers());
     }
 }

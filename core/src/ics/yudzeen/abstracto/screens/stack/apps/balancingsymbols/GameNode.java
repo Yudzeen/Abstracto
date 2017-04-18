@@ -30,10 +30,15 @@ class GameNode extends Actor {
 
     private int stackPosition;
 
+    private boolean currentNode;
+
     private boolean pushing;
     private boolean popping;
+    private boolean merging;
 
     private boolean animating;
+
+    private float blinkTimer;
 
     GameNode(GameRenderer gameRenderer, String text) {
         this.gameRenderer = gameRenderer;
@@ -65,6 +70,10 @@ class GameNode extends Actor {
 
         if (isPopping()) {
             animatePop(delta);
+        }
+
+        if (isMerging()) {
+            animateMerging(delta);
         }
 
     }
@@ -101,8 +110,39 @@ class GameNode extends Actor {
         else {
             setY(poppedY);
             setPopping(false);
-            gameRenderer.pop();
-            gameRenderer.disablePushAndPopButtons(false);
+            setMerging(true);
+            gameRenderer.getCurrentNode().setMerging(true);
+        }
+    }
+
+    private void animateMerging(float delta) {
+        blink(delta);
+        final float mergingAnimationSpeed = 50;
+        float x = getX();
+        float targetX = GameConstants.WIDTH/2 - WIDTH/2;
+        if (!isCurrentNode()) {
+            if (x < targetX) {
+                setX(x+delta*mergingAnimationSpeed);
+            }
+            else {
+                setX(targetX);
+                setMerging(false);
+                gameRenderer.removeMergingNodes();
+                gameRenderer.disablePushAndPopButtons(false);
+            }
+        }
+    }
+
+    private void blink(float delta) {
+        blinkTimer += delta;
+        if (blinkTimer > 0.5) {
+            blinkTimer = 0;
+        }
+        else if(blinkTimer > 0.25) {
+            setTexture(gameRenderer.assets.games.light_yellow_circle);
+        }
+        else if (blinkTimer > 0){
+            setTexture(gameRenderer.assets.simulator.blank_node);
         }
     }
 
@@ -156,8 +196,31 @@ class GameNode extends Actor {
         this.popping = popping;
     }
 
+    public boolean isMerging() {
+        return merging;
+    }
+
+    public void setMerging(boolean merging) {
+        this.merging = merging;
+    }
+
     public void setStackPosition(int stackPosition) {
         this.stackPosition = stackPosition;
     }
 
+    public TextureAtlas.AtlasRegion getTexture() {
+        return texture;
+    }
+
+    public void setTexture(TextureAtlas.AtlasRegion texture) {
+        this.texture = texture;
+    }
+
+    public boolean isCurrentNode() {
+        return currentNode;
+    }
+
+    public void setCurrentNode(boolean currentNode) {
+        this.currentNode = currentNode;
+    }
 }
