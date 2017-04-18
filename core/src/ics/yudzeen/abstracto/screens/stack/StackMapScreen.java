@@ -1,19 +1,22 @@
 package ics.yudzeen.abstracto.screens.stack;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
-import ics.yudzeen.abstracto.screens.stack.postfix.PostfixExpressionGameScreen;
+import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
+import ics.yudzeen.abstracto.screens.stack.apps.postfix.PostfixExpressionGameScreen;
 import ics.yudzeen.abstracto.screens.stack.simulator.StackSimulatorScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
+import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
@@ -29,11 +32,15 @@ public class StackMapScreen extends AbstractoScreen {
 
     private ImageButton worldMapButton;
 
-    private TextButton guruButton;
-    private TextButton simulatorButton;
-    private TextButton postfixGameButton;
-    private TextButton balancingSymbolsButton;
-    private TextButton bossFightButton;
+    private ImageButton schoolButton;
+    private ImageButton simulatorButton;
+    private ImageButton applicationsButton;
+    private ImageButton duelButton;
+
+    private Label schoolLabel;
+    private Label simulatorLabel;
+    private Label applicationsLabel;
+    private Label duelLabel;
 
     public StackMapScreen(Abstracto game) {
         super(game);
@@ -44,11 +51,14 @@ public class StackMapScreen extends AbstractoScreen {
         initBackgroundImage();
         initLocationLabel();
         initWorldMapButton();
-        initGuruButton();
+        initSchoolButton();
         initSimulatorButton();
-        initPostfixGameButton();
-        initBalancingSymbolsButton();
-        initBossFightButton();
+        initApplicationsButton();
+        initDuelButton();
+        initSchoolLabel();
+        initSimulatorLabel();
+        initApplicationsLabel();
+        initDuelLabel();
     }
 
     @Override
@@ -56,12 +66,16 @@ public class StackMapScreen extends AbstractoScreen {
         super.buildStage();
         stage.addActor(backgroundImage);
         stage.addActor(locationLabelImage);
-        stage.addActor(worldMapButton);
-        stage.addActor(guruButton);
+        //stage.addActor(worldMapButton);
+        stage.addActor(schoolButton);
         stage.addActor(simulatorButton);
-        stage.addActor(postfixGameButton);
-        stage.addActor(balancingSymbolsButton);
-        stage.addActor(bossFightButton);
+        stage.addActor(applicationsButton);
+        stage.addActor(duelButton);
+
+        stage.addActor(schoolLabel);
+        stage.addActor(simulatorLabel);
+        stage.addActor(applicationsLabel);
+        stage.addActor(duelLabel);
     }
 
     @Override
@@ -95,10 +109,10 @@ public class StackMapScreen extends AbstractoScreen {
         });
     }
 
-    private void initGuruButton() {
-        guruButton = ButtonFactory.createTextButton("GURU");
-        guruButton.setPosition(30, GameConstants.HEIGHT - guruButton.getHeight() - 100);
-        guruButton.addListener(new ClickListener() {
+    private void initSchoolButton() {
+        schoolButton = ButtonFactory.createImageButton(assets.buttons.book);
+        schoolButton.setPosition(80, GameConstants.HEIGHT - schoolButton.getHeight() - 100);
+        schoolButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // TODO: 14/04/2017 Guru Screen
@@ -107,8 +121,8 @@ public class StackMapScreen extends AbstractoScreen {
     }
 
     private void initSimulatorButton() {
-        simulatorButton = ButtonFactory.createTextButton("SIMULATOR");
-        simulatorButton.setPosition(30, guruButton.getY() - simulatorButton.getHeight() - 10);
+        simulatorButton = ButtonFactory.createImageButton(assets.buttons.simulator);
+        simulatorButton.setPosition(schoolButton.getX() + schoolButton.getWidth() + 200, schoolButton.getY());
         simulatorButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -117,36 +131,49 @@ public class StackMapScreen extends AbstractoScreen {
         });
     }
 
-    private void initPostfixGameButton() {
-        postfixGameButton = ButtonFactory.createTextButton("POSTFIX EXPRESSION EVALUATION");
-        postfixGameButton.setPosition(30, simulatorButton.getY() - postfixGameButton.getHeight() - 10);
-        postfixGameButton.addListener(new ClickListener() {
+    private void initApplicationsButton() {
+        applicationsButton = ButtonFactory.createImageButton(assets.buttons.applications);
+        applicationsButton.setPosition(320, 50);
+        applicationsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new PostfixExpressionGameScreen(game));
+                game.setScreen(new ApplicationsMapScreen(game));
             }
         });
     }
 
-    private void initBalancingSymbolsButton() {
-        balancingSymbolsButton = ButtonFactory.createTextButton("BALANCING SYMBOLS");
-        balancingSymbolsButton.setPosition(30, postfixGameButton.getY() - balancingSymbolsButton.getHeight() - 10);
-        balancingSymbolsButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                // TODO: 14/04/2017 Balancing symbols game
-            }
-        });
-    }
-
-    private void initBossFightButton() {
-        bossFightButton = ButtonFactory.createTextButton("BOSS FIGHT");
-        bossFightButton.setPosition(30, balancingSymbolsButton.getY() - bossFightButton.getHeight() - 10);
-        bossFightButton.addListener(new ClickListener() {
+    private void initDuelButton() {
+        duelButton = ButtonFactory.createImageButton(assets.buttons.duel);
+        duelButton.setPosition(applicationsButton.getX() + applicationsButton.getWidth() + 220, applicationsButton.getY());
+        duelButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // TODO: 14/04/2017 Boss fight game
             }
         });
+    }
+
+    private void initSchoolLabel() {
+        schoolLabel = LabelFactory.createLabel("INFO", assets.fonts.defaultBig, Color.WHITE);
+        schoolLabel.setPosition(schoolButton.getX() + schoolButton.getWidth()/2 - schoolLabel.getWidth()/2,
+                schoolButton.getY() - schoolLabel.getHeight() - 5);
+    }
+
+    private void initSimulatorLabel() {
+        simulatorLabel = LabelFactory.createLabel("SIMULATOR", assets.fonts.defaultBig, Color.WHITE);
+        simulatorLabel.setPosition(simulatorButton.getX() + simulatorButton.getWidth()/2 - simulatorLabel.getWidth()/2,
+                simulatorButton.getY() - simulatorLabel.getHeight() - 5);
+    }
+
+    private void initApplicationsLabel() {
+        applicationsLabel = LabelFactory.createLabel("APPLICATIONS", assets.fonts.defaultBig, Color.WHITE);
+        applicationsLabel.setPosition(applicationsButton.getX() + applicationsButton.getWidth()/2 - applicationsLabel.getWidth()/2,
+                applicationsButton.getY() - applicationsLabel.getHeight() - 5);
+    }
+
+    private void initDuelLabel() {
+        duelLabel = LabelFactory.createLabel("DUEL", assets.fonts.defaultBig, Color.WHITE);
+        duelLabel.setPosition(duelButton.getX() + duelButton.getWidth()/2 - duelLabel.getWidth()/2,
+                duelButton.getY() - duelLabel.getHeight() - 5);
     }
 }
