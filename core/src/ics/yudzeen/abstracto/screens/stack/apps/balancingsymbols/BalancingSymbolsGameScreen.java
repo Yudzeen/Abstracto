@@ -3,6 +3,7 @@ package ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
+import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
 
 /**
  * Screen for balancing symbols
@@ -40,7 +41,7 @@ public class BalancingSymbolsGameScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new ApplicationsMapScreen(game));
     }
 
     public Abstracto getGame() {
