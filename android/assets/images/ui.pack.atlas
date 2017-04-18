@@ -4,184 +4,219 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-blank_map
+applications
   rotate: false
-  xy: 2, 77
-  size: 635, 463
-  orig: 635, 463
+  xy: 661, 36
+  size: 76, 103
+  orig: 76, 103
   offset: 0, 0
   index: -1
-button_about
-  rotate: false
-  xy: 854, 905
-  size: 103, 117
-  orig: 103, 117
-  offset: 0, 0
-  index: -1
-button_guru
-  rotate: false
-  xy: 854, 567
-  size: 126, 55
-  orig: 126, 55
-  offset: 0, 0
-  index: -1
-button_monsterfight
+book
   rotate: false
   xy: 854, 510
-  size: 126, 55
-  orig: 126, 55
-  offset: 0, 0
-  index: -1
-button_profile
-  rotate: false
-  xy: 533, 2
-  size: 225, 73
-  orig: 225, 73
-  offset: 0, 0
-  index: -1
-button_simulator
-  rotate: false
-  xy: 760, 21
-  size: 126, 55
-  orig: 126, 55
+  size: 128, 99
+  orig: 128, 99
   offset: 0, 0
   index: -1
 button_townplaza
   rotate: false
-  xy: 888, 23
+  xy: 533, 2
   size: 126, 55
   orig: 126, 55
   offset: 0, 0
   index: -1
-cloud01
+duel
   rotate: false
-  xy: 639, 78
-  size: 178, 78
-  orig: 178, 78
-  offset: 0, 0
-  index: -1
-cloud03
-  rotate: false
-  xy: 819, 80
-  size: 182, 85
-  orig: 182, 85
+  xy: 854, 803
+  size: 147, 90
+  orig: 147, 90
   offset: 0, 0
   index: -1
 exit_icon
   rotate: false
-  xy: 959, 995
+  xy: 661, 7
   size: 61, 27
   orig: 61, 27
   offset: 0, 0
   index: -1
+female_mugshot
+  rotate: false
+  xy: 759, 258
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
 grassland
   rotate: false
-  xy: 2, 542
+  xy: 2, 525
   size: 850, 480
   orig: 850, 480
   offset: 0, 0
   index: -1
 location_home
   rotate: false
-  xy: 854, 752
+  xy: 854, 739
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
 location_queuecity
   rotate: false
-  xy: 854, 688
+  xy: 854, 675
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
 location_stackville
   rotate: false
-  xy: 854, 624
+  xy: 854, 611
   size: 132, 62
   orig: 132, 62
   offset: 0, 0
   index: -1
-male
+male_mugshot
   rotate: false
-  xy: 813, 167
-  size: 172, 341
-  orig: 172, 341
+  xy: 759, 6
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+simulator
+  rotate: false
+  xy: 854, 895
+  size: 108, 110
+  orig: 108, 110
   offset: 0, 0
   index: -1
 teacher
   rotate: false
-  xy: 639, 158
+  xy: 585, 141
   size: 172, 382
   orig: 172, 382
   offset: 0, 0
   index: -1
 title_main
   rotate: false
-  xy: 2, 24
+  xy: 2, 6
   size: 529, 51
   orig: 529, 51
   offset: 0, 0
   index: -1
-world_map
+tree
   rotate: false
-  xy: 854, 816
-  size: 117, 87
-  orig: 117, 87
+  xy: 2, 59
+  size: 581, 464
+  orig: 581, 464
   offset: 0, 0
   index: -1
 
 ui.pack2.png
-size: 1024,512
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+blank_map
+  rotate: false
+  xy: 2, 548
+  size: 635, 463
+  orig: 635, 463
+  offset: 0, 0
+  index: -1
+button_about
+  rotate: false
+  xy: 2, 44
+  size: 103, 117
+  orig: 103, 117
+  offset: 0, 0
+  index: -1
 button_start
   rotate: false
-  xy: 585, 61
+  xy: 428, 416
   size: 175, 88
   orig: 175, 88
   offset: 0, 0
   index: -1
+cloud01
+  rotate: false
+  xy: 428, 159
+  size: 178, 78
+  orig: 178, 78
+  offset: 0, 0
+  index: -1
 cloud02
   rotate: false
-  xy: 762, 135
+  xy: 428, 326
   size: 198, 88
   orig: 198, 88
   offset: 0, 0
   index: -1
+cloud03
+  rotate: false
+  xy: 428, 239
+  size: 182, 85
+  orig: 182, 85
+  offset: 0, 0
+  index: -1
 female
   rotate: false
-  xy: 585, 151
+  xy: 639, 654
   size: 172, 357
   orig: 172, 357
   offset: 0, 0
   index: -1
+male
+  rotate: false
+  xy: 2, 163
+  size: 172, 341
+  orig: 172, 341
+  offset: 0, 0
+  index: -1
 old_guy
   rotate: false
-  xy: 759, 225
+  xy: 813, 728
   size: 172, 283
   orig: 172, 283
   offset: 0, 0
   index: -1
+old_guy_mugshot
+  rotate: false
+  xy: 176, 254
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+school
+  rotate: false
+  xy: 639, 528
+  size: 201, 124
+  orig: 201, 124
+  offset: 0, 0
+  index: -1
+teacher_mugshot
+  rotate: false
+  xy: 176, 2
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
 title_map
   rotate: false
-  xy: 2, 2
+  xy: 2, 506
   size: 512, 40
   orig: 512, 40
   offset: 0, 0
   index: -1
 town_icon
   rotate: false
-  xy: 762, 79
+  xy: 813, 672
   size: 92, 54
   orig: 92, 54
   offset: 0, 0
   index: -1
-tree
+world_map
   rotate: false
-  xy: 2, 44
-  size: 581, 464
-  orig: 581, 464
+  xy: 428, 70
+  size: 117, 87
+  orig: 117, 87
   offset: 0, 0
   index: -1

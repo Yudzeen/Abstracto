@@ -136,11 +136,12 @@ public class Assets implements AssetErrorListener, Disposable {
         // Home Screen
         public AtlasRegion map;
 
-        // ADT Screen
-        public AtlasRegion guru;
+        // ADT screens
+        public AtlasRegion applications;
+        public AtlasRegion duel;
+        public AtlasRegion school;  // unnused
         public AtlasRegion simulator;
-        public AtlasRegion townplaza;
-        public AtlasRegion monsterfight;
+        public AtlasRegion book;
 
         public AtlasRegion forward_arrow;
         public AtlasRegion back;
@@ -150,10 +151,12 @@ public class Assets implements AssetErrorListener, Disposable {
             start = atlas.findRegion("button_start");
             about = atlas.findRegion("button_about");
             map = atlas.findRegion("world_map");
-            guru = atlas.findRegion("button_guru");
-            simulator = atlas.findRegion("button_simulator");
-            townplaza = atlas.findRegion("button_townplaza");
-            monsterfight = atlas.findRegion("button_monsterfight");
+
+            applications = atlas.findRegion("applications");
+            duel = atlas.findRegion("duel");
+            school = atlas.findRegion("school");
+            simulator = atlas.findRegion("simulator");
+            book = atlas.findRegion("book");
 
             town_icon = atlas.findRegion("town_icon");
         }
@@ -184,6 +187,12 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion teacher;
         public AtlasRegion old_guy;
 
+        // mugshots
+        public AtlasRegion male_mugshot;
+        public AtlasRegion female_mugshot;
+        public AtlasRegion teacher_mugshot;
+        public AtlasRegion old_guy_mugshot;
+
         public AssetImages(TextureAtlas atlas) {
             grassland = atlas.findRegion("grassland");
             tree = atlas.findRegion("tree");
@@ -192,6 +201,11 @@ public class Assets implements AssetErrorListener, Disposable {
             female = atlas.findRegion("female");
             teacher = atlas.findRegion("teacher");
             old_guy = atlas.findRegion("old_guy");
+
+            male_mugshot = atlas.findRegion("male_mugshot");
+            female_mugshot = atlas.findRegion("female_mugshot");
+            teacher_mugshot = atlas.findRegion("teacher_mugshot");
+            old_guy_mugshot = atlas.findRegion("old_guy_mugshot");
 
             title_main = atlas.findRegion("title_main");
             title_map = atlas.findRegion("title_map");
@@ -205,8 +219,6 @@ public class Assets implements AssetErrorListener, Disposable {
             cloud01 = atlas.findRegion("cloud01");
             cloud02 = atlas.findRegion("cloud02");
             cloud03 = atlas.findRegion("cloud03");
-
-
         }
     }
 
