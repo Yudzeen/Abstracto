@@ -48,7 +48,7 @@ class GameController {
         answersList = expressionGenerator.solveExpressions(expressionsList);
         stack = new Stack<>();
         debugInfo();
-        handleInputs = false;
+        handleInputs = true;
     }
 
 
@@ -97,7 +97,7 @@ class GameController {
     }
 
     boolean onPushPressed() {
-        if(!handleInputs) {
+        if(handleInputs) {
             if (validateAnswer("PUSH")) {
                 String currentString = getCurrentExpression().remove(0);
                 stack.push(currentString);
@@ -114,7 +114,7 @@ class GameController {
     }
 
     boolean onPopPressed() {
-        if(!handleInputs) {
+        if(handleInputs) {
             if (validateAnswer("POP")) {
                 String currentString = getCurrentExpression().remove(0);
                 String tos = stack.pop();
@@ -144,7 +144,7 @@ class GameController {
         if(lives == 0) {
             gameWin = false;
             gameOver = true;
-            handleInputs = true;
+            handleInputs = false;
             Gdx.app.debug(TAG, "You lose.");
         }
     }
@@ -154,7 +154,7 @@ class GameController {
             Gdx.app.debug(TAG, "You win.");
             gameWin = true;
             gameOver = true;
-            handleInputs = true;
+            handleInputs = false;
             return true;
         }
         return false;
