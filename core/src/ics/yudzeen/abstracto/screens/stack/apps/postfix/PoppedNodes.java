@@ -28,7 +28,7 @@ class PoppedNodes extends Actor {
         // initialize placeholder game nodes
         tempNodes = new GameNode[2];
         for (int i = 0; i < tempNodes.length; i++) {
-            tempNodes[i] = new GameNode(gameScreen, "");
+            tempNodes[i] = new GameNode(gameScreen, gameScreen.gameRenderer, "");
             tempNodes[i].setTexture(gameScreen.getAssets().games.gray_circle);
         }
     }
@@ -38,7 +38,7 @@ class PoppedNodes extends Actor {
         poppedNodes = new GameNode[2];
 
         for (int i = 0; i < poppedNodes.length; i++) {
-            poppedNodes[i] = new GameNode(gameScreen, "");
+            poppedNodes[i] = new GameNode(gameScreen, gameScreen.gameRenderer, "");
             poppedNodes[i].setTexture(gameScreen.getAssets().games.gray_circle);
             poppedNodes[i].setVisible(false);
         }

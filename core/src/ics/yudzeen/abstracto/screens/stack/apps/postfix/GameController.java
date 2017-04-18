@@ -44,6 +44,8 @@ class GameController {
 
     private final float popdelay = 0.5f;
 
+    private boolean handleInputs;
+
     public GameController(PostfixExpressionGameScreen gameScreen) {
         this.gameScreen = gameScreen;
         init();
@@ -63,6 +65,7 @@ class GameController {
         popCounter = 2;
         poppedObjects = new String[] {"", ""};
         Gdx.app.debug(TAG, "Expression: " + currentExpression + " Answers: " + answersList);
+        handleInputs = true;
     }
 
     public void update(float delta) {
@@ -106,45 +109,57 @@ class GameController {
     }
 
     public boolean onPushPressed() {
-        if(getAnswer().equals("PUSH")) {
-            answersList.remove(0);
-            stack.add(currentExpression.remove(0));
-            Gdx.app.debug(TAG, "Stack: " + stack.toString());
-            Gdx.app.debug(TAG, "Curr exp: " + currentExpression.toString());
-            Gdx.app.debug(TAG, "Popped Nodes:" + Arrays.toString(poppedObjects));
-            return true;
+        if(handleInputs) {
+            if(getAnswer().equals("PUSH")) {
+                answersList.remove(0);
+                stack.add(currentExpression.remove(0));
+                Gdx.app.debug(TAG, "Stack: " + stack.toString());
+                Gdx.app.debug(TAG, "Curr exp: " + currentExpression.toString());
+                Gdx.app.debug(TAG, "Popped Nodes:" + Arrays.toString(poppedObjects));
+                return true;
+            }
+            else {
+                lives--;
+                if (lives == 0) {
+                    handleInputs = false;
+                }
+                return false;
+            }
         }
-        else {
-            lives--;
-            return false;
-        }
+        return false;
     }
 
     public int onPopPressed() {
-        if(getAnswer().equals("POP")) {
-            int popType = POP_1;
-            answersList.remove(0);
-            poppedObjects[--popCounter] = stack.remove(stack.size()-1);
-            if(popCounter==0) {
-                //gameScreen.gameRenderer.removeNode(0);
-                String operation = currentExpression.remove(0);
-                int answer = solveOperation(poppedObjects[0], poppedObjects[1], operation);
-                currentExpression.add(0, Integer.toString(answer));
-                //gameScreen.gameRenderer.addNode(0,answer);
-                poppedObjects[0] = "";
-                poppedObjects[1] = "";
-                popCounter = 2;
-                popType = POP_2;
+        if(handleInputs) {
+            if(getAnswer().equals("POP")) {
+                int popType = POP_1;
+                answersList.remove(0);
+                poppedObjects[--popCounter] = stack.remove(stack.size()-1);
+                if(popCounter==0) {
+                    //gameScreen.gameRenderer.removeNode(0);
+                    String operation = currentExpression.remove(0);
+                    int answer = solveOperation(poppedObjects[0], poppedObjects[1], operation);
+                    currentExpression.add(0, Integer.toString(answer));
+                    //gameScreen.gameRenderer.addNode(0,answer);
+                    poppedObjects[0] = "";
+                    poppedObjects[1] = "";
+                    popCounter = 2;
+                    popType = POP_2;
+                }
+                Gdx.app.debug(TAG, "Stack: " + stack.toString());
+                Gdx.app.debug(TAG, "Curr exp: " + currentExpression.toString());
+                Gdx.app.debug(TAG, "Popped Nodes:" + Arrays.toString(poppedObjects));
+                return popType;
             }
-            Gdx.app.debug(TAG, "Stack: " + stack.toString());
-            Gdx.app.debug(TAG, "Curr exp: " + currentExpression.toString());
-            Gdx.app.debug(TAG, "Popped Nodes:" + Arrays.toString(poppedObjects));
-            return popType;
+            else {
+                lives--;
+                if (lives == 0) {
+                    handleInputs = false;
+                }
+                return POP_FAILED;
+            }
         }
-        else {
-            lives--;
-            return POP_FAILED;
-        }
+        return POP_FAILED;
     }
 
     public void onPausePressed() {

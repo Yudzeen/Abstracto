@@ -72,6 +72,7 @@ class GameRenderer {
 
     private boolean gameWon;
     private boolean gameLost;
+    boolean gameOver;
 
     public GameRenderer(PostfixExpressionGameScreen gameScreen, GameController gameController) {
         this.gameScreen = gameScreen;
@@ -147,11 +148,12 @@ class GameRenderer {
     private void onPushPressed() {
         boolean pushSuccessed = gameController.onPushPressed();
         if(pushSuccessed) {
+            disablePushAndPopButtons(true);
             GameNode node = nodesQueue.remove(0);
             String nodeText = node.getText();
             // soft fix for bug when trying to push while merging
             if(nodeText.equals("+") || nodeText.equals("-") || nodeText.equals("*") || nodeText.equals("/") && nodesQueue.size() != 1) {
-                GameNode newNode = new GameNode(gameScreen, gameController.peekStack());
+                GameNode newNode = new GameNode(gameScreen, this, gameController.peekStack());
                 newNode.setPosition(node.getX(), node.getY());
                 node.remove();
                 gameScreen.getStage().addActor(newNode);
@@ -184,6 +186,7 @@ class GameRenderer {
         int popType = gameController.onPopPressed();
         switch (popType) {
             case GameController.POP_1:
+                disablePushAndPopButtons(true);
                 GameNode node = stackContainer.pop();
                 node.setPopping(true);
                 node.setPoppedPosition(1);
@@ -192,6 +195,7 @@ class GameRenderer {
                 poppedNodes.setPoppedNode(node, 1);
                 break;
             case GameController.POP_2:
+                disablePushAndPopButtons(true);
                 GameNode node2 = stackContainer.pop();
                 node2.setPopping(true);
                 node2.setPoppedPosition(0);
@@ -242,7 +246,7 @@ class GameRenderer {
     private void initNodesQueue() {
         List<String> nodesText = gameController.getCurrentExpressionAsList();
         for (String s: nodesText) {
-            GameNode node = new GameNode(gameScreen, s);
+            GameNode node = new GameNode(gameScreen, this, s);
             nodesQueue.add(node);
         }
     }
@@ -326,14 +330,16 @@ class GameRenderer {
             updateNodesQueue();
             if (gameController.hasWin() && !gameWon) {
                 gameWon = true;
+                gameOver = true;
                 Gdx.app.debug(TAG, "Game won.");
-                disableButtons();
+                disablePushAndPopButtons(true);
                 toGameWinScreen();
             }
             if (gameController.hasLose() && !gameLost) {
                 gameLost = true;
+                gameOver = true;
                 Gdx.app.debug(TAG, "Game lost.");
-                disableButtons();
+                disablePushAndPopButtons(true);
                 toGameOverScreen();
             }
         }
@@ -433,7 +439,7 @@ class GameRenderer {
         Stage stage = gameScreen.getStage();
         stage.getRoot().getColor().a = 1;
         SequenceAction sequenceAction = new SequenceAction();
-        sequenceAction.addAction(delay(5.0f));
+        sequenceAction.addAction(delay(4.0f));
         sequenceAction.addAction(fadeOut(2.0f));
         sequenceAction.addAction(run(new Runnable() {
             @Override
@@ -444,11 +450,20 @@ class GameRenderer {
         stage.getRoot().addAction(sequenceAction);
     }
 
-    public void disableButtons() {
-        pushButton.setDisabled(true);
-        pushButton.setTouchable(Touchable.disabled);
-        popButton.setDisabled(true);
-        popButton.setTouchable(Touchable.disabled);
+    void disablePushAndPopButtons(boolean disable) {
+        if (disable) {
+            pushButton.setTouchable(Touchable.disabled);
+            popButton.setTouchable(Touchable.disabled);
+            pushButton.setDisabled(true);
+            popButton.setDisabled(true);
+        }
+        else {
+            pushButton.setTouchable(Touchable.enabled);
+            popButton.setTouchable(Touchable.enabled);
+            pushButton.setDisabled(false);
+            popButton.setDisabled(false);
+        }
+
     }
 
 }

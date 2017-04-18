@@ -32,6 +32,7 @@ class GameNode extends Actor {
     private boolean merging;
 
     private StackContainer stackContainer;
+    private GameRenderer gameRenderer;
     private int stackPosition;
 
     private PoppedNodes poppedNodes;
@@ -39,8 +40,9 @@ class GameNode extends Actor {
 
     private float switchColorTimer;
 
-    public GameNode(PostfixExpressionGameScreen gameScreen, String text) {
+    public GameNode(PostfixExpressionGameScreen gameScreen, GameRenderer gameRenderer, String text) {
         this.gameScreen = gameScreen;
+        this.gameRenderer = gameRenderer;
         this.text = text;
         init();
     }
@@ -93,6 +95,7 @@ class GameNode extends Actor {
                 else {
                     setY(stackContainer.getY()+10+stackPosition*HEIGHT);
                     setPushing(false);
+                    gameRenderer.disablePushAndPopButtons(false);
                 }
             }
         }
@@ -127,6 +130,7 @@ class GameNode extends Actor {
                         else {
                             setX(secondPopX);
                             setPopping(false);
+                            gameRenderer.disablePushAndPopButtons(false);
                         }
                         break;
                     default:
@@ -164,6 +168,9 @@ class GameNode extends Actor {
                     else {
                         setX(targetX);
                         setMerging(false);
+                        if(!gameRenderer.gameOver) {
+                            gameRenderer.disablePushAndPopButtons(false);
+                        }
                     }
                     break;
                 case 1:
@@ -173,7 +180,10 @@ class GameNode extends Actor {
                     else {
                         setX(targetX);
                         setMerging(false);
-                        gameScreen.gameRenderer.removeEquationNodes();
+                        if(!gameRenderer.gameOver) {
+                            gameRenderer.disablePushAndPopButtons(false);
+                        }
+                        gameRenderer.removeEquationNodes();
                     }
                     break;
 
