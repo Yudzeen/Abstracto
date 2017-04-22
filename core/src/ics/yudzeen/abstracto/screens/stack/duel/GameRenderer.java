@@ -31,8 +31,6 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
  * Renderer for duel
  */
 
-// TODO: 20/04/2017 HP bars extends actor
-
 class GameRenderer {
 
     private DuelScreen gameScreen;

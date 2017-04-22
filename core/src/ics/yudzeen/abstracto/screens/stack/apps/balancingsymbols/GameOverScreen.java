@@ -22,7 +22,7 @@ import ics.yudzeen.abstracto.utils.GameConstants;
  * Game over screen for balancing symbols game
  */
 
-public class GameOverScreen extends AbstractoScreen {
+class GameOverScreen extends AbstractoScreen {
 
     public static final String TAG = GameOverScreen.class.getName();
 
