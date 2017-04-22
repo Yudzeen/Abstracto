@@ -1,68 +1,82 @@
 
 game.pack.png
-size: 512,128
+size: 512,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+blank_portal
+  rotate: false
+  xy: 200, 195
+  size: 170, 302
+  orig: 170, 302
+  offset: 0, 0
+  index: -1
 exit_icon
   rotate: false
-  xy: 168, 42
+  xy: 372, 416
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 gray_circle
   rotate: false
-  xy: 396, 68
+  xy: 455, 442
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 heart
   rotate: false
-  xy: 208, 2
+  xy: 455, 345
   size: 37, 38
   orig: 37, 38
   offset: 0, 0
   index: -1
 light_yellow_circle
   rotate: false
-  xy: 453, 68
+  xy: 455, 385
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 168, 2
+  xy: 372, 293
   size: 38, 38
   orig: 38, 38
   offset: 0, 0
   index: -1
 pop
   rotate: false
-  xy: 2, 70
+  xy: 2, 119
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
+portal
+  rotate: false
+  xy: 2, 174
+  size: 196, 323
+  orig: 196, 323
+  offset: 0, 0
+  index: -1
 push
   rotate: false
-  xy: 2, 15
+  xy: 2, 64
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 retry_icon
   rotate: false
-  xy: 251, 42
+  xy: 372, 333
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 stopwatch
   rotate: false
-  xy: 334, 63
+  xy: 2, 2
   size: 60, 60
   orig: 60, 60
   offset: 0, 0

@@ -14,6 +14,7 @@ import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
 import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
 import ics.yudzeen.abstracto.screens.stack.apps.postfix.PostfixExpressionGameScreen;
+import ics.yudzeen.abstracto.screens.stack.duel.DuelScreen;
 import ics.yudzeen.abstracto.screens.stack.simulator.StackSimulatorScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
@@ -148,7 +149,7 @@ public class StackMapScreen extends AbstractoScreen {
         duelButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO: 14/04/2017 Boss fight game
+                game.setScreen(new DuelScreen(game));
             }
         });
     }
