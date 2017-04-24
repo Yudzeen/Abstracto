@@ -119,7 +119,7 @@ class GameRenderer {
     }
 
     private void initBackgroundImage() {
-        backgroundImage = new Image(assets.images.grassland);
+        backgroundImage = new Image(assets.images.background_arena);
     }
 
     private void initPushButton() {

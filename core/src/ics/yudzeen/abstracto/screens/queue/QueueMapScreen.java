@@ -1,10 +1,12 @@
 package ics.yudzeen.abstracto.screens.queue;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -12,6 +14,7 @@ import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
+import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
@@ -23,13 +26,17 @@ public class QueueMapScreen extends AbstractoScreen {
     public static final String TAG = QueueMapScreen.class.getName();
 
     private Image backgroundImage;
-    private Image locationLabel;
+    private Image locationLabelImage;
 
     private ImageButton worldMapButton;
 
-    private TextButton guruButton;
-    private TextButton simulatorButton;
-    private TextButton bossFightButton;
+    private ImageButton schoolButton;
+    private ImageButton arcadeButton;
+    private ImageButton arenaButton;
+
+    private Label schoolLabel;
+    private Label arcadeLabel;
+    private Label arenaLabel;
 
     public QueueMapScreen(Abstracto game) {
         super(game);
@@ -40,34 +47,42 @@ public class QueueMapScreen extends AbstractoScreen {
         initBackgroundImage();
         initLocationLabel();
         initWorldMapButton();
-        initGuruButton();
-        initSimulatorButton();
-        initBossFightButton();
+        initSchoolButton();
+        initArcadeButton();
+        initArenaButton();
+        initSchoolLabel();
+        initArcadeLabel();
+        initArenaLabel();
     }
 
     @Override
     protected void buildStage() {
         super.buildStage();
         stage.addActor(backgroundImage);
-        stage.addActor(locationLabel);
+        stage.addActor(locationLabelImage);
         stage.addActor(worldMapButton);
-        stage.addActor(guruButton);
-        stage.addActor(simulatorButton);
-        stage.addActor(bossFightButton);
+        stage.addActor(schoolButton);
+        stage.addActor(arenaButton);
+        stage.addActor(arcadeButton);
+
+        stage.addActor(schoolLabel);
+        stage.addActor(arcadeLabel);
+        stage.addActor(arenaLabel);
+    }
+
+    @Override
+    protected void backKeyPressed() {
+        game.setScreen(new WorldMapScreen(game));
     }
 
     private void initBackgroundImage() {
-        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
-        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
-        pixmap.fill();
-        backgroundImage = new Image(new Texture(pixmap));
+        backgroundImage = new Image(assets.images.background_grass);
         backgroundImage.setPosition(0,0);
-        pixmap.dispose();
     }
 
     private void initLocationLabel() {
-        locationLabel = new Image(assets.images.location_queue);
-        locationLabel.setPosition(0, GameConstants.HEIGHT - locationLabel.getHeight());
+        locationLabelImage = new Image(assets.images.location_queue);
+        locationLabelImage.setPosition(0, GameConstants.HEIGHT - locationLabelImage.getHeight());
     }
 
     private void initWorldMapButton() {
@@ -82,10 +97,10 @@ public class QueueMapScreen extends AbstractoScreen {
         });
     }
 
-    private void initGuruButton() {
-        guruButton = ButtonFactory.createTextButton("GURU");
-        guruButton.setPosition(30, GameConstants.HEIGHT - guruButton.getHeight() - 100);
-        guruButton.addListener(new ClickListener() {
+    private void initSchoolButton() {
+        schoolButton = ButtonFactory.createImageButton(assets.buttons.school);
+        schoolButton.setPosition(80, GameConstants.HEIGHT - schoolButton.getHeight() - 150);
+        schoolButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // TODO: 14/04/2017 Guru Screen
@@ -93,30 +108,43 @@ public class QueueMapScreen extends AbstractoScreen {
         });
     }
 
-    private void initSimulatorButton() {
-        simulatorButton = ButtonFactory.createTextButton("SIMULATOR");
-        simulatorButton.setPosition(30, guruButton.getY() - simulatorButton.getHeight() - 10);
-        simulatorButton.addListener(new ClickListener() {
+    private void initArcadeButton() {
+        arcadeButton = ButtonFactory.createImageButton(assets.buttons.arcade);
+        arcadeButton.setPosition(320, 50);
+        arcadeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO: 14/04/2017 Simulator
+                // TODO: 24/04/2017 Applications
             }
         });
     }
 
-    private void initBossFightButton() {
-        bossFightButton = ButtonFactory.createTextButton("BOSS FIGHT");
-        bossFightButton.setPosition(30, simulatorButton.getY() - bossFightButton.getHeight() - 10);
-        bossFightButton.addListener(new ClickListener() {
+    private void initArenaButton() {
+        arenaButton = ButtonFactory.createImageButton(assets.buttons.arena);
+        arenaButton.setPosition(schoolButton.getX() + schoolButton.getWidth() + 200, schoolButton.getY() + 50);
+        arenaButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO: 14/04/2017 Boss fight game
+                // TODO: 24/04/2017 Arena
             }
         });
     }
 
-    @Override
-    protected void backKeyPressed() {
-        game.setScreen(new WorldMapScreen(game));
+    private void initSchoolLabel() {
+        schoolLabel = LabelFactory.createLabel("SCHOOL", assets.fonts.defaultBig, Color.WHITE);
+        schoolLabel.setPosition(schoolButton.getX() + schoolButton.getWidth()/2 - schoolLabel.getWidth()/2,
+                schoolButton.getY() - schoolLabel.getHeight() - 5);
+    }
+
+    private void initArcadeLabel() {
+        arcadeLabel = LabelFactory.createLabel("ARCADE", assets.fonts.defaultBig, Color.WHITE);
+        arcadeLabel.setPosition(arcadeButton.getX() + arcadeButton.getWidth()/2 - arcadeLabel.getWidth()/2,
+                arcadeButton.getY() - arcadeLabel.getHeight() - 5);
+    }
+
+    private void initArenaLabel() {
+        arenaLabel = LabelFactory.createLabel("ARENA", assets.fonts.defaultBig, Color.WHITE);
+        arenaLabel.setPosition(arenaButton.getX() + arenaButton.getWidth()/2 - arenaLabel.getWidth()/2,
+                arenaButton.getY() - arenaLabel.getHeight() - 5);
     }
 }

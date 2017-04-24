@@ -34,14 +34,12 @@ public class StackMapScreen extends AbstractoScreen {
     private ImageButton worldMapButton;
 
     private ImageButton schoolButton;
-    private ImageButton simulatorButton;
-    private ImageButton applicationsButton;
-    private ImageButton duelButton;
+    private ImageButton arcadeButton;
+    private ImageButton arenaButton;
 
     private Label schoolLabel;
-    private Label simulatorLabel;
-    private Label applicationsLabel;
-    private Label duelLabel;
+    private Label arcadeLabel;
+    private Label arenaLabel;
 
     public StackMapScreen(Abstracto game) {
         super(game);
@@ -53,13 +51,11 @@ public class StackMapScreen extends AbstractoScreen {
         initLocationLabel();
         initWorldMapButton();
         initSchoolButton();
-        initSimulatorButton();
-        initApplicationsButton();
-        initDuelButton();
+        initArcadeButton();
+        initArenaButton();
         initSchoolLabel();
-        initSimulatorLabel();
-        initApplicationsLabel();
-        initDuelLabel();
+        initArcadeLabel();
+        initArenaLabel();
     }
 
     @Override
@@ -67,16 +63,14 @@ public class StackMapScreen extends AbstractoScreen {
         super.buildStage();
         stage.addActor(backgroundImage);
         stage.addActor(locationLabelImage);
-        //stage.addActor(worldMapButton);
+        stage.addActor(worldMapButton);
         stage.addActor(schoolButton);
-        stage.addActor(simulatorButton);
-        stage.addActor(applicationsButton);
-        stage.addActor(duelButton);
+        stage.addActor(arenaButton);
+        stage.addActor(arcadeButton);
 
         stage.addActor(schoolLabel);
-        stage.addActor(simulatorLabel);
-        stage.addActor(applicationsLabel);
-        stage.addActor(duelLabel);
+        stage.addActor(arcadeLabel);
+        stage.addActor(arenaLabel);
     }
 
     @Override
@@ -85,12 +79,8 @@ public class StackMapScreen extends AbstractoScreen {
     }
 
     private void initBackgroundImage() {
-        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
-        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
-        pixmap.fill();
-        backgroundImage = new Image(new Texture(pixmap));
+        backgroundImage = new Image(assets.images.background_grass);
         backgroundImage.setPosition(0,0);
-        pixmap.dispose();
     }
 
     private void initLocationLabel() {
@@ -111,7 +101,7 @@ public class StackMapScreen extends AbstractoScreen {
     }
 
     private void initSchoolButton() {
-        schoolButton = ButtonFactory.createImageButton(assets.buttons.book);
+        schoolButton = ButtonFactory.createImageButton(assets.buttons.school);
         schoolButton.setPosition(80, GameConstants.HEIGHT - schoolButton.getHeight() - 100);
         schoolButton.addListener(new ClickListener() {
             @Override
@@ -121,21 +111,10 @@ public class StackMapScreen extends AbstractoScreen {
         });
     }
 
-    private void initSimulatorButton() {
-        simulatorButton = ButtonFactory.createImageButton(assets.buttons.simulator);
-        simulatorButton.setPosition(schoolButton.getX() + schoolButton.getWidth() + 200, schoolButton.getY());
-        simulatorButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new StackSimulatorScreen(game));
-            }
-        });
-    }
-
-    private void initApplicationsButton() {
-        applicationsButton = ButtonFactory.createImageButton(assets.buttons.applications);
-        applicationsButton.setPosition(320, 50);
-        applicationsButton.addListener(new ClickListener() {
+    private void initArcadeButton() {
+        arcadeButton = ButtonFactory.createImageButton(assets.buttons.arcade);
+        arcadeButton.setPosition(schoolButton.getX() + schoolButton.getWidth() + 200, schoolButton.getY());
+        arcadeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new ApplicationsMapScreen(game));
@@ -143,10 +122,10 @@ public class StackMapScreen extends AbstractoScreen {
         });
     }
 
-    private void initDuelButton() {
-        duelButton = ButtonFactory.createImageButton(assets.buttons.duel);
-        duelButton.setPosition(applicationsButton.getX() + applicationsButton.getWidth() + 220, applicationsButton.getY());
-        duelButton.addListener(new ClickListener() {
+    private void initArenaButton() {
+        arenaButton = ButtonFactory.createImageButton(assets.buttons.arena);
+        arenaButton.setPosition(320, 50);
+        arenaButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new DuelScreen(game));
@@ -155,26 +134,21 @@ public class StackMapScreen extends AbstractoScreen {
     }
 
     private void initSchoolLabel() {
-        schoolLabel = LabelFactory.createLabel("INFO", assets.fonts.defaultBig, Color.WHITE);
+        schoolLabel = LabelFactory.createLabel("SCHOOL", assets.fonts.defaultBig, Color.WHITE);
         schoolLabel.setPosition(schoolButton.getX() + schoolButton.getWidth()/2 - schoolLabel.getWidth()/2,
                 schoolButton.getY() - schoolLabel.getHeight() - 5);
     }
 
-    private void initSimulatorLabel() {
-        simulatorLabel = LabelFactory.createLabel("SIMULATOR", assets.fonts.defaultBig, Color.WHITE);
-        simulatorLabel.setPosition(simulatorButton.getX() + simulatorButton.getWidth()/2 - simulatorLabel.getWidth()/2,
-                simulatorButton.getY() - simulatorLabel.getHeight() - 5);
+    private void initArcadeLabel() {
+        arcadeLabel = LabelFactory.createLabel("ARCADE", assets.fonts.defaultBig, Color.WHITE);
+        arcadeLabel.setPosition(arcadeButton.getX() + arcadeButton.getWidth()/2 - arcadeLabel.getWidth()/2,
+                arcadeButton.getY() - arcadeLabel.getHeight() - 5);
     }
 
-    private void initApplicationsLabel() {
-        applicationsLabel = LabelFactory.createLabel("APPLICATIONS", assets.fonts.defaultBig, Color.WHITE);
-        applicationsLabel.setPosition(applicationsButton.getX() + applicationsButton.getWidth()/2 - applicationsLabel.getWidth()/2,
-                applicationsButton.getY() - applicationsLabel.getHeight() - 5);
+    private void initArenaLabel() {
+        arenaLabel = LabelFactory.createLabel("ARENA", assets.fonts.defaultBig, Color.WHITE);
+        arenaLabel.setPosition(arenaButton.getX() + arenaButton.getWidth()/2 - arenaLabel.getWidth()/2,
+                arenaButton.getY() - arenaLabel.getHeight() - 5);
     }
 
-    private void initDuelLabel() {
-        duelLabel = LabelFactory.createLabel("DUEL", assets.fonts.defaultBig, Color.WHITE);
-        duelLabel.setPosition(duelButton.getX() + duelButton.getWidth()/2 - duelLabel.getWidth()/2,
-                duelButton.getY() - duelLabel.getHeight() - 5);
-    }
 }

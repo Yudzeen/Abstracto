@@ -137,11 +137,14 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion map;
 
         // ADT screens
-        public AtlasRegion applications;
-        public AtlasRegion duel;
-        public AtlasRegion school;  // unnused
-        public AtlasRegion simulator;
-        public AtlasRegion book;
+        public AtlasRegion arcade;
+        public AtlasRegion arena;
+        public AtlasRegion school;
+
+
+        // World map screen
+        public AtlasRegion stack_region;
+        public AtlasRegion queue_region;
 
         public AtlasRegion forward_arrow;
         public AtlasRegion back;
@@ -151,12 +154,12 @@ public class Assets implements AssetErrorListener, Disposable {
             start = atlas.findRegion("button_start");
             about = atlas.findRegion("button_about");
             map = atlas.findRegion("world_map");
+            stack_region = atlas.findRegion("region_stack");
+            queue_region = atlas.findRegion("region_queue");
 
-            applications = atlas.findRegion("applications");
-            duel = atlas.findRegion("duel");
+            arcade = atlas.findRegion("arcade");
+            arena = atlas.findRegion("arena");
             school = atlas.findRegion("school");
-            simulator = atlas.findRegion("simulator");
-            book = atlas.findRegion("book");
 
             town_icon = atlas.findRegion("town_icon");
         }
@@ -165,21 +168,27 @@ public class Assets implements AssetErrorListener, Disposable {
     public class AssetImages {
 
         // Title Screen
-        public AtlasRegion grassland;
         public AtlasRegion tree;
 
         public AtlasRegion title_main;
-        public AtlasRegion title_map;
+        public AtlasRegion world_map_title;
         public AtlasRegion character;
 
         public AtlasRegion location_home;
         public AtlasRegion location_stack;
         public AtlasRegion location_queue;
 
+        public AtlasRegion region_map;
+
         public AtlasRegion blank_map;
         public AtlasRegion cloud01;
         public AtlasRegion cloud02;
         public AtlasRegion cloud03;
+
+        // background
+        public AtlasRegion background_grass;
+        public AtlasRegion background_arena;
+        public AtlasRegion background_grassland;
 
         // humans
         public AtlasRegion male;
@@ -194,7 +203,9 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion old_guy_mugshot;
 
         public AssetImages(TextureAtlas atlas) {
-            grassland = atlas.findRegion("grassland");
+            background_grassland = atlas.findRegion("background_grassland");
+            background_arena = atlas.findRegion("background_arena");
+            background_grass = atlas.findRegion("background_grass");
             tree = atlas.findRegion("tree");
 
             male = atlas.findRegion("male");
@@ -207,14 +218,15 @@ public class Assets implements AssetErrorListener, Disposable {
             teacher_mugshot = atlas.findRegion("teacher_mugshot");
             old_guy_mugshot = atlas.findRegion("old_guy_mugshot");
 
+            region_map = atlas.findRegion("region_map");
+            blank_map = atlas.findRegion("blank_map");
+            world_map_title = atlas.findRegion("world_map_title");
+
             title_main = atlas.findRegion("title_main");
-            title_map = atlas.findRegion("title_map");
             character = atlas.findRegion("character");
             location_home = atlas.findRegion("location_home");
             location_stack = atlas.findRegion("location_stackville");
             location_queue = atlas.findRegion("location_queuecity");
-
-            blank_map = atlas.findRegion("blank_map");
 
             cloud01 = atlas.findRegion("cloud01");
             cloud02 = atlas.findRegion("cloud02");

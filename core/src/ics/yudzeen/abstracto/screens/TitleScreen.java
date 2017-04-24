@@ -66,7 +66,7 @@ public class TitleScreen extends AbstractoScreen {
     }
 
     private void initBackgroundImage() {
-        backgroundImage = new Image(assets.images.grassland);
+        backgroundImage = new Image(assets.images.background_grassland);
     }
 
     private void initTitleImage() {
