@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Disposable;
 
 /**
@@ -106,6 +107,10 @@ public class Assets implements AssetErrorListener, Disposable {
          */
         public BitmapFont defaultLarge;
 
+        public BitmapFont chalk_20;
+        public BitmapFont chalk_40;
+        public BitmapFont chalk_30;
+
         public AssetFonts() {
             defaultSmall = new BitmapFont();
             defaultNormal = new BitmapFont();
@@ -124,6 +129,24 @@ public class Assets implements AssetErrorListener, Disposable {
             defaultBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             defaultVeryBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             defaultLarge.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+            FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
+            FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.size = 20;
+            chalk_20 = generator.generateFont(parameter);
+            generator.dispose();
+
+            generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
+            parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.size = 40;
+            chalk_40 = generator.generateFont(parameter);
+            generator.dispose();
+
+            generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
+            parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.size = 30;
+            chalk_30 = generator.generateFont(parameter);
+            generator.dispose();
         }
     }
 
@@ -141,13 +164,19 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion arena;
         public AtlasRegion school;
 
+        // School screen
+        public AtlasRegion book;
+        public AtlasRegion apps;
+        public AtlasRegion simulator;
+
 
         // World map screen
         public AtlasRegion stack_region;
         public AtlasRegion queue_region;
 
-        public AtlasRegion forward_arrow;
+        // Miscellaneous
         public AtlasRegion back;
+
         public AtlasRegion town_icon;
 
         public AssetButtons(TextureAtlas atlas) {
@@ -161,7 +190,11 @@ public class Assets implements AssetErrorListener, Disposable {
             arena = atlas.findRegion("arena");
             school = atlas.findRegion("school");
 
-            town_icon = atlas.findRegion("town_icon");
+            book = atlas.findRegion("book");
+            apps = atlas.findRegion("apps");
+            simulator = atlas.findRegion("simulator");
+
+            back = atlas.findRegion("back");
         }
     }
 
@@ -189,6 +222,7 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion background_grass;
         public AtlasRegion background_arena;
         public AtlasRegion background_grassland;
+        public AtlasRegion background_blackboard;
 
         // humans
         public AtlasRegion male;
@@ -202,10 +236,16 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion teacher_mugshot;
         public AtlasRegion old_guy_mugshot;
 
+        // info
+        public AtlasRegion stack_chalk;
+        public AtlasRegion arrow_chalk;
+
         public AssetImages(TextureAtlas atlas) {
             background_grassland = atlas.findRegion("background_grassland");
             background_arena = atlas.findRegion("background_arena");
             background_grass = atlas.findRegion("background_grass");
+            background_blackboard = atlas.findRegion("background_blackboard");
+
             tree = atlas.findRegion("tree");
 
             male = atlas.findRegion("male");
@@ -231,6 +271,9 @@ public class Assets implements AssetErrorListener, Disposable {
             cloud01 = atlas.findRegion("cloud01");
             cloud02 = atlas.findRegion("cloud02");
             cloud03 = atlas.findRegion("cloud03");
+
+            stack_chalk = atlas.findRegion("stack_chalk");
+            arrow_chalk = atlas.findRegion("arrow_chalk");
         }
     }
 
