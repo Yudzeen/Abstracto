@@ -54,6 +54,10 @@ public class ButtonFactory {
         return createTextButton(text, width, height, DEFAULT_COLOR);
     }
 
+    public static TextButton createTextButton(String text, int width, int height, Color fontColor, BitmapFont bitmapFont) {
+        return createTextButton(text, width, height, DEFAULT_COLOR, fontColor, bitmapFont);
+    }
+
     public static ImageButton createImageButton(TextureRegion region, boolean flipX, boolean flipY) {
         region.flip(flipX, flipY);
         ImageButton.ImageButtonStyle imageButtonStyle = new ImageButton.ImageButtonStyle();
