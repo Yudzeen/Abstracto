@@ -17,7 +17,6 @@ import java.util.List;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.objects.Cloud;
-import ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols.*;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.Assets;
@@ -26,6 +25,7 @@ import ics.yudzeen.abstracto.utils.GameConstants;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
+
 
 /**
  * Renderer for duel

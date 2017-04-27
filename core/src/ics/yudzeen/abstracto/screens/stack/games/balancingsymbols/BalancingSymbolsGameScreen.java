@@ -1,13 +1,14 @@
-package ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols;
+package ics.yudzeen.abstracto.screens.stack.games.balancingsymbols;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
-import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
-import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 
 /**
  * Screen for balancing symbols
  */
+
+// TODO: 27/04/2017 instruction screen
 
 public class BalancingSymbolsGameScreen extends AbstractoScreen {
 
@@ -41,7 +42,7 @@ public class BalancingSymbolsGameScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new ApplicationsMapScreen(game));
+        game.setScreen(new ArcadeMapScreen(game));
     }
 
     public Abstracto getGame() {

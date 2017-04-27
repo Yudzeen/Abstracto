@@ -10,9 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
-import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
+import ics.yudzeen.abstracto.screens.stack.duel.InstructionScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.screens.stack.duel.DuelScreen;
-import ics.yudzeen.abstracto.screens.stack.school.*;
 import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
@@ -115,7 +115,7 @@ public class StackMapScreen extends AbstractoScreen {
         arcadeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ApplicationsMapScreen(game));
+                game.setScreen(new ArcadeMapScreen(game));
             }
         });
     }
@@ -126,7 +126,7 @@ public class StackMapScreen extends AbstractoScreen {
         arenaButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new DuelScreen(game));
+                game.setScreen(new InstructionScreen(game));
             }
         });
     }

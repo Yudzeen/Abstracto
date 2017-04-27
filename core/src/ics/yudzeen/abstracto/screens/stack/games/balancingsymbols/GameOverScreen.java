@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.apps.postfix;
+package ics.yudzeen.abstracto.screens.stack.games.balancingsymbols;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -12,22 +12,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
-import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Game win Screen
+ * Game over screen for balancing symbols game
  */
 
-class GameWinScreen extends AbstractoScreen {
+class GameOverScreen extends AbstractoScreen {
 
-    public static final String TAG = GameWinScreen.class.getName();
+    public static final String TAG = GameOverScreen.class.getName();
 
     private Image backgroundImage;
 
-    private Label gameWinLabel;
+    private Label gameOverLabel;
 
     private ImageButton retryButton;
     private Label retryLabel;
@@ -35,14 +35,17 @@ class GameWinScreen extends AbstractoScreen {
     private ImageButton exitButton;
     private Label exitLabel;
 
-    public GameWinScreen(Abstracto game) {
+    private boolean gameWin;
+
+    public GameOverScreen(Abstracto game, boolean gameWin) {
         super(game);
+        this.gameWin = gameWin;
         init();
     }
 
     private void init() {
         initBackgroundImage();
-        initGameWinLabel();
+        initGameOverLabel();
         initRetryButton();
         initRetryLabel();
         initExitButton();
@@ -58,10 +61,11 @@ class GameWinScreen extends AbstractoScreen {
         pixmap.dispose();
     }
 
-    private void initGameWinLabel() {
-        gameWinLabel = LabelFactory.createLabel("GAME WIN!", assets.fonts.defaultVeryBig, Color.WHITE);
-        gameWinLabel.setPosition(GameConstants.WIDTH/2- gameWinLabel.getWidth()/2,
-                GameConstants.HEIGHT/2- gameWinLabel.getHeight()/2);
+    private void initGameOverLabel() {
+        String text = gameWin ? "YOU WIN!" : "YOU LOSE";
+        gameOverLabel = LabelFactory.createLabel(text, assets.fonts.defaultVeryBig, Color.WHITE);
+        gameOverLabel.setPosition(GameConstants.WIDTH/2-gameOverLabel.getWidth()/2,
+                GameConstants.HEIGHT/2-gameOverLabel.getHeight()/2);
     }
 
     private void initRetryButton() {
@@ -99,11 +103,11 @@ class GameWinScreen extends AbstractoScreen {
     }
 
     private void onRetryButtonClicked() {
-        game.setScreen(new PostfixExpressionGameScreen(game));
+        game.setScreen(new BalancingSymbolsGameScreen(game));
     }
 
     private void onExitButtonClicked() {
-        game.setScreen(new ApplicationsMapScreen(game));
+        game.setScreen(new StackMapScreen(game));
     }
 
     @Override
@@ -112,7 +116,7 @@ class GameWinScreen extends AbstractoScreen {
 
         stage.addActor(backgroundImage);
 
-        stage.addActor(gameWinLabel);
+        stage.addActor(gameOverLabel);
 
         stage.addActor(retryButton);
         stage.addActor(retryLabel);
@@ -123,7 +127,7 @@ class GameWinScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new ArcadeMapScreen(game));
     }
 
 }

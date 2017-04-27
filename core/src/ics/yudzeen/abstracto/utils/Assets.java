@@ -177,6 +177,14 @@ public class Assets implements AssetErrorListener, Disposable {
         // Miscellaneous
         public AtlasRegion back;
 
+        // Stack games
+        public AtlasRegion postfix_game;
+        public AtlasRegion balancing_game;
+
+        // Stack apps
+        public AtlasRegion postfix_apps;
+        public AtlasRegion balancing_apps;
+
         public AtlasRegion town_icon;
 
         public AssetButtons(TextureAtlas atlas) {
@@ -195,6 +203,12 @@ public class Assets implements AssetErrorListener, Disposable {
             simulator = atlas.findRegion("simulator");
 
             back = atlas.findRegion("back");
+
+            postfix_game = atlas.findRegion("postfix_game");
+            balancing_game = atlas.findRegion("balancing_game");
+
+            postfix_apps = atlas.findRegion("postfix_apps");
+            balancing_apps = atlas.findRegion("balancing_apps");
         }
     }
 
@@ -240,6 +254,8 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion stack_chalk;
         public AtlasRegion arrow_chalk;
 
+        public AtlasRegion controller;
+
         public AssetImages(TextureAtlas atlas) {
             background_grassland = atlas.findRegion("background_grassland");
             background_arena = atlas.findRegion("background_arena");
@@ -274,6 +290,8 @@ public class Assets implements AssetErrorListener, Disposable {
 
             stack_chalk = atlas.findRegion("stack_chalk");
             arrow_chalk = atlas.findRegion("arrow_chalk");
+
+            controller = atlas.findRegion("controller");
         }
     }
 

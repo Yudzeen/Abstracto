@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols;
+package ics.yudzeen.abstracto.screens.stack.games.balancingsymbols;
 
 import java.util.ArrayList;
 import java.util.List;

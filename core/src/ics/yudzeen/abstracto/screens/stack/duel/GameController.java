@@ -30,7 +30,7 @@ class GameController {
     }
 
     private void init() {
-        selfHP = 5;
+        selfHP = 4;
         enemyHP = MAX_HP;
         pushPopRandomizer = new PushPopRandomizer();
         pushPopList = pushPopRandomizer.getRandomizedPushPop(PUSH_POP_COUNT);

@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.apps.postfix;
+package ics.yudzeen.abstracto.screens.stack.games.postfix;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

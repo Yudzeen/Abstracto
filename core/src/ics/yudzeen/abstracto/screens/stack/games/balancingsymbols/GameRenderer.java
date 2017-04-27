@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols;
+package ics.yudzeen.abstracto.screens.stack.games.balancingsymbols;
 
 
 import com.badlogic.gdx.graphics.Color;
@@ -51,10 +51,10 @@ class GameRenderer {
     Image squareImage;
     Image lineImage;
 
-    StackContainer stackContainer;
-    List<GameNode> nodesQueue;
+    ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.StackContainer stackContainer;
+    List<ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode> nodesQueue;
 
-    GameNode poppingNode;
+    ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode poppingNode;
 
     public GameRenderer(BalancingSymbolsGameScreen gameScreen, GameController gameController) {
         this.gameScreen = gameScreen;
@@ -93,7 +93,7 @@ class GameRenderer {
         stage.addActor(squareImage);
         stage.addActor(lineImage);
 
-        for (GameNode node: nodesQueue) {
+        for (ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node: nodesQueue) {
             stage.addActor(node);
         }
     }
@@ -115,7 +115,7 @@ class GameRenderer {
             sequenceAction.addAction(run(new Runnable() {
                 @Override
                 public void run() {
-                    game.setScreen(new GameOverScreen(game, gameController.gameWin));
+                    game.setScreen(new ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameOverScreen(game, gameController.gameWin));
                 }
             }));
             stage.addAction(sequenceAction);
@@ -154,7 +154,7 @@ class GameRenderer {
     }
 
     private void initStackContainerImage() {
-        stackContainer = new StackContainer(this);
+        stackContainer = new ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.StackContainer(this);
         stackContainer.setPosition(200, 10);
     }
 
@@ -201,7 +201,7 @@ class GameRenderer {
     private void initNodesQueue() {
         nodesQueue = new ArrayList<>();
         for (String s : gameController.getCurrentExpression()) {
-            GameNode node = new GameNode(this, s);
+            ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node = new ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode(this, s);
             nodesQueue.add(node);
         }
     }
@@ -230,7 +230,7 @@ class GameRenderer {
 
     private void renderNodesQueue() {
         for (int i = 0; i < nodesQueue.size(); i++){
-            GameNode node = nodesQueue.get(i);
+            ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node = nodesQueue.get(i);
             float nodeWidth = node.getWidth();
             float nodeHeight = node.getHeight();
             if(i==0) {
@@ -246,7 +246,7 @@ class GameRenderer {
     private void onPushPressed() {
         if (gameController.onPushPressed()) {
             disablePushAndPopButtons(true);
-            GameNode node = nodesQueue.remove(0);
+            ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node = nodesQueue.remove(0);
             node.setCurrentNode(false);
             stackContainer.push(node);
         }
@@ -267,7 +267,7 @@ class GameRenderer {
 
     void removeMergingNodes() {
         poppingNode.remove();
-        GameNode node = nodesQueue.remove(0);
+        ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node = nodesQueue.remove(0);
         node.setCurrentNode(false);
         node.remove();
     }
@@ -288,7 +288,7 @@ class GameRenderer {
 
     }
 
-    GameNode getCurrentNode() {
+    ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode getCurrentNode() {
         if (!nodesQueue.isEmpty())
             return nodesQueue.get(0);
         else

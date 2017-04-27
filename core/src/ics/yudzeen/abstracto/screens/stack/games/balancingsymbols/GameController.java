@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols;
+package ics.yudzeen.abstracto.screens.stack.games.balancingsymbols;
 
 import com.badlogic.gdx.Gdx;
 

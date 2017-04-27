@@ -1,13 +1,14 @@
-package ics.yudzeen.abstracto.screens.stack.apps.postfix;
+package ics.yudzeen.abstracto.screens.stack.games.postfix;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
-import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
-import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 
 /**
  * Screen of postfix expression game
  */
+
+// TODO: 27/04/2017 instruction screen
 
 public class PostfixExpressionGameScreen extends AbstractoScreen {
 
@@ -47,6 +48,6 @@ public class PostfixExpressionGameScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new ApplicationsMapScreen(game));
+        game.setScreen(new ArcadeMapScreen(game));
     }
 }

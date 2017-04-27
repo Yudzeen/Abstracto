@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.apps.balancingsymbols;
+package ics.yudzeen.abstracto.screens.stack.games.postfix;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -12,14 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
-import ics.yudzeen.abstracto.screens.stack.apps.ApplicationsMapScreen;
-import ics.yudzeen.abstracto.screens.stack.apps.postfix.PostfixExpressionGameScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Game over screen for balancing symbols game
+ * Game over screen
  */
 
 class GameOverScreen extends AbstractoScreen {
@@ -36,11 +35,8 @@ class GameOverScreen extends AbstractoScreen {
     private ImageButton exitButton;
     private Label exitLabel;
 
-    private boolean gameWin;
-
-    public GameOverScreen(Abstracto game, boolean gameWin) {
+    public GameOverScreen(Abstracto game) {
         super(game);
-        this.gameWin = gameWin;
         init();
     }
 
@@ -63,8 +59,7 @@ class GameOverScreen extends AbstractoScreen {
     }
 
     private void initGameOverLabel() {
-        String text = gameWin ? "YOU WIN!" : "YOU LOSE";
-        gameOverLabel = LabelFactory.createLabel(text, assets.fonts.defaultVeryBig, Color.WHITE);
+        gameOverLabel = LabelFactory.createLabel("GAME OVER!", assets.fonts.defaultVeryBig, Color.WHITE);
         gameOverLabel.setPosition(GameConstants.WIDTH/2-gameOverLabel.getWidth()/2,
                 GameConstants.HEIGHT/2-gameOverLabel.getHeight()/2);
     }
@@ -104,11 +99,11 @@ class GameOverScreen extends AbstractoScreen {
     }
 
     private void onRetryButtonClicked() {
-        game.setScreen(new BalancingSymbolsGameScreen(game));
+        game.setScreen(new PostfixExpressionGameScreen(game));
     }
 
     private void onExitButtonClicked() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new ArcadeMapScreen(game));
     }
 
     @Override
@@ -128,7 +123,7 @@ class GameOverScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new ApplicationsMapScreen(game));
+        game.setScreen(new StackMapScreen(game));
     }
 
 }
