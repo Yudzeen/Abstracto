@@ -1,8 +1,5 @@
 package ics.yudzeen.abstracto.screens.stack.duel;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -10,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import ics.yudzeen.abstracto.ui.LabelFactory;
-import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
  * An image for the portal
