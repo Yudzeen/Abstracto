@@ -1,10 +1,10 @@
 package ics.yudzeen.abstracto.screens.stack.duel;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Generates an image for the portal
@@ -20,6 +20,8 @@ class PortalImageGenerator {
     private List<PortalImage> pushList;
     private List<PortalImage> popList;
 
+    private Random random = new Random();
+
     public PortalImageGenerator(DuelScreen gameScreen, List<String> pushPopList) {
         this.gameScreen = gameScreen;
         this.pushPopList = pushPopList;
@@ -27,6 +29,8 @@ class PortalImageGenerator {
     }
 
     private void init() {
+        initPushList();
+        initPopList();
         initTextureList();
     }
 
@@ -34,11 +38,48 @@ class PortalImageGenerator {
         portalImageList = new ArrayList<>();
         for (String s : pushPopList) {
             if (s.equals("PUSH")) {
-                portalImageList.add(new PortalImage(gameScreen, "PUSH"));
+                portalImageList.add(pushList.get(random.nextInt(pushList.size())));
             }
             else {
-                portalImageList.add(new PortalImage(gameScreen, "POP"));
+                portalImageList.add(popList.get(random.nextInt(popList.size())));
             }
+        }
+    }
+
+    private void initPushList() {
+        pushList = new ArrayList<>();
+        Gdx.app.debug(TAG, "" + gameScreen.getAssets().games.portal_push1);
+        pushList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_push1));
+        for (int i = 0; i <= 9; i++) {
+            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_postfix);
+            temp.addNode(Integer.toString(i));
+            pushList.add(temp);
+        }
+
+        final String[] OPENING_SYMBOLS = {"(", "[", "{"};
+        for (String s : OPENING_SYMBOLS) {
+            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_balancing);
+            temp.addNode(s);
+            pushList.add(temp);
+        }
+    }
+
+    private void initPopList() {
+        popList = new ArrayList<>();
+        popList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_pop1));
+
+        final String[] OPERATORS = {"+", "-", "*", "/"};
+        for (String s : OPERATORS) {
+            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_postfix);
+            temp.addNode(s);
+            popList.add(temp);
+        }
+
+        final String[] CLOSING_SYMBOLS = {")", "]", "}"};
+        for (String s : CLOSING_SYMBOLS) {
+            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_balancing);
+            temp.addNode(s);
+            popList.add(temp);
         }
     }
 

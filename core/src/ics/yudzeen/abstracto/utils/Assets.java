@@ -309,6 +309,10 @@ public class Assets implements AssetErrorListener, Disposable {
 
         public AtlasRegion portal;
         public AtlasRegion blank_portal;
+        public AtlasRegion portal_push1;
+        public AtlasRegion portal_pop1;
+        public AtlasRegion portal_balancing;
+        public AtlasRegion portal_postfix;
 
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
@@ -326,6 +330,12 @@ public class Assets implements AssetErrorListener, Disposable {
 
             portal = atlas.findRegion("portal");
             blank_portal = atlas.findRegion("blank_portal");
+
+            portal_push1 = atlas.findRegion("portal_push1");
+            portal_pop1 = atlas.findRegion("portal_pop1");
+
+            portal_balancing = atlas.findRegion("portal_balancing");
+            portal_postfix = atlas.findRegion("portal_postfix");
         }
     }
 }

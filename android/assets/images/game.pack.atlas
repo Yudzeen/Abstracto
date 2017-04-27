@@ -1,82 +1,110 @@
 
 game.pack.png
-size: 512,512
+size: 512,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 blank_portal
   rotate: false
-  xy: 200, 195
+  xy: 2, 361
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 exit_icon
   rotate: false
-  xy: 372, 416
+  xy: 372, 907
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 gray_circle
   rotate: false
-  xy: 455, 442
+  xy: 455, 933
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 heart
   rotate: false
-  xy: 455, 345
+  xy: 372, 722
   size: 37, 38
   orig: 37, 38
   offset: 0, 0
   index: -1
 light_yellow_circle
   rotate: false
-  xy: 455, 385
+  xy: 455, 876
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 372, 293
+  xy: 455, 836
   size: 38, 38
   orig: 38, 38
   offset: 0, 0
   index: -1
 pop
   rotate: false
-  xy: 2, 119
+  xy: 2, 2
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 portal
   rotate: false
-  xy: 2, 174
+  xy: 2, 665
   size: 196, 323
   orig: 196, 323
   offset: 0, 0
   index: -1
+portal_balancing
+  rotate: false
+  xy: 200, 686
+  size: 170, 302
+  orig: 170, 302
+  offset: 0, 0
+  index: -1
+portal_pop1
+  rotate: false
+  xy: 2, 57
+  size: 170, 302
+  orig: 170, 302
+  offset: 0, 0
+  index: -1
+portal_postfix
+  rotate: false
+  xy: 174, 361
+  size: 170, 302
+  orig: 170, 302
+  offset: 0, 0
+  index: -1
+portal_push1
+  rotate: false
+  xy: 174, 57
+  size: 170, 302
+  orig: 170, 302
+  offset: 0, 0
+  index: -1
 push
   rotate: false
-  xy: 2, 64
+  xy: 168, 2
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 retry_icon
   rotate: false
-  xy: 372, 333
+  xy: 372, 824
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 stopwatch
   rotate: false
-  xy: 2, 2
+  xy: 372, 762
   size: 60, 60
   orig: 60, 60
   offset: 0, 0

@@ -77,7 +77,8 @@ public class SchoolScreen extends AbstractoScreen {
 
     private void initBackgroundImage() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
-        pixmap.setColor(0,0,0,1);
+        //pixmap.setColor(0,0,0,1);
+        pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
         pixmap.fill();
         backgroundImage = new Image(new Texture(pixmap));
         pixmap.dispose();
