@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
+import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.screens.stack.games.postfix.PostfixExpressionGameScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
@@ -53,7 +54,7 @@ public class InstructionScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new ArcadeMapScreen(game));
+        game.setScreen(new StackMapScreen(game));
     }
 
     private void initInstructionsLabel() {
