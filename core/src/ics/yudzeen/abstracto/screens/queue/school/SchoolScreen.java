@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.school;
+package ics.yudzeen.abstracto.screens.queue.school;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -11,16 +11,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
+import ics.yudzeen.abstracto.screens.queue.simulator.QueueSimulatorScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
-import ics.yudzeen.abstracto.screens.stack.school.applications.ApplicationsScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.screens.stack.school.info.InfoPage1;
-import ics.yudzeen.abstracto.screens.stack.simulator.StackSimulatorScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 
 /**
- * Stack - School Screen
+ * School Screen
  */
 
 public class SchoolScreen extends AbstractoScreen {
@@ -85,7 +85,7 @@ public class SchoolScreen extends AbstractoScreen {
     }
 
     private void initTitleLabel() {
-        titleLabel = LabelFactory.createLabel("STACK SCHOOL", assets.fonts.defaultVeryBig, Color.WHITE);
+        titleLabel = LabelFactory.createLabel("QUEUE SCHOOL", assets.fonts.defaultVeryBig, Color.WHITE);
         titleLabel.setPosition(GameConstants.WIDTH/2 - titleLabel.getWidth()/2,
                 GameConstants.HEIGHT - titleLabel.getHeight() - 10);
     }
@@ -119,7 +119,7 @@ public class SchoolScreen extends AbstractoScreen {
         appsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ApplicationsScreen(game));
+                game.setScreen(new ArcadeMapScreen(game));
             }
         });
     }
@@ -131,7 +131,7 @@ public class SchoolScreen extends AbstractoScreen {
         simulatorButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new StackSimulatorScreen(game));
+                game.setScreen(new QueueSimulatorScreen(game));
             }
         });
     }
@@ -153,5 +153,4 @@ public class SchoolScreen extends AbstractoScreen {
         simulatorLabel.setPosition(appsLabel.getX(),
                 simulatorButton.getY() + simulatorButton.getHeight()/2 - simulatorLabel.getHeight()/2);
     }
-
 }
