@@ -300,12 +300,14 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion add_node;
         public AtlasRegion blank_node;
         public AtlasRegion stack_container;
+        public AtlasRegion queue_container;
         public AtlasRegion trash;
 
         public AssetSimulator(TextureAtlas atlas) {
             add_node = atlas.findRegion("add_node");
             blank_node = atlas.findRegion("blank_node");
             stack_container = atlas.findRegion("stack_container");
+            queue_container = atlas.findRegion("queue_container");
             trash = atlas.findRegion("trash");
         }
     }
