@@ -170,13 +170,6 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-arcade
-  rotate: false
-  xy: 639, 563
-  size: 250, 99
-  orig: 250, 99
-  offset: 0, 0
-  index: -1
 arena
   rotate: false
   xy: 585, 13
@@ -214,7 +207,7 @@ female
   index: -1
 female_mugshot
   rotate: false
-  xy: 759, 311
+  xy: 759, 309
   size: 250, 250
   orig: 250, 250
   offset: 0, 0
@@ -228,9 +221,16 @@ male
   index: -1
 old_guy
   rotate: false
-  xy: 837, 26
+  xy: 837, 24
   size: 172, 283
   orig: 172, 283
+  offset: 0, 0
+  index: -1
+queue_chalk
+  rotate: false
+  xy: 639, 561
+  size: 208, 101
+  orig: 208, 101
   offset: 0, 0
   index: -1
 teacher
@@ -253,9 +253,16 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+arcade
+  rotate: false
+  xy: 248, 193
+  size: 250, 99
+  orig: 250, 99
+  offset: 0, 0
+  index: -1
 balancing_game
   rotate: false
-  xy: 248, 219
+  xy: 500, 193
   size: 225, 73
   orig: 225, 73
   offset: 0, 0
@@ -269,14 +276,14 @@ button_start
   index: -1
 cloud01
   rotate: false
-  xy: 752, 263
+  xy: 752, 350
   size: 178, 78
   orig: 178, 78
   offset: 0, 0
   index: -1
 cloud03
   rotate: false
-  xy: 752, 343
+  xy: 443, 106
   size: 182, 85
   orig: 182, 85
   offset: 0, 0
@@ -304,7 +311,7 @@ postfix_apps
   index: -1
 postfix_game
   rotate: false
-  xy: 216, 144
+  xy: 216, 118
   size: 225, 73
   orig: 225, 73
   offset: 0, 0

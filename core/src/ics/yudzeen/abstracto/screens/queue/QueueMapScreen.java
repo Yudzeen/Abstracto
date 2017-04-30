@@ -13,7 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
+import ics.yudzeen.abstracto.screens.queue.duel.InstructionScreen;
 import ics.yudzeen.abstracto.screens.queue.school.SchoolScreen;
+import ics.yudzeen.abstracto.screens.stack.duel.DuelScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -126,7 +128,7 @@ public class QueueMapScreen extends AbstractoScreen {
         arenaButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO: 24/04/2017 Arena
+                game.setScreen(new InstructionScreen(game));
             }
         });
     }

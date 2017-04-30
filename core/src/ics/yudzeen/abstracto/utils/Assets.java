@@ -252,7 +252,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
         // info
         public AtlasRegion stack_chalk;
+        public AtlasRegion queue_chalk;
         public AtlasRegion arrow_chalk;
+
 
         public AtlasRegion controller;
 
@@ -289,6 +291,7 @@ public class Assets implements AssetErrorListener, Disposable {
             cloud03 = atlas.findRegion("cloud03");
 
             stack_chalk = atlas.findRegion("stack_chalk");
+            queue_chalk = atlas.findRegion("queue_chalk");
             arrow_chalk = atlas.findRegion("arrow_chalk");
 
             controller = atlas.findRegion("controller");
@@ -321,6 +324,9 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion push;
         public AtlasRegion pop;
 
+        public AtlasRegion enqueue;
+        public AtlasRegion dequeue;
+
         public AtlasRegion gray_circle;
         public AtlasRegion light_yellow_circle;
 
@@ -341,6 +347,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
             push = atlas.findRegion("push");
             pop = atlas.findRegion("pop");
+
+            enqueue = atlas.findRegion("enqueue");
+            dequeue = atlas.findRegion("dequeue");
 
             gray_circle = atlas.findRegion("gray_circle");
             light_yellow_circle = atlas.findRegion("light_yellow_circle");

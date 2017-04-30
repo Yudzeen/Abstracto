@@ -11,6 +11,20 @@ blank_portal
   orig: 170, 302
   offset: 0, 0
   index: -1
+dequeue
+  rotate: false
+  xy: 2, 2
+  size: 164, 53
+  orig: 164, 53
+  offset: 0, 0
+  index: -1
+enqueue
+  rotate: false
+  xy: 168, 2
+  size: 164, 53
+  orig: 164, 53
+  offset: 0, 0
+  index: -1
 exit_icon
   rotate: false
   xy: 372, 907
@@ -48,7 +62,7 @@ pause
   index: -1
 pop
   rotate: false
-  xy: 2, 2
+  xy: 346, 631
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
@@ -90,7 +104,7 @@ portal_push1
   index: -1
 push
   rotate: false
-  xy: 168, 2
+  xy: 346, 576
   size: 164, 53
   orig: 164, 53
   offset: 0, 0

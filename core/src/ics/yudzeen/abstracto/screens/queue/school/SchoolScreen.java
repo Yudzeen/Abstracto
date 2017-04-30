@@ -11,10 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
+import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
+import ics.yudzeen.abstracto.screens.queue.school.info.InfoPage1;
 import ics.yudzeen.abstracto.screens.queue.simulator.QueueSimulatorScreen;
-import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
-import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
-import ics.yudzeen.abstracto.screens.stack.school.info.InfoPage1;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -72,7 +71,7 @@ public class SchoolScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new QueueMapScreen(game));
     }
 
     private void initBackgroundImage() {
@@ -96,7 +95,7 @@ public class SchoolScreen extends AbstractoScreen {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new StackMapScreen(game));
+                game.setScreen(new QueueMapScreen(game));
             }
         });
     }
@@ -119,7 +118,7 @@ public class SchoolScreen extends AbstractoScreen {
         appsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ArcadeMapScreen(game));
+                // TODO: 30/04/2017 Queue applications
             }
         });
     }
