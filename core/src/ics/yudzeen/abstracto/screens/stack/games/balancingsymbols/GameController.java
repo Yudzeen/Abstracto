@@ -53,9 +53,13 @@ class GameController {
 
 
     public void update(float delta) {
-        //updateReadySetGo(delta);
         if(!gameOver) {
-            updateTimer(delta);
+            if(gameStarted) {
+                updateTimer(delta);
+            }
+            else {
+                updateReadySetGo(delta);
+            }
         }
     }
 

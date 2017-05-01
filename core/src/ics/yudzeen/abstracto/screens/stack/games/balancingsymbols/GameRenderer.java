@@ -56,6 +56,10 @@ class GameRenderer {
 
     ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode poppingNode;
 
+    private Image blackImage;
+
+    private Label readySetGoText;
+
     public GameRenderer(BalancingSymbolsGameScreen gameScreen, GameController gameController) {
         this.gameScreen = gameScreen;
         this.gameController = gameController;
@@ -74,6 +78,8 @@ class GameRenderer {
         initSquareImage();
         initLineImage();
         initNodesQueue();
+        initReadySetGoText();
+        initBlackImage();
     }
 
     public void buildStage(Stage stage) {
@@ -89,36 +95,50 @@ class GameRenderer {
         stage.addActor(stackContainer);
         stage.addActor(pushButton);
         stage.addActor(popButton);
+        stage.addActor(readySetGoText);
 
         stage.addActor(squareImage);
         stage.addActor(lineImage);
 
         for (ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node: nodesQueue) {
+            node.setVisible(false);
             stage.addActor(node);
         }
+        blackImage.setVisible(false);
+        stage.addActor(blackImage);
     }
 
     public void render(Stage stage) {
-        if (!gameController.gameOver) {
-            renderTimer();
-            renderLives();
-            renderNodesQueue();
+        boolean gameStarted = gameController.gameStarted;
+
+        if(gameStarted) {
+            lightUpBackground();
+            readySetGoText.remove();
+            if (!gameController.gameOver) {
+                renderTimer();
+                renderLives();
+                renderNodesQueue();
+            }
+            else {
+                disablePushAndPopButtons(true);
+                final Abstracto game = gameScreen.getGame();
+                stage.getRoot().getColor().a = 1;
+                SequenceAction sequenceAction = new SequenceAction();
+                float delay = gameController.gameWin ? 5.0f : 1.5f;
+                sequenceAction.addAction(delay(delay));
+                sequenceAction.addAction(fadeOut(2.0f));
+                sequenceAction.addAction(run(new Runnable() {
+                    @Override
+                    public void run() {
+                        game.setScreen(new ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameOverScreen(game, gameController.gameWin));
+                    }
+                }));
+                stage.addAction(sequenceAction);
+            }
         }
         else {
-            disablePushAndPopButtons(true);
-            final Abstracto game = gameScreen.getGame();
-            stage.getRoot().getColor().a = 1;
-            SequenceAction sequenceAction = new SequenceAction();
-            float delay = gameController.gameWin ? 5.0f : 1.5f;
-            sequenceAction.addAction(delay(delay));
-            sequenceAction.addAction(fadeOut(2.0f));
-            sequenceAction.addAction(run(new Runnable() {
-                @Override
-                public void run() {
-                    game.setScreen(new ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameOverScreen(game, gameController.gameWin));
-                }
-            }));
-            stage.addAction(sequenceAction);
+            dimBackground();
+            renderReadySetGoText();
         }
     }
 
@@ -127,6 +147,17 @@ class GameRenderer {
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
         backgroundImage = new Image(new Texture(pixmap));
+        pixmap.dispose();
+    }
+
+    private void initBlackImage() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGB888);
+        pixmap.setColor(new Color(0,0,0,0.5f));
+        pixmap.fill();
+        Texture texture = new Texture(pixmap);
+        texture.draw(pixmap,0,0);
+        blackImage = new Image(texture);
+        blackImage.setColor(0,0,0,0.5f);
         pixmap.dispose();
     }
 
@@ -206,6 +237,11 @@ class GameRenderer {
         }
     }
 
+    private void initReadySetGoText() {
+        readySetGoText = LabelFactory.createLabel("READY", assets.fonts.defaultLarge, Color.RED);
+        readySetGoText.setPosition(GameConstants.WIDTH/2-readySetGoText.getWidth()/2, GameConstants.HEIGHT/2-readySetGoText.getHeight()/2);
+    }
+
     private void renderTimer() {
         float time = gameController.timer;
         if(time < 10 && time > 0) {
@@ -233,6 +269,7 @@ class GameRenderer {
             ics.yudzeen.abstracto.screens.stack.games.balancingsymbols.GameNode node = nodesQueue.get(i);
             float nodeWidth = node.getWidth();
             float nodeHeight = node.getHeight();
+            node.setVisible(true);
             if(i==0) {
                 node.setCurrentNode(true);
                 node.setPosition(GameConstants.WIDTH/2 - nodeWidth/2, GameConstants.HEIGHT - nodeHeight - 70);
@@ -241,6 +278,16 @@ class GameRenderer {
                 node.setPosition(GameConstants.WIDTH/2 - nodeWidth/2 + (5+nodeWidth)*(i-1) + 50, GameConstants.HEIGHT/2 - nodeHeight/2);
             }
         }
+    }
+
+    private void renderReadySetGoText() {
+        readySetGoText.toFront();
+        readySetGoText.setText(gameController.readySetGoText);
+        float width = readySetGoText.getGlyphLayout().width;
+        float height = readySetGoText.getGlyphLayout().height;
+        readySetGoText.setPosition(GameConstants.WIDTH/2 - width/2, GameConstants.HEIGHT/2 - height/2);
+        readySetGoText.setWidth(width);
+        readySetGoText.setHeight(height);
     }
 
     private void onPushPressed() {
@@ -293,6 +340,14 @@ class GameRenderer {
             return nodesQueue.get(0);
         else
             return null;
+    }
+
+    private void dimBackground() {
+        blackImage.setVisible(true);
+    }
+
+    private void lightUpBackground() {
+        blackImage.setVisible(false);
     }
 
 }
