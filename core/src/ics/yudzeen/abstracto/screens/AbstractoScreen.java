@@ -97,4 +97,8 @@ public abstract class AbstractoScreen implements Screen {
     public InputProcessor getInputProcessor() {
         return stage;
     }
+
+    public Abstracto getGame() {
+        return game;
+    }
 }
