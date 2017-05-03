@@ -269,21 +269,21 @@ balancing_game
   index: -1
 button_start
   rotate: false
-  xy: 752, 430
+  xy: 413, 28
   size: 175, 88
   orig: 175, 88
   offset: 0, 0
   index: -1
 cloud01
   rotate: false
-  xy: 752, 350
+  xy: 752, 440
   size: 178, 78
   orig: 178, 78
   offset: 0, 0
   index: -1
 cloud03
   rotate: false
-  xy: 443, 106
+  xy: 229, 31
   size: 182, 85
   orig: 182, 85
   offset: 0, 0
@@ -312,6 +312,13 @@ postfix_apps
 postfix_game
   rotate: false
   xy: 216, 118
+  size: 225, 73
+  orig: 225, 73
+  offset: 0, 0
+  index: -1
+process_game
+  rotate: false
+  xy: 443, 118
   size: 225, 73
   orig: 225, 73
   offset: 0, 0

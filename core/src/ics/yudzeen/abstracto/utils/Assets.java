@@ -185,6 +185,9 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion postfix_apps;
         public AtlasRegion balancing_apps;
 
+        // Queue games
+        public AtlasRegion process_game;
+
         public AtlasRegion town_icon;
 
         public AssetButtons(TextureAtlas atlas) {
@@ -209,6 +212,8 @@ public class Assets implements AssetErrorListener, Disposable {
 
             postfix_apps = atlas.findRegion("postfix_apps");
             balancing_apps = atlas.findRegion("balancing_apps");
+
+            process_game = atlas.findRegion("process_game");
         }
     }
 
@@ -340,6 +345,15 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion portal_balancing;
         public AtlasRegion portal_postfix;
 
+        public AtlasRegion chip;
+        public AtlasRegion chip_light;
+        public AtlasRegion process_red;
+        public AtlasRegion process_red_light;
+        public AtlasRegion process_blue;
+        public AtlasRegion process_blue_light;
+        public AtlasRegion process_yellow;
+        public AtlasRegion process_yellow_light;
+
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
             pause = atlas.findRegion("pause");
@@ -365,6 +379,15 @@ public class Assets implements AssetErrorListener, Disposable {
 
             portal_balancing = atlas.findRegion("portal_balancing");
             portal_postfix = atlas.findRegion("portal_postfix");
+
+            chip = atlas.findRegion("chip");
+            chip_light = atlas.findRegion("chip_light");
+            process_blue = atlas.findRegion("process_blue");
+            process_blue_light = atlas.findRegion("process_blue_light");
+            process_red = atlas.findRegion("process_red");
+            process_red_light = atlas.findRegion("process_red_light");
+            process_yellow = atlas.findRegion("process_yellow");
+            process_yellow_light = atlas.findRegion("process_yellow_light");
         }
     }
 }
