@@ -269,21 +269,28 @@ balancing_game
   index: -1
 button_start
   rotate: false
-  xy: 413, 28
+  xy: 752, 430
   size: 175, 88
   orig: 175, 88
   offset: 0, 0
   index: -1
+cashier_game
+  rotate: false
+  xy: 2, 2
+  size: 225, 73
+  orig: 225, 73
+  offset: 0, 0
+  index: -1
 cloud01
   rotate: false
-  xy: 752, 440
+  xy: 752, 350
   size: 178, 78
   orig: 178, 78
   offset: 0, 0
   index: -1
 cloud03
   rotate: false
-  xy: 229, 31
+  xy: 456, 31
   size: 182, 85
   orig: 182, 85
   offset: 0, 0
@@ -304,21 +311,21 @@ old_guy_mugshot
   index: -1
 postfix_apps
   rotate: false
-  xy: 2, 2
+  xy: 216, 118
   size: 225, 73
   orig: 225, 73
   offset: 0, 0
   index: -1
 postfix_game
   rotate: false
-  xy: 216, 118
+  xy: 443, 118
   size: 225, 73
   orig: 225, 73
   offset: 0, 0
   index: -1
 process_game
   rotate: false
-  xy: 443, 118
+  xy: 229, 43
   size: 225, 73
   orig: 225, 73
   offset: 0, 0

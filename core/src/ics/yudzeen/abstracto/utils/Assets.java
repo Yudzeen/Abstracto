@@ -187,6 +187,7 @@ public class Assets implements AssetErrorListener, Disposable {
 
         // Queue games
         public AtlasRegion process_game;
+        public AtlasRegion cashier_game;
 
         public AtlasRegion town_icon;
 
@@ -214,6 +215,7 @@ public class Assets implements AssetErrorListener, Disposable {
             balancing_apps = atlas.findRegion("balancing_apps");
 
             process_game = atlas.findRegion("process_game");
+            cashier_game = atlas.findRegion("cashier_game");
         }
     }
 
@@ -354,6 +356,15 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion process_yellow;
         public AtlasRegion process_yellow_light;
 
+        public AtlasRegion cashier;
+        public AtlasRegion cashier_light;
+        public AtlasRegion woman;
+        public AtlasRegion woman_light;
+        public AtlasRegion man;
+        public AtlasRegion man_light;
+        public AtlasRegion kid;
+        public AtlasRegion kid_light;
+
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
             pause = atlas.findRegion("pause");
@@ -388,6 +399,15 @@ public class Assets implements AssetErrorListener, Disposable {
             process_red_light = atlas.findRegion("process_red_light");
             process_yellow = atlas.findRegion("process_yellow");
             process_yellow_light = atlas.findRegion("process_yellow_light");
+
+            cashier = atlas.findRegion("cashier");
+            cashier_light = atlas.findRegion("cashier_light");
+            woman = atlas.findRegion("woman");
+            woman_light = atlas.findRegion("woman_light");
+            man = atlas.findRegion("man");
+            man_light = atlas.findRegion("man_light");
+            kid = atlas.findRegion("kid");
+            kid_light = atlas.findRegion("kid_light");
         }
     }
 }

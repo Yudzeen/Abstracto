@@ -11,16 +11,30 @@ blank_portal
   orig: 170, 302
   offset: 0, 0
   index: -1
-chip
+cashier
   rotate: false
   xy: 372, 763
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
   index: -1
-chip_light
+cashier_light
   rotate: false
   xy: 372, 682
+  size: 79, 79
+  orig: 79, 79
+  offset: 0, 0
+  index: -1
+chip
+  rotate: false
+  xy: 346, 491
+  size: 79, 79
+  orig: 79, 79
+  offset: 0, 0
+  index: -1
+chip_light
+  rotate: false
+  xy: 346, 410
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
@@ -55,9 +69,23 @@ gray_circle
   index: -1
 heart
   rotate: false
-  xy: 346, 470
+  xy: 346, 99
   size: 37, 38
   orig: 37, 38
+  offset: 0, 0
+  index: -1
+kid
+  rotate: false
+  xy: 378, 349
+  size: 30, 59
+  orig: 30, 59
+  offset: 0, 0
+  index: -1
+kid_light
+  rotate: false
+  xy: 459, 449
+  size: 30, 59
+  orig: 30, 59
   offset: 0, 0
   index: -1
 light_yellow_circle
@@ -65,6 +93,20 @@ light_yellow_circle
   xy: 455, 896
   size: 55, 55
   orig: 55, 55
+  offset: 0, 0
+  index: -1
+man
+  rotate: false
+  xy: 346, 321
+  size: 30, 87
+  orig: 30, 87
+  offset: 0, 0
+  index: -1
+man_light
+  rotate: false
+  xy: 427, 421
+  size: 30, 87
+  orig: 30, 87
   offset: 0, 0
   index: -1
 pause
@@ -132,28 +174,28 @@ process_blue_light
   index: -1
 process_red
   rotate: false
-  xy: 408, 552
+  xy: 91, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_red_light
   rotate: false
-  xy: 91, 2
+  xy: 180, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_yellow
   rotate: false
-  xy: 408, 532
+  xy: 269, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_yellow_light
   rotate: false
-  xy: 180, 2
+  xy: 346, 79
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
@@ -174,8 +216,22 @@ retry_icon
   index: -1
 stopwatch
   rotate: false
-  xy: 346, 510
+  xy: 427, 510
   size: 60, 60
   orig: 60, 60
+  offset: 0, 0
+  index: -1
+woman
+  rotate: false
+  xy: 346, 230
+  size: 27, 89
+  orig: 27, 89
+  offset: 0, 0
+  index: -1
+woman_light
+  rotate: false
+  xy: 346, 139
+  size: 27, 89
+  orig: 27, 89
   offset: 0, 0
   index: -1
