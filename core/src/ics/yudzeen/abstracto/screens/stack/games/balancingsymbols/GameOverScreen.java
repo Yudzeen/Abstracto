@@ -107,7 +107,7 @@ class GameOverScreen extends AbstractoScreen {
     }
 
     private void onExitButtonClicked() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new ArcadeMapScreen(game));
     }
 
     @Override

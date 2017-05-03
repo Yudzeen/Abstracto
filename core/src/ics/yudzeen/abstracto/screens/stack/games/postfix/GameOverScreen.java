@@ -123,7 +123,7 @@ class GameOverScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new ArcadeMapScreen(game));
     }
 
 }
