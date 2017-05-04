@@ -69,14 +69,12 @@ public class WorldMapScreen extends AbstractoScreen {
     }
 
     private void initMapImage() {
-        mapImage = new Image(assets.images.blank_map);
-        mapImage.setWidth(GameConstants.WIDTH);
-        mapImage.setPosition(GameConstants.WIDTH/2 - mapImage.getWidth()/2, GameConstants.HEIGHT/2 - mapImage.getHeight()/2);
+        mapImage = new Image(assets.images.region_map);
     }
 
     private void initStackNationButton() {
         stackNationButton = ButtonFactory.createImageButton(assets.buttons.stack_region);
-        stackNationButton.setPosition(218,107);
+        stackNationButton.setPosition(275,141);
         stackNationButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -87,7 +85,7 @@ public class WorldMapScreen extends AbstractoScreen {
 
     private void initQueueKingdomButton() {
         queueKingdomButton = ButtonFactory.createImageButton(assets.buttons.queue_region);
-        queueKingdomButton.setPosition(360, 37);
+        queueKingdomButton.setPosition(393, 83);
         queueKingdomButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

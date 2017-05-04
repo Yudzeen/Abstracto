@@ -1,29 +1,27 @@
 package ics.yudzeen.abstracto;
 
 import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
 
-import ics.yudzeen.abstracto.screens.DirectedGame;
 import ics.yudzeen.abstracto.screens.TitleScreen;
-import ics.yudzeen.abstracto.screens.transitions.Fade;
-import ics.yudzeen.abstracto.screens.transitions.ScreenTransition;
-import ics.yudzeen.abstracto.screens.transitions.Slice;
 import ics.yudzeen.abstracto.utils.Assets;
+import ics.yudzeen.abstracto.utils.GamePreferences;
 
 /**
  * Main game class file
  */
 
-public class Abstracto extends DirectedGame {
+public class Abstracto extends Game {
 
 	public static final String TAG = Abstracto.class.getName();
 
 	private SpriteBatch batch;
 	private Assets assets;
+	private GamePreferences gamePreferences;
 
 	public AndroidInterfaces androidInterfaces;
 
@@ -35,15 +33,21 @@ public class Abstracto extends DirectedGame {
 	public void create () {
 		assets = Assets.getInstance();
 		assets.init(new AssetManager());
+
+		gamePreferences = GamePreferences.instance;
+		gamePreferences.load();
+
 		batch = new SpriteBatch();
 		Gdx.input.setCatchBackKey(true);
 
-		//ScreenTransition transition = Slice.init(2, Slice.UP_DOWN, 10, Interpolation.pow5Out);
-		ScreenTransition transition = Fade.init(2);
-		//ScreenTransition transition = Slide.init(2, Slide.UP, true, Interpolation.pow5Out);
-		setScreen(new TitleScreen(this), transition);
+		setScreen(new TitleScreen(this));
 
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+	}
+
+	@Override
+	public void resize(int width, int height) {
+
 	}
 
 	@Override
@@ -53,15 +57,26 @@ public class Abstracto extends DirectedGame {
 		super.render();
 	}
 
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
+	public void resume() {
+
+	}
+
 	public SpriteBatch getBatch() {
 		return batch;
 	}
 
 	public Assets getAssets() { return assets; }
 
+	public GamePreferences getGamePreferences() { return gamePreferences; }
+
 	@Override
 	public void dispose() {
-		super.dispose();
 		assets.dispose();
 		batch.dispose();
 	}

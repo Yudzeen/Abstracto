@@ -1,9 +1,9 @@
 package ics.yudzeen.abstracto.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -15,6 +15,10 @@ import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.objects.Cloud;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
 /**
  * Screen of main menu
@@ -90,7 +94,20 @@ public class TitleScreen extends AbstractoScreen {
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new WorldMapScreen(game));
+                SequenceAction sequenceAction = new SequenceAction();
+                sequenceAction.addAction(fadeOut(1.0f, Interpolation.fade));
+                sequenceAction.addAction(run(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!getGame().getGamePreferences().introDone) {
+                            game.setScreen(new ChooseCharacterScreen(game));
+                        }
+                        else {
+                            game.setScreen(new WorldMapScreen(game));
+                        }
+                    }
+                }));
+                stage.addAction(sequenceAction);
             }
         });
     }

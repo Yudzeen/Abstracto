@@ -111,6 +111,13 @@ public class Assets implements AssetErrorListener, Disposable {
         public BitmapFont chalk_40;
         public BitmapFont chalk_30;
 
+        public BitmapFont verdana_14;
+        public BitmapFont verdana_16;
+        public BitmapFont verdana_20;
+        public BitmapFont verdana_30;
+        public BitmapFont verdana_40;
+        public BitmapFont verdana_50;
+
         public AssetFonts() {
             defaultSmall = new BitmapFont();
             defaultNormal = new BitmapFont();
@@ -130,23 +137,42 @@ public class Assets implements AssetErrorListener, Disposable {
             defaultVeryBig.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
             defaultLarge.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-            FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
-            FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.size = 20;
-            chalk_20 = generator.generateFont(parameter);
-            generator.dispose();
+            FreeTypeFontGenerator verdanaGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/verdana.ttf"));
+            FreeTypeFontGenerator.FreeTypeFontParameter verdanaParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
-            generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
-            parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.size = 40;
-            chalk_40 = generator.generateFont(parameter);
-            generator.dispose();
+            verdanaParameter.size = 14;
+            verdana_14 = verdanaGenerator.generateFont(verdanaParameter);
 
-            generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
-            parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.size = 30;
-            chalk_30 = generator.generateFont(parameter);
-            generator.dispose();
+            verdanaParameter.size = 16;
+            verdana_16 = verdanaGenerator.generateFont(verdanaParameter);
+
+            verdanaParameter.size = 20;
+            verdana_20 = verdanaGenerator.generateFont(verdanaParameter);
+
+            verdanaParameter.size = 30;
+            verdana_30 = verdanaGenerator.generateFont(verdanaParameter);
+
+            verdanaParameter.size = 40;
+            verdana_40 = verdanaGenerator.generateFont(verdanaParameter);
+
+            verdanaParameter.size = 50;
+            verdana_50 = verdanaGenerator.generateFont(verdanaParameter);
+
+            verdanaGenerator.dispose();
+
+            FreeTypeFontGenerator chalkGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chalk.ttf"));
+            FreeTypeFontGenerator.FreeTypeFontParameter chalkParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+            chalkParameter.size = 20;
+            chalk_20 = chalkGenerator.generateFont(chalkParameter);
+
+            chalkParameter.size = 40;
+            chalk_40 = chalkGenerator.generateFont(chalkParameter);
+
+
+            chalkParameter.size = 30;
+            chalk_30 = chalkGenerator.generateFont(chalkParameter);
+            chalkGenerator.dispose();
         }
     }
 
@@ -189,7 +215,8 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion process_game;
         public AtlasRegion cashier_game;
 
-        public AtlasRegion town_icon;
+        public AtlasRegion blue_triangle;
+        public AtlasRegion play;
 
         public AssetButtons(TextureAtlas atlas) {
             start = atlas.findRegion("button_start");
@@ -216,6 +243,9 @@ public class Assets implements AssetErrorListener, Disposable {
 
             process_game = atlas.findRegion("process_game");
             cashier_game = atlas.findRegion("cashier_game");
+
+            blue_triangle = atlas.findRegion("blue_triangle");
+            play = atlas.findRegion("play");
         }
     }
 
@@ -244,6 +274,7 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion background_arena;
         public AtlasRegion background_grassland;
         public AtlasRegion background_blackboard;
+        public AtlasRegion background_introduction;
 
         // humans
         public AtlasRegion male;
@@ -270,6 +301,7 @@ public class Assets implements AssetErrorListener, Disposable {
             background_arena = atlas.findRegion("background_arena");
             background_grass = atlas.findRegion("background_grass");
             background_blackboard = atlas.findRegion("background_blackboard");
+            background_introduction = atlas.findRegion("background_introduction");
 
             tree = atlas.findRegion("tree");
 

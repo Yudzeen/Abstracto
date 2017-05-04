@@ -15,4 +15,9 @@ public class GameConstants {
     static final String TEXTURE_ATLAS_SIMULATOR = "images/simulator.pack.atlas";
     static final String TEXTURE_ATLAS_GAME = "images/game.pack.atlas";
 
+    public static final String TEXTURE_ATLAS_LIBGDX_UI = "default/uiskin.atlas";
+    public static final String SKIN_LIBGDX_UI = "default/uiskin.json";
+
+    public static final String PREFERENCES = "abstracto.preferences";
+
 }
