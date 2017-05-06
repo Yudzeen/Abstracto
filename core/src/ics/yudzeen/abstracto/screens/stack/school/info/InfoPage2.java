@@ -13,6 +13,7 @@ import java.util.List;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
+import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -39,7 +40,7 @@ class InfoPage2 extends AbstractoScreen {
 
     private Label pageLabel;
 
-    public InfoPage2(Abstracto game) {
+    InfoPage2(Abstracto game) {
         super(game);
         init();
     }
@@ -71,7 +72,7 @@ class InfoPage2 extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new SchoolScreen(game));
     }
 
     private void initBackgroundImage() {

@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.simulator;
+package ics.yudzeen.abstracto.screens.stack.school.simulator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

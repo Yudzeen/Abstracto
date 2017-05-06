@@ -293,7 +293,7 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion queue_chalk;
         public AtlasRegion arrow_chalk;
 
-
+        public AtlasRegion chat_bubble;
         public AtlasRegion controller;
 
         public AssetImages(TextureAtlas atlas) {
@@ -333,6 +333,7 @@ public class Assets implements AssetErrorListener, Disposable {
             queue_chalk = atlas.findRegion("queue_chalk");
             arrow_chalk = atlas.findRegion("arrow_chalk");
 
+            chat_bubble = atlas.findRegion("chat_bubble");
             controller = atlas.findRegion("controller");
         }
     }

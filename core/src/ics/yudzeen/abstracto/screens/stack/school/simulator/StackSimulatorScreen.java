@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.simulator;
+package ics.yudzeen.abstracto.screens.stack.school.simulator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
+import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -73,7 +74,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     private void initBackgroundImage() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.WHITE);
+        pixmap.setColor(StackMapScreen.CELADON);
         pixmap.fill();
         backgroundImage = new Image(new Texture(pixmap));
         pixmap.dispose();
@@ -81,7 +82,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     private void initTitleBar() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, 45, Pixmap.Format.RGB888);
-        pixmap.setColor(new Color(74/255.0f,143/255.0f,231/255.0f,1));
+        pixmap.setColor(new Color(66/255.0f, 76/255.0f, 59/255.0f, 1.0f));
         pixmap.fill();
         titleBar = new Image(new Texture(pixmap));
         titleBar.setPosition(0,GameConstants.HEIGHT-titleBar.getHeight());
@@ -89,7 +90,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
     }
 
     private void initTitleLabel() {
-        titleLabel = LabelFactory.createLabel("Stack Simulator", assets.fonts.defaultBig, Color.WHITE);
+        titleLabel = LabelFactory.createLabel("Stack Simulator", assets.fonts.verdana_30, Color.WHITE);
         titleLabel.setPosition(10, GameConstants.HEIGHT - titleLabel.getHeight() - 5);
     }
 
@@ -116,17 +117,17 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new SchoolScreen(game));
     }
 
     private void spawnNode() {
-        final Node node = nodeFactory.createNode("-");
+        final ics.yudzeen.abstracto.screens.stack.school.simulator.Node node = nodeFactory.createNode("-");
         node.setPosition(GameConstants.WIDTH/2 - node.getWidth()/2, GameConstants.HEIGHT/2 - node.getHeight()/2);
         addNodeListeners(node);
         stage.addActor(node);
     }
 
-    public void addNodeListeners(final Node node) {
+    public void addNodeListeners(final ics.yudzeen.abstracto.screens.stack.school.simulator.Node node) {
         node.addListener(new DragListener() {
             @Override
             public void drag(InputEvent event, float x, float y, int pointer) {
@@ -175,7 +176,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
         });
     }
 
-    public void renameNode(Node node) {
+    public void renameNode(ics.yudzeen.abstracto.screens.stack.school.simulator.Node node) {
         Gdx.input.getTextInput(node.getTextInputAdapter(), "Enter node name", node.getText().toString().equals("-") ? "":node.getText().toString(), "Enter node name");
         Gdx.app.debug(TAG, "Node renaming, Entered: " + node.getTextInputAdapter().getText());
         if(node.getTextInputAdapter().getText() != null) {

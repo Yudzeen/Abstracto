@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
+import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -40,7 +41,7 @@ class InfoPage3 extends AbstractoScreen {
     private Image nodeImage1;
     private Image arrowImage;
 
-    public InfoPage3(Abstracto game) {
+    InfoPage3(Abstracto game) {
         super(game);
         init();
     }
@@ -79,7 +80,7 @@ class InfoPage3 extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new SchoolScreen(game));
     }
 
     private void initBackgroundImage() {
