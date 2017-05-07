@@ -49,38 +49,20 @@ class PortalImageGenerator {
     private void initEnqueueList() {
         enqueueList = new ArrayList<>();
         Gdx.app.debug(TAG, "" + gameScreen.getAssets().games.portal_push1);
-        enqueueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_push1));
-        for (int i = 0; i <= 9; i++) {
-            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_postfix);
-            temp.addNode(Integer.toString(i));
-            enqueueList.add(temp);
-        }
+        enqueueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_enqueue1));
+        enqueueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_enqueue2));
+        enqueueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_enqueue3));
 
-        final String[] OPENING_SYMBOLS = {"(", "[", "{"};
-        for (String s : OPENING_SYMBOLS) {
-            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_balancing);
-            temp.addNode(s);
-            enqueueList.add(temp);
-        }
     }
 
     private void initPopList() {
         dequeueList = new ArrayList<>();
-        dequeueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_pop1));
+        dequeueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_dequeue1));
+        dequeueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_dequeue2));
+        dequeueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_dequeue3));
+        dequeueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_dequeue4));
+        dequeueList.add(new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_dequeue5));
 
-        final String[] OPERATORS = {"+", "-", "*", "/"};
-        for (String s : OPERATORS) {
-            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_postfix);
-            temp.addNode(s);
-            dequeueList.add(temp);
-        }
-
-        final String[] CLOSING_SYMBOLS = {")", "]", "}"};
-        for (String s : CLOSING_SYMBOLS) {
-            PortalImage temp = new PortalImage(gameScreen, "", gameScreen.getAssets().games.portal_balancing);
-            temp.addNode(s);
-            dequeueList.add(temp);
-        }
     }
 
     public List<PortalImage> generatePortalImageList() {

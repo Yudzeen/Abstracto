@@ -81,7 +81,7 @@ public class ArcadeMapScreen extends AbstractoScreen {
     private void initPersonImage() {
         GamePreferences gamePreferences = game.getGamePreferences();
         gamePreferences.load();
-        TextureRegion region = gamePreferences.character.equals("MALE") ? assets.images.male : assets.images.female;
+        TextureRegion region = new TextureRegion(gamePreferences.character.equals("MALE") ? assets.images.male : assets.images.female);
         if(!region.isFlipX()) {
             region.flip(true, false);
         }

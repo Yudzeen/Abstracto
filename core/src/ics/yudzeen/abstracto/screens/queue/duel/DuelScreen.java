@@ -2,6 +2,7 @@ package ics.yudzeen.abstracto.screens.queue.duel;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
+import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 
 /**
@@ -40,7 +41,7 @@ class DuelScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new QueueMapScreen(game));
     }
 
     public Abstracto getGame() {

@@ -380,6 +380,15 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion portal_balancing;
         public AtlasRegion portal_postfix;
 
+        public AtlasRegion portal_enqueue1;
+        public AtlasRegion portal_enqueue2;
+        public AtlasRegion portal_enqueue3;
+        public AtlasRegion portal_dequeue1;
+        public AtlasRegion portal_dequeue2;
+        public AtlasRegion portal_dequeue3;
+        public AtlasRegion portal_dequeue4;
+        public AtlasRegion portal_dequeue5;
+
         public AtlasRegion chip;
         public AtlasRegion chip_light;
         public AtlasRegion process_red;
@@ -449,6 +458,16 @@ public class Assets implements AssetErrorListener, Disposable {
             kid = atlas.findRegion("kid");
             kid_light = atlas.findRegion("kid_light");
             kid_dark = atlas.findRegion("kid_dark");
+
+            portal_dequeue1 = atlas.findRegion("portal_dequeue1");
+            portal_dequeue2 = atlas.findRegion("portal_dequeue2");
+            portal_dequeue3 = atlas.findRegion("portal_dequeue3");
+            portal_dequeue4 = atlas.findRegion("portal_dequeue4");
+            portal_dequeue5 = atlas.findRegion("portal_dequeue5");
+
+            portal_enqueue1 = atlas.findRegion("portal_enqueue1");
+            portal_enqueue2 = atlas.findRegion("portal_enqueue2");
+            portal_enqueue3 = atlas.findRegion("portal_enqueue3");
         }
     }
 }

@@ -17,6 +17,7 @@ import ics.yudzeen.abstracto.utils.GamePreferences;
 
 
 // TODO: 07/05/2017 Simulator Instructions
+
 public class Abstracto extends Game {
 
 	public static final String TAG = Abstracto.class.getName();

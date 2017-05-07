@@ -21,6 +21,7 @@ import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.Assets;
 import ics.yudzeen.abstracto.utils.GameConstants;
+import ics.yudzeen.abstracto.utils.GamePreferences;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
@@ -145,7 +146,8 @@ class GameRenderer {
     }
 
     private void initPlayerImage() {
-        playerImage = new Image(assets.images.male_mugshot);
+        GamePreferences gamePreferences = gameScreen.getGame().getGamePreferences();
+        playerImage = new Image(gamePreferences.character.equals("MALE") ? assets.images.male_mugshot : assets.images.female_mugshot);
         final float scaleFactor = 0.35f;
         playerImage.setScale(scaleFactor);
         playerImage.setPosition(20, GameConstants.HEIGHT - playerImage.getHeight()*scaleFactor - 20);
@@ -202,7 +204,8 @@ class GameRenderer {
     }
 
     private void initPlayerBodyImage() {
-        playerBodyImage = new Image(assets.images.male);
+        GamePreferences gamePreferences = gameScreen.getGame().getGamePreferences();
+        playerBodyImage = new Image(gamePreferences.character.equals("MALE") ? assets.images.male : assets.images.female);
         playerBodyImage.setScale(0.5f);
         playerBodyImage.setPosition(GameConstants.WIDTH/4 - 75, 100);
     }
