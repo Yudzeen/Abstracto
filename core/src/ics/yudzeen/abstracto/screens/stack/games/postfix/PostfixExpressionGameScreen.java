@@ -8,8 +8,6 @@ import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
  * Screen of postfix expression game
  */
 
-// TODO: 27/04/2017 instruction screen
-
 public class PostfixExpressionGameScreen extends AbstractoScreen {
 
     private GameController gameController;

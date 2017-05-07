@@ -34,6 +34,7 @@ public class StackMapScreen extends AbstractoScreen {
     public static final String TAG = StackMapScreen.class.getName();
 
     public static final Color CELADON = new Color(185/255.0f, 213/255.0f, 165/255.0f, 1.0f);
+    public static final Color LABEL_COLOR = new Color(56/255.0f, 63/255.0f, 50/255.0f, 1.0f);
 
     private Image backgroundImage;
     private Image locationLabelImage;
@@ -358,19 +359,19 @@ public class StackMapScreen extends AbstractoScreen {
     }
 
     private void initSchoolLabel() {
-        schoolLabel = LabelFactory.createLabel("SCHOOL", assets.fonts.defaultBig, Color.WHITE);
+        schoolLabel = LabelFactory.createLabel("SCHOOL", assets.fonts.verdana_30, LABEL_COLOR);
         schoolLabel.setPosition(schoolButton.getX() + schoolButton.getWidth()/2 - schoolLabel.getWidth()/2,
                 schoolButton.getY() - schoolLabel.getHeight() - 5);
     }
 
     private void initArcadeLabel() {
-        arcadeLabel = LabelFactory.createLabel("ARCADE", assets.fonts.defaultBig, Color.WHITE);
+        arcadeLabel = LabelFactory.createLabel("ARCADE", assets.fonts.verdana_30, LABEL_COLOR);
         arcadeLabel.setPosition(arcadeButton.getX() + arcadeButton.getWidth()/2 - arcadeLabel.getWidth()/2,
                 arcadeButton.getY() - arcadeLabel.getHeight() - 5);
     }
 
     private void initArenaLabel() {
-        arenaLabel = LabelFactory.createLabel("ARENA", assets.fonts.defaultBig, Color.WHITE);
+        arenaLabel = LabelFactory.createLabel("ARENA", assets.fonts.verdana_30, LABEL_COLOR);
         arenaLabel.setPosition(arenaButton.getX() + arenaButton.getWidth()/2 - arenaLabel.getWidth()/2,
                 arenaButton.getY() - arenaLabel.getHeight() - 5);
     }

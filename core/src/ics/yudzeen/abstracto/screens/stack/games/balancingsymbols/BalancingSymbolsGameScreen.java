@@ -8,8 +8,6 @@ import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
  * Screen for balancing symbols
  */
 
-// TODO: 27/04/2017 instruction screen
-
 public class BalancingSymbolsGameScreen extends AbstractoScreen {
 
     public static final String TAG = BalancingSymbolsGameScreen.class.getName();

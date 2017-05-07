@@ -46,7 +46,7 @@ public class ApplicationsScreen extends AbstractoScreen {
         balancingButton = ButtonFactory.createImageButton(assets.buttons.balancing_apps);
         balancingButton.setPosition(200, GameConstants.HEIGHT - balancingButton.getHeight() - 200);
         balancingButton.addListener(new ClickListener() {
-            // // TODO: 27/04/2017 balancing symbol application
+            // balancing symbol application
         });
     }
 
@@ -54,7 +54,7 @@ public class ApplicationsScreen extends AbstractoScreen {
         postfixButton = ButtonFactory.createImageButton(assets.buttons.postfix_apps);
         postfixButton.setPosition(balancingButton.getX(), balancingButton.getY() - postfixButton.getHeight() - 10);
         postfixButton.addListener(new ClickListener() {
-            // TODO: 27/04/2017 postfix app
+            // postfix app
         });
     }
 }
