@@ -66,7 +66,7 @@ public class ChooseCharacterScreen extends AbstractoScreen {
     }
 
     private void initChooseLabel() {
-        chooseLabel = LabelFactory.createLabel("Choose your character: ", assets.fonts.verdana_40, Color.WHITE);
+        chooseLabel = LabelFactory.createLabel("Are you a boy or a girl? ", assets.fonts.verdana_40, Color.WHITE);
         chooseLabel.setPosition(20, GameConstants.HEIGHT - chooseLabel.getHeight() - 20);
     }
 

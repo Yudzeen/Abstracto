@@ -32,6 +32,9 @@ public class TitleScreen extends AbstractoScreen {
     private Image treeImage;
     private Image titleImage;
     private Image maleCharacterImage;
+    private Image femaleCharacterImage;
+    private Image oldGuyImage;
+    private Image teacherImage;
 
     private ImageButton startButton;
     private ImageButton aboutButton;
@@ -47,6 +50,9 @@ public class TitleScreen extends AbstractoScreen {
         initTitleImage();
         initTreeImage();
         initMaleCharacterImage();
+        initFemaleCharacterImage();
+        initOldGuyImage();
+        initTeacherImage();
         initStartButton();
         initAboutButton();
         initClouds();
@@ -65,7 +71,10 @@ public class TitleScreen extends AbstractoScreen {
         stage.addActor(treeImage);
         stage.addActor(startButton);
         stage.addActor(aboutButton);
+        stage.addActor(teacherImage);
         stage.addActor(maleCharacterImage);
+        stage.addActor(femaleCharacterImage);
+        stage.addActor(oldGuyImage);
         stage.addActor(titleImage);
     }
 
@@ -86,6 +95,22 @@ public class TitleScreen extends AbstractoScreen {
     private void initMaleCharacterImage() {
         maleCharacterImage = new Image(assets.images.male);
         maleCharacterImage.setPosition(GameConstants.WIDTH/2 - 50, treeImage.getY());
+    }
+
+    private void initFemaleCharacterImage() {
+        femaleCharacterImage = new Image(assets.images.female);
+        femaleCharacterImage.setPosition(maleCharacterImage.getX() - femaleCharacterImage.getWidth() - 10,
+                maleCharacterImage.getY() - 10);
+    }
+
+    private void initOldGuyImage() {
+        oldGuyImage = new Image(assets.images.old_guy);
+        oldGuyImage.setPosition(50, maleCharacterImage.getY());
+    }
+
+    private void initTeacherImage() {
+        teacherImage = new Image(assets.images.teacher);
+        teacherImage.setPosition(oldGuyImage.getRight() + 70, oldGuyImage.getY());
     }
 
     private void initStartButton() {
@@ -118,7 +143,7 @@ public class TitleScreen extends AbstractoScreen {
         aboutButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO: 16/04/2017 About screen
+                game.setScreen(new AboutScreen(game));
             }
         });
     }
