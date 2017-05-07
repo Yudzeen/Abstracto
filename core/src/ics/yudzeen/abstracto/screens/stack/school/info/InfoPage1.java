@@ -22,7 +22,7 @@ import ics.yudzeen.abstracto.utils.GameConstants;
  * Info Page 1
  */
 
-class InfoPage1 extends AbstractoScreen {
+public class InfoPage1 extends AbstractoScreen {
 
     static final String TAG = InfoPage1.class.getName();
     private static final int PAGE_NUMBER = 1;
@@ -43,7 +43,7 @@ class InfoPage1 extends AbstractoScreen {
 
     private Label pageLabel;
 
-    InfoPage1(Abstracto game) {
+    public InfoPage1(Abstracto game) {
         super(game);
         init();
     }

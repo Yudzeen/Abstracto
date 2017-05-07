@@ -14,6 +14,7 @@ import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.screens.stack.school.applications.ApplicationsScreen;
+import ics.yudzeen.abstracto.screens.stack.school.info.InfoPage1;
 import ics.yudzeen.abstracto.screens.stack.school.simulator.StackSimulatorScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
@@ -133,7 +134,7 @@ public class SchoolScreen extends AbstractoScreen {
         infoButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new TeacherScreen(game));
+                game.setScreen(new InfoPage1(game));
             }
         });
         infoButton.addListener(new ActorGestureListener() {

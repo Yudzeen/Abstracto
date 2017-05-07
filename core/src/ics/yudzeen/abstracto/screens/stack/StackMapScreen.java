@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
+import ics.yudzeen.abstracto.screens.stack.duel.ArenaConversationScreen;
 import ics.yudzeen.abstracto.screens.stack.duel.InstructionScreen;
 import ics.yudzeen.abstracto.screens.stack.games.ArcadeConversationScreen;
 import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
@@ -291,7 +292,14 @@ public class StackMapScreen extends AbstractoScreen {
         arenaButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new InstructionScreen(game));
+                GamePreferences gamePreferences = game.getGamePreferences();
+                gamePreferences.load();
+                if(gamePreferences.stackArenaDialogueDone) {
+                    game.setScreen(new InstructionScreen(game));
+                }
+                else {
+                    game.setScreen(new ArenaConversationScreen(game));
+                }
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {

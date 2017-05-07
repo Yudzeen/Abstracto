@@ -1,6 +1,8 @@
 package ics.yudzeen.abstracto.screens.stack.games;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -14,6 +16,7 @@ import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.LabelFactory;
+import ics.yudzeen.abstracto.utils.GameConstants;
 import ics.yudzeen.abstracto.utils.GamePreferences;
 
 /**
@@ -69,7 +72,12 @@ public class ArcadeConversationScreen extends AbstractoScreen {
     }
 
     private void initBackgroundImage() {
-        backgroundImage = new Image(assets.images.background_blackboard);
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
+        pixmap.setColor(new Color(66/255.0f, 76/255.0f, 59/255.0f, 1.0f));
+        pixmap.fill();
+
+        backgroundImage = new Image(new Texture(pixmap));
+        pixmap.dispose();
     }
 
     private void initPersonImage() {
@@ -123,7 +131,7 @@ public class ArcadeConversationScreen extends AbstractoScreen {
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 if(dialogueIndex == dialogue.size()) {
                     GamePreferences gamePreferences = game.getGamePreferences();
-                    gamePreferences.stackArcadeDialogueDone = true;
+                    gamePreferences.stackArenaDialogueDone = true;
                     gamePreferences.save();
                     game.setScreen(new ArcadeMapScreen(game));
                 }
