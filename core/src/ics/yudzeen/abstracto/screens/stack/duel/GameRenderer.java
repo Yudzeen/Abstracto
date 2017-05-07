@@ -152,7 +152,7 @@ class GameRenderer {
     }
 
     private void initEnemyImage() {
-        enemyImage = new Image(assets.images.old_guy_mugshot);
+        enemyImage = new Image(assets.images.teacher_mugshot);
         final float scaleFactor = 0.35f;
         enemyImage.setScale(scaleFactor);
         enemyImage.setPosition(GameConstants.WIDTH - enemyImage.getWidth()*scaleFactor - 20, GameConstants.HEIGHT - playerImage.getHeight()*scaleFactor - 20);
@@ -193,11 +193,11 @@ class GameRenderer {
         }
         redSquare = new Image(new Texture(pixmap));
         pixmap.dispose();
-        redSquare.setPosition(enemyImage.getX() - 9, enemyImage.getY() - 4);
+        redSquare.setPosition(enemyImage.getX() - 5, enemyImage.getY() - 4);
     }
 
     private void initVsLabel() {
-        vsLabel = LabelFactory.createLabel("VS", assets.fonts.defaultLarge, Color.FIREBRICK);
+        vsLabel = LabelFactory.createLabel("VS", assets.fonts.verdana_50, Color.FIREBRICK);
         vsLabel.setPosition(GameConstants.WIDTH/2 - vsLabel.getWidth()/2, GameConstants.HEIGHT - vsLabel.getHeight() - 20);
     }
 
@@ -208,7 +208,7 @@ class GameRenderer {
     }
 
     private void initEnemyBodyImage() {
-        enemyBodyImage = new Image(assets.images.old_guy);
+        enemyBodyImage = new Image(assets.images.teacher);
         enemyBodyImage.setScale(0.5f);
         enemyBodyImage.setPosition(GameConstants.WIDTH*3/4, 100);
     }
