@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
@@ -45,6 +46,11 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     private StackContainer stackContainer;
 
+    private TextButton helpButton;
+    private Image helpPanelImage;
+    private Label helpLabel;
+    private boolean helpVisible = false;
+
     public StackSimulatorScreen(Abstracto game) {
         super(game);
         init();
@@ -59,6 +65,10 @@ public class StackSimulatorScreen extends AbstractoScreen {
         initStackContainer();
         initAddNodeButton();
         initTrashCanImage();
+
+        initHelpButton();
+        initHelpPanelImage();
+        initHelpLabel();
     }
 
     @Override
@@ -70,6 +80,10 @@ public class StackSimulatorScreen extends AbstractoScreen {
         stage.addActor(addNodeButton);
         stage.addActor(trashcanImage);
         stage.addActor(stackContainer);
+
+        stage.addActor(helpButton);
+        stage.addActor(helpPanelImage);
+        stage.addActor(helpLabel);
     }
 
     private void initBackgroundImage() {
@@ -182,5 +196,53 @@ public class StackSimulatorScreen extends AbstractoScreen {
         if(node.getTextInputAdapter().getText() != null) {
             node.setText(node.getTextInputAdapter().getText());
         }
+    }
+
+    private void initHelpButton() {
+        helpButton = ButtonFactory.createTextButton("?", 30, 30, new Color(66/255.0f, 76/255.0f, 59/255.0f, 1.0f), Color.WHITE, assets.fonts.verdana_30);
+        helpButton.setPosition(GameConstants.WIDTH - helpButton.getWidth() - 15, GameConstants.HEIGHT - helpButton.getHeight() - 5);
+        helpButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                helpVisible = !helpVisible;
+                showHelpPanel(helpVisible);
+            }
+        });
+    }
+
+    private void initHelpPanelImage() {
+        Pixmap pixmap = new Pixmap(250, 90, Pixmap.Format.RGBA8888);
+        pixmap.setColor(new Color(153/255.0f, 175/255.0f, 137/255.0f, 0.9f));
+        pixmap.fill();
+        pixmap.setColor(new Color(111/255.0f, 127/255.0f, 99/255.0f, 0.9f));
+        for (int i = 0; i < pixmap.getWidth(); i++) {
+            for (int j = 0; j < pixmap.getHeight(); j++) {
+                if (i < 5 || j < 5 || i >= pixmap.getWidth() - 5 || j >= pixmap.getHeight() - 5) {
+                    pixmap.drawPixel(i, j);
+                }
+            }
+        }
+
+        helpPanelImage = new Image(new Texture(pixmap));
+        pixmap.dispose();
+
+        helpPanelImage.setPosition(GameConstants.WIDTH/2 - helpPanelImage.getWidth()/2,
+                GameConstants.HEIGHT/2 + helpPanelImage.getHeight()/2);
+        helpPanelImage.setVisible(false);
+    }
+
+    private void initHelpLabel() {
+        String text = "CONTROLS\n" +
+                "- Drag to move\n" +
+                "- Double tap to rename\n";
+        helpLabel = LabelFactory.createLabel(text, assets.fonts.verdana_16, Color.BLACK);
+        helpLabel.setPosition(helpPanelImage.getX() + helpPanelImage.getWidth()/2 - helpLabel.getWidth()/2,
+                helpPanelImage.getY() + helpPanelImage.getHeight()/2 - helpLabel.getHeight()/2 - 10);
+        helpLabel.setVisible(false);
+    }
+
+    private void showHelpPanel(boolean visible) {
+        helpPanelImage.setVisible(visible);
+        helpLabel.setVisible(visible);
     }
 }

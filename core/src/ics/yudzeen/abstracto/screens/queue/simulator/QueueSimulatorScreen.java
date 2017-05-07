@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
@@ -41,6 +42,10 @@ public class QueueSimulatorScreen extends AbstractoScreen {
     private Image trashcanImage;
 
     private NodeFactory nodeFactory;
+    private TextButton helpButton;
+    private Image helpPanelImage;
+    private Label helpLabel;
+    private boolean helpVisible = false;
 
     private QueueContainer queueContainer;
 
@@ -61,6 +66,9 @@ public class QueueSimulatorScreen extends AbstractoScreen {
 
         initHeadLabel();
         initTailLabel();
+        initHelpButton();
+        initHelpPanelImage();
+        initHelpLabel();
     }
 
     @Override
@@ -76,6 +84,10 @@ public class QueueSimulatorScreen extends AbstractoScreen {
 
         stage.addActor(headLabel);
         stage.addActor(tailLabel);
+
+        stage.addActor(helpButton);
+        stage.addActor(helpPanelImage);
+        stage.addActor(helpLabel);
     }
 
     @Override
@@ -201,5 +213,53 @@ public class QueueSimulatorScreen extends AbstractoScreen {
         if(node.getTextInputAdapter().getText() != null) {
             node.setText(node.getTextInputAdapter().getText());
         }
+    }
+
+    private void initHelpButton() {
+        helpButton = ButtonFactory.createTextButton("?", 30, 30, new Color(74/255.0f,143/255.0f,231/255.0f,1), Color.WHITE, assets.fonts.verdana_30);
+        helpButton.setPosition(GameConstants.WIDTH - helpButton.getWidth() - 15, GameConstants.HEIGHT - helpButton.getHeight() - 5);
+        helpButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                helpVisible = !helpVisible;
+                showHelpPanel(helpVisible);
+            }
+        });
+    }
+
+    private void initHelpPanelImage() {
+        Pixmap pixmap = new Pixmap(250, 90, Pixmap.Format.RGBA8888);
+        pixmap.setColor(new Color(146/255.0f, 167/255.0f, 206/255.0f, 0.9f));
+        pixmap.fill();
+        pixmap.setColor(new Color(45/255.0f, 51/255.0f, 63/255.0f, 0.9f));
+        for (int i = 0; i < pixmap.getWidth(); i++) {
+            for (int j = 0; j < pixmap.getHeight(); j++) {
+                if (i < 5 || j < 5 || i >= pixmap.getWidth() - 5 || j >= pixmap.getHeight() - 5) {
+                    pixmap.drawPixel(i, j);
+                }
+            }
+        }
+
+        helpPanelImage = new Image(new Texture(pixmap));
+        pixmap.dispose();
+
+        helpPanelImage.setPosition(GameConstants.WIDTH/2 - helpPanelImage.getWidth()/2,
+                GameConstants.HEIGHT/2 + helpPanelImage.getHeight()/2);
+        helpPanelImage.setVisible(false);
+    }
+
+    private void initHelpLabel() {
+        String text = "CONTROLS\n" +
+                "- Drag to move\n" +
+                "- Double tap to rename\n";
+        helpLabel = LabelFactory.createLabel(text, assets.fonts.verdana_16, Color.BLACK);
+        helpLabel.setPosition(helpPanelImage.getX() + helpPanelImage.getWidth()/2 - helpLabel.getWidth()/2,
+                helpPanelImage.getY() + helpPanelImage.getHeight()/2 - helpLabel.getHeight()/2 - 10);
+        helpLabel.setVisible(false);
+    }
+
+    private void showHelpPanel(boolean visible) {
+        helpPanelImage.setVisible(visible);
+        helpLabel.setVisible(visible);
     }
 }
