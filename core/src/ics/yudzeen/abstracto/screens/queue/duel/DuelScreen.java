@@ -46,4 +46,6 @@ class DuelScreen extends AbstractoScreen {
     public Abstracto getGame() {
         return game;
     }
+
+
 }

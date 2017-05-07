@@ -3,6 +3,7 @@ package ics.yudzeen.abstracto.screens.queue.games.customercashier;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -11,11 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
+import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
 import ics.yudzeen.abstracto.screens.queue.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.screens.queue.games.processscheduling.ProcessSchedulingGameScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
+import ics.yudzeen.abstracto.utils.GamePreferences;
 
 /**
  * Game over screen for customer cashier
@@ -26,6 +29,9 @@ class GameOverScreen extends AbstractoScreen {
     public static final String TAG = GameOverScreen.class.getName();
 
     private Image backgroundImage;
+    private Image personImage;
+    private Image chatBubble;
+    private Label chatLabel;
 
     private Label gameOverLabel;
 
@@ -45,6 +51,9 @@ class GameOverScreen extends AbstractoScreen {
 
     private void init() {
         initBackgroundImage();
+        initPersonImage();
+        initChatBubble();
+        initChatLabel();
         initGameOverLabel();
         initRetryButton();
         initRetryLabel();
@@ -54,23 +63,46 @@ class GameOverScreen extends AbstractoScreen {
 
     private void initBackgroundImage() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.TAN);
+        pixmap.setColor(new Color(66/255.0f, 76/255.0f, 59/255.0f, 1.0f));
         pixmap.fill();
 
         backgroundImage = new Image(new Texture(pixmap));
         pixmap.dispose();
     }
 
+    private void initPersonImage() {
+        GamePreferences gamePreferences = game.getGamePreferences();
+        gamePreferences.load();
+        TextureRegion region = gamePreferences.character.equals("MALE") ? assets.images.male : assets.images.female;
+        if(!region.isFlipX()) {
+            region.flip(true, false);
+        }
+        personImage = new Image(region);
+        personImage.setPosition(GameConstants.WIDTH/4 - personImage.getWidth()/2 - 40,
+                GameConstants.HEIGHT/2 - personImage.getHeight()/2 - 40 - 60);
+    }
+
+    private void initChatBubble() {
+        chatBubble = new Image(assets.images.chat_bubble);
+        chatBubble.setPosition(GameConstants.WIDTH/4 + 30, GameConstants.HEIGHT/2 - 30 - 60);
+    }
+
+    private void initChatLabel() {
+        String text = gameWin ? "Well played " + game.getGamePreferences().name + "!" : "That did not \nturn out so well.";
+        chatLabel = LabelFactory.createLabel(text, assets.fonts.verdana_30);
+        chatLabel.setPosition(250 + 325/2 - chatLabel.getWidth()/2, 210 + 180/2 - chatLabel.getHeight()/2);
+    }
+
     private void initGameOverLabel() {
-        String text = gameWin ? "YOU WIN!" : "YOU LOSE";
-        gameOverLabel = LabelFactory.createLabel(text, assets.fonts.defaultVeryBig, Color.WHITE);
+        String text = gameWin ? "YOU WIN!" : "GAME OVER!";
+        gameOverLabel = LabelFactory.createLabel(text, assets.fonts.verdana_40, Color.WHITE);
         gameOverLabel.setPosition(GameConstants.WIDTH/2-gameOverLabel.getWidth()/2,
-                GameConstants.HEIGHT/2-gameOverLabel.getHeight()/2);
+                GameConstants.HEIGHT-gameOverLabel.getHeight()-20);
     }
 
     private void initRetryButton() {
         retryButton = ButtonFactory.createImageButton(assets.games.retry_icon);
-        retryButton.setPosition(GameConstants.WIDTH/2-retryButton.getWidth()-30, 100);
+        retryButton.setPosition(GameConstants.WIDTH/2-retryButton.getWidth()-30 + 90+50, 80);
         retryButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -80,14 +112,15 @@ class GameOverScreen extends AbstractoScreen {
     }
 
     private void initRetryLabel() {
-        retryLabel = LabelFactory.createLabel("RETRY", assets.fonts.defaultBig, Color.WHITE);
+        String text = gameWin ? "PLAY AGAIN" : "RETRY";
+        retryLabel = LabelFactory.createLabel(text, assets.fonts.verdana_30, Color.WHITE);
         retryLabel.setPosition(retryButton.getX()+retryButton.getWidth()/2-retryLabel.getWidth()/2,
                 retryButton.getY()-retryLabel.getHeight()-10);
     }
 
     private void initExitButton() {
         exitButton = ButtonFactory.createImageButton(assets.games.exit_icon);
-        exitButton.setPosition(GameConstants.WIDTH/2+30, 100);
+        exitButton.setPosition(GameConstants.WIDTH/2+30+90+80, 80);
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -97,7 +130,7 @@ class GameOverScreen extends AbstractoScreen {
     }
 
     private void initExitLabel() {
-        exitLabel = LabelFactory.createLabel("EXIT", assets.fonts.defaultBig, Color.WHITE);
+        exitLabel = LabelFactory.createLabel("EXIT", assets.fonts.verdana_30, Color.WHITE);
         exitLabel.setPosition(exitButton.getX()+(exitButton.getWidth()-exitLabel.getWidth())/2,
                 exitButton.getY()-exitLabel.getHeight()-10);
     }
@@ -115,6 +148,9 @@ class GameOverScreen extends AbstractoScreen {
         super.buildStage();
 
         stage.addActor(backgroundImage);
+        stage.addActor(personImage);
+        stage.addActor(chatBubble);
+        stage.addActor(chatLabel);
 
         stage.addActor(gameOverLabel);
 
@@ -129,5 +165,6 @@ class GameOverScreen extends AbstractoScreen {
     protected void backKeyPressed() {
         game.setScreen(new ArcadeMapScreen(game));
     }
+
 
 }

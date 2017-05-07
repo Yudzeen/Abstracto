@@ -34,6 +34,8 @@ public class QueueSimulatorScreen extends AbstractoScreen {
     private Image backgroundImage;
     private Image titleBar;
     private Label titleLabel;
+    private Label headLabel;
+    private Label tailLabel;
 
     private ImageButton addNodeButton;
     private Image trashcanImage;
@@ -56,6 +58,9 @@ public class QueueSimulatorScreen extends AbstractoScreen {
         initAddNodeButton();
         initTrashCanImage();
         initQueueContainer();
+
+        initHeadLabel();
+        initTailLabel();
     }
 
     @Override
@@ -68,6 +73,9 @@ public class QueueSimulatorScreen extends AbstractoScreen {
         stage.addActor(addNodeButton);
         stage.addActor(trashcanImage);
         stage.addActor(queueContainer);
+
+        stage.addActor(headLabel);
+        stage.addActor(tailLabel);
     }
 
     @Override
@@ -77,7 +85,7 @@ public class QueueSimulatorScreen extends AbstractoScreen {
 
     private void initBackgroundImage() {
         Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.WHITE);
+        pixmap.setColor(new Color(109/255.0f, 196/255.0f, 255/255.0f, 1.0f));
         pixmap.fill();
         backgroundImage = new Image(new Texture(pixmap));
         pixmap.dispose();
@@ -93,7 +101,7 @@ public class QueueSimulatorScreen extends AbstractoScreen {
     }
 
     private void initTitleLabel() {
-        titleLabel = LabelFactory.createLabel("Queue Simulator", assets.fonts.defaultBig, Color.WHITE);
+        titleLabel = LabelFactory.createLabel("Queue Simulator", assets.fonts.verdana_30, Color.WHITE);
         titleLabel.setPosition(10, GameConstants.HEIGHT - titleLabel.getHeight() - 5);
     }
 
@@ -117,6 +125,18 @@ public class QueueSimulatorScreen extends AbstractoScreen {
         queueContainer = new QueueContainer(game, this, nodeFactory);
         queueContainer.setPosition(GameConstants.WIDTH - queueContainer.getWidth() - 100,
                 GameConstants.HEIGHT - titleBar.getHeight() - queueContainer.getHeight() - 20);
+    }
+
+    private void initHeadLabel() {
+        headLabel = LabelFactory.createLabel("HEAD", assets.fonts.verdana_20, Color.BLACK);
+        headLabel.setPosition(queueContainer.getRight() - headLabel.getWidth()/2,
+                queueContainer.getY() - 25);
+    }
+
+    private void initTailLabel() {
+        tailLabel = LabelFactory.createLabel("TAIL", assets.fonts.verdana_20, Color.BLACK);
+        tailLabel.setPosition(queueContainer.getX() - tailLabel.getWidth()/2,
+                queueContainer.getY() - 25);
     }
 
     private void spawnNode() {

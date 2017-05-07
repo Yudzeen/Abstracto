@@ -1,8 +1,9 @@
-package ics.yudzeen.abstracto.screens.stack.duel;
+package ics.yudzeen.abstracto.screens.queue.games;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -15,19 +16,20 @@ import java.util.List;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
-import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
+import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
+import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 import ics.yudzeen.abstracto.utils.GamePreferences;
 
 /**
- * Arena Conversation Screen
+ * Arcade conversation screen
  */
 
-public class ArenaConversationScreen extends AbstractoScreen {
+public class ArcadeConversationScreen extends AbstractoScreen {
 
-    public static final String TAG = ArenaConversationScreen.class.getName();
+    public static final String TAG = ArcadeConversationScreen.class.getName();
 
     private Image backgroundImage;
     private Image personImage;
@@ -44,7 +46,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
 
     private TextButton skipButton;
 
-    public ArenaConversationScreen(Abstracto game) {
+    public ArcadeConversationScreen(Abstracto game) {
         super(game);
         init();
     }
@@ -63,7 +65,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new QueueMapScreen(game));
     }
 
     private void init() {
@@ -87,7 +89,13 @@ public class ArenaConversationScreen extends AbstractoScreen {
     }
 
     private void initPersonImage() {
-        personImage = new Image(assets.images.teacher);
+        GamePreferences gamePreferences = game.getGamePreferences();
+        gamePreferences.load();
+        TextureRegion region = gamePreferences.character.equals("MALE") ? assets.images.male : assets.images.female;
+        if(!region.isFlipX()) {
+            region.flip(true, false);
+        }
+        personImage = new Image(region);
         personImage.setPosition(150, 0 - personImage.getHeight()/2);
     }
 
@@ -125,7 +133,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
     }
 
     private void initTextLabel() {
-        chatLabel = LabelFactory.createLabel(game.getGamePreferences().name + "!", assets.fonts.verdana_30, Color.BLACK);
+        chatLabel = LabelFactory.createLabel("Hey there!", assets.fonts.verdana_30, Color.BLACK);
         chatLabel.setPosition(350 + 325/2 - chatLabel.getWidth()/2, 155 + 180/2 - chatLabel.getHeight()/2);
     }
 
@@ -135,9 +143,9 @@ public class ArenaConversationScreen extends AbstractoScreen {
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 if(dialogueIndex == dialogue.size()) {
                     GamePreferences gamePreferences = game.getGamePreferences();
-                    //gamePreferences.stackArenaDialogueDone = true;
+                    //gamePreferences.stackArcadeDialogueDone = true;
                     gamePreferences.save();
-                    game.setScreen(new InstructionScreen(game));
+                    game.setScreen(new ArcadeMapScreen(game));
                 }
                 else {
                     chatLabel.setText(dialogue.get(dialogueIndex));
@@ -153,8 +161,9 @@ public class ArenaConversationScreen extends AbstractoScreen {
         dialogue = new ArrayList<>();
         GamePreferences gamePreferences = game.getGamePreferences();
         gamePreferences.load();
-        dialogue.add("Do you have what \nit takes to be \na stack master?");
-        dialogue.add("Let's see if you \ncan defeat me.");
+        dialogue.add("We look alike \ndon't you think?");
+        dialogue.add("I am " + (gamePreferences.character.equals("MALE") ? "Steven" : "Whitney") + ".");
+        dialogue.add("Come on, let's play!");
     }
 
     private void initSkipButton() {
@@ -164,7 +173,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
         skipButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new InstructionScreen(game));
+                game.setScreen(new ArcadeMapScreen(game));
             }
         });
     }

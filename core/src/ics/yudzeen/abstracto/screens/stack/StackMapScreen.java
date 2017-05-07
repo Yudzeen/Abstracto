@@ -151,12 +151,12 @@ public class StackMapScreen extends AbstractoScreen {
             public void clicked(InputEvent event, float x, float y) {
                 GamePreferences gamePreferences = game.getGamePreferences();
                 gamePreferences.load();
-                if(gamePreferences.stackSchoolDialogueDone) {
-                    game.setScreen(new SchoolScreen(game));
-                }
-                else {
+                //if(gamePreferences.stackSchoolDialogueDone) {
+                 //   game.setScreen(new SchoolScreen(game));
+                //}
+                //else {
                     game.setScreen(new TeacherScreen(game));
-                }
+                //}
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -223,12 +223,12 @@ public class StackMapScreen extends AbstractoScreen {
             public void clicked(InputEvent event, float x, float y) {
                 GamePreferences gamePreferences = game.getGamePreferences();
                 gamePreferences.load();
-                if(gamePreferences.stackArcadeDialogueDone) {
-                    game.setScreen(new ArcadeMapScreen(game));
-                }
-                else {
+                //if(gamePreferences.stackArcadeDialogueDone) {
+                //    game.setScreen(new ArcadeMapScreen(game));
+                //}
+                //else {
                     game.setScreen(new ArcadeConversationScreen(game));
-                }
+                //}
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -295,12 +295,12 @@ public class StackMapScreen extends AbstractoScreen {
             public void clicked(InputEvent event, float x, float y) {
                 GamePreferences gamePreferences = game.getGamePreferences();
                 gamePreferences.load();
-                if(gamePreferences.stackArenaDialogueDone) {
-                    game.setScreen(new InstructionScreen(game));
-                }
-                else {
+                //if(gamePreferences.stackArenaDialogueDone) {
+                //    game.setScreen(new InstructionScreen(game));
+                //}
+                //else {
                     game.setScreen(new ArenaConversationScreen(game));
-                }
+                //}
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {

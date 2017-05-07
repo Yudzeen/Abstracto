@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
+import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
 import ics.yudzeen.abstracto.utils.GamePreferences;
@@ -40,6 +43,8 @@ public class ArcadeConversationScreen extends AbstractoScreen {
     private List<String> dialogue;
     private int dialogueIndex = 0;
 
+    private TextButton skipButton;
+
     public ArcadeConversationScreen(Abstracto game) {
         super(game);
         init();
@@ -54,6 +59,7 @@ public class ArcadeConversationScreen extends AbstractoScreen {
         stage.addActor(chatLabel);
         stage.addActor(triangle);
         stage.addListener(gestureListener);
+        stage.addActor(skipButton);
     }
 
     @Override
@@ -69,6 +75,7 @@ public class ArcadeConversationScreen extends AbstractoScreen {
         initTriangleButton();
         initDialogue();
         initGestureListener();
+        initSkipButton();
     }
 
     private void initBackgroundImage() {
@@ -131,7 +138,7 @@ public class ArcadeConversationScreen extends AbstractoScreen {
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 if(dialogueIndex == dialogue.size()) {
                     GamePreferences gamePreferences = game.getGamePreferences();
-                    gamePreferences.stackArenaDialogueDone = true;
+                    //gamePreferences.stackArcadeDialogueDone = true;
                     gamePreferences.save();
                     game.setScreen(new ArcadeMapScreen(game));
                 }
@@ -152,5 +159,17 @@ public class ArcadeConversationScreen extends AbstractoScreen {
         dialogue.add("I am " + (gamePreferences.character.equals("MALE") ? "Whitney" : "Steven") + ".");
         dialogue.add("I always play \nhere in the \narcade.");
         dialogue.add("Let's play together!");
+    }
+
+    private void initSkipButton() {
+        skipButton = ButtonFactory.createTextButton("SKIP", 20, 20, new Color(66/255.0f, 76/255.0f, 59/255.0f, 1.0f), Color.WHITE, assets.fonts.verdana_20);
+        skipButton.setPosition(GameConstants.WIDTH - skipButton.getWidth() - 40,
+                50);
+        skipButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ArcadeMapScreen(game));
+            }
+        });
     }
 }

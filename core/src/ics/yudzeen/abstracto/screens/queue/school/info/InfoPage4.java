@@ -67,7 +67,7 @@ class InfoPage4 extends AbstractoScreen {
         stage.addActor(backgroundImage);
         stage.addActor(teacherImage);
         stage.addActor(queueLabel);
-        stage.addActor(nextButton);
+        //stage.addActor(nextButton);
         stage.addActor(pageLabel);
         stage.addActor(prevButton);
 
@@ -95,8 +95,8 @@ class InfoPage4 extends AbstractoScreen {
     }
 
     private void initTeacherImage() {
-        teacherImage = new Image(assets.images.teacher);
-        teacherImage.setPosition(50, 0 - teacherImage.getHeight()/2);
+        teacherImage = new Image(assets.images.old_guy);
+        teacherImage.setPosition(100, 0 - teacherImage.getHeight()/2);
     }
 
     private void initNextButton() {

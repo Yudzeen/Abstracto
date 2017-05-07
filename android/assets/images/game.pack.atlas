@@ -69,21 +69,28 @@ gray_circle
   index: -1
 heart
   rotate: false
-  xy: 346, 99
+  xy: 453, 795
   size: 37, 38
   orig: 37, 38
   offset: 0, 0
   index: -1
 kid
   rotate: false
-  xy: 378, 349
+  xy: 378, 258
+  size: 30, 59
+  orig: 30, 59
+  offset: 0, 0
+  index: -1
+kid_dark
+  rotate: false
+  xy: 346, 80
   size: 30, 59
   orig: 30, 59
   offset: 0, 0
   index: -1
 kid_light
   rotate: false
-  xy: 459, 449
+  xy: 455, 835
   size: 30, 59
   orig: 30, 59
   offset: 0, 0
@@ -102,16 +109,23 @@ man
   orig: 30, 87
   offset: 0, 0
   index: -1
-man_light
+man_dark
   rotate: false
   xy: 427, 421
   size: 30, 87
   orig: 30, 87
   offset: 0, 0
   index: -1
+man_light
+  rotate: false
+  xy: 346, 232
+  size: 30, 87
+  orig: 30, 87
+  offset: 0, 0
+  index: -1
 pause
   rotate: false
-  xy: 455, 856
+  xy: 453, 755
   size: 38, 38
   orig: 38, 38
   offset: 0, 0
@@ -172,30 +186,37 @@ process_blue_light
   orig: 87, 18
   offset: 0, 0
   index: -1
-process_red
+process_dark
   rotate: false
   xy: 91, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
-process_red_light
+process_red
   rotate: false
   xy: 180, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
-process_yellow
+process_red_light
   rotate: false
   xy: 269, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
+process_yellow
+  rotate: false
+  xy: 378, 238
+  size: 87, 18
+  orig: 87, 18
+  offset: 0, 0
+  index: -1
 process_yellow_light
   rotate: false
-  xy: 346, 79
+  xy: 378, 218
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
@@ -223,14 +244,21 @@ stopwatch
   index: -1
 woman
   rotate: false
-  xy: 346, 230
+  xy: 378, 319
+  size: 27, 89
+  orig: 27, 89
+  offset: 0, 0
+  index: -1
+woman_dark
+  rotate: false
+  xy: 346, 141
   size: 27, 89
   orig: 27, 89
   offset: 0, 0
   index: -1
 woman_light
   rotate: false
-  xy: 346, 139
+  xy: 459, 419
   size: 27, 89
   orig: 27, 89
   offset: 0, 0

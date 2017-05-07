@@ -388,15 +388,19 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion process_blue_light;
         public AtlasRegion process_yellow;
         public AtlasRegion process_yellow_light;
+        public AtlasRegion process_dark;
 
         public AtlasRegion cashier;
         public AtlasRegion cashier_light;
         public AtlasRegion woman;
         public AtlasRegion woman_light;
+        public AtlasRegion woman_dark;
         public AtlasRegion man;
         public AtlasRegion man_light;
+        public AtlasRegion man_dark;
         public AtlasRegion kid;
         public AtlasRegion kid_light;
+        public AtlasRegion kid_dark;
 
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
@@ -432,15 +436,19 @@ public class Assets implements AssetErrorListener, Disposable {
             process_red_light = atlas.findRegion("process_red_light");
             process_yellow = atlas.findRegion("process_yellow");
             process_yellow_light = atlas.findRegion("process_yellow_light");
+            process_dark = atlas.findRegion("process_dark");
 
             cashier = atlas.findRegion("cashier");
             cashier_light = atlas.findRegion("cashier_light");
             woman = atlas.findRegion("woman");
             woman_light = atlas.findRegion("woman_light");
+            woman_dark = atlas.findRegion("woman_dark");
             man = atlas.findRegion("man");
             man_light = atlas.findRegion("man_light");
+            man_dark = atlas.findRegion("man_dark");
             kid = atlas.findRegion("kid");
             kid_light = atlas.findRegion("kid_light");
+            kid_dark = atlas.findRegion("kid_dark");
         }
     }
 }

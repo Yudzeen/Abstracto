@@ -180,13 +180,13 @@ class Process extends Actor {
             processingFinished = true;
             switch (type) {
                 case TYPE_1:
-                    texture = gameScreen.getAssets().games.process_blue;
+                    texture = gameScreen.getAssets().games.process_dark;
                     break;
                 case TYPE_2:
-                    texture = gameScreen.getAssets().games.process_yellow;
+                    texture = gameScreen.getAssets().games.process_dark;
                     break;
                 case TYPE_3:
-                    texture = gameScreen.getAssets().games.process_red;
+                    texture = gameScreen.getAssets().games.process_dark;
                     break;
                 default:
                     Gdx.app.debug(TAG, "Unknown type.");

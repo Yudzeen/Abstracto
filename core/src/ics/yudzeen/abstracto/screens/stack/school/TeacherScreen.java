@@ -13,6 +13,7 @@ import java.util.List;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
+import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -55,12 +56,12 @@ public class TeacherScreen extends AbstractoScreen {
         stage.addActor(chatLabel);
         stage.addActor(triangle);
         stage.addListener(gestureListener);
-        //stage.addActor(skipButton);
+        stage.addActor(skipButton);
     }
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new SchoolScreen(game));
+        game.setScreen(new StackMapScreen(game));
     }
 
     private void init() {
@@ -128,14 +129,14 @@ public class TeacherScreen extends AbstractoScreen {
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 if(dialogueIndex == dialogue.size()) {
                     GamePreferences gamePreferences = game.getGamePreferences();
-                    gamePreferences.stackSchoolDialogueDone = true;
+                    //gamePreferences.stackSchoolDialogueDone = true;
                     gamePreferences.save();
                     game.setScreen(new SchoolScreen(game));
                 }
                 else {
                     chatLabel.setText(dialogue.get(dialogueIndex));
                     chatLabel.pack();
-                    chatLabel.setPosition(350 + 325/2 - chatLabel.getWidth()/2, 155 + 175/2 - chatLabel.getHeight()/2);
+                    chatLabel.setPosition(350 + 325/2 - chatLabel.getWidth()/2, 155 + 180/2 - chatLabel.getHeight()/2);
                     dialogueIndex++;
                 }
             }
@@ -151,7 +152,7 @@ public class TeacherScreen extends AbstractoScreen {
     }
 
     private void initSkipButton() {
-        skipButton = ButtonFactory.createTextButton("SKIP", 20, 20, new Color(14/255.0f, 69/255.0f, 31/255.0f, 1), Color.WHITE, assets.fonts.chalk_20);
+        skipButton = ButtonFactory.createTextButton("SKIP", 20, 20, new Color(14/255.0f, 69/255.0f, 31/255.0f, 1), Color.WHITE, assets.fonts.verdana_20);
         skipButton.setPosition(GameConstants.WIDTH - skipButton.getWidth() - 40,
                 50);
         skipButton.addListener(new ClickListener() {

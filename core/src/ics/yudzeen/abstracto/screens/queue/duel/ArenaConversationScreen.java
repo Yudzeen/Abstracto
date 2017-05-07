@@ -1,4 +1,4 @@
-package ics.yudzeen.abstracto.screens.stack.duel;
+package ics.yudzeen.abstracto.screens.queue.duel;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
-import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
+import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -63,7 +63,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new StackMapScreen(game));
+        game.setScreen(new QueueMapScreen(game));
     }
 
     private void init() {
@@ -87,7 +87,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
     }
 
     private void initPersonImage() {
-        personImage = new Image(assets.images.teacher);
+        personImage = new Image(assets.images.old_guy);
         personImage.setPosition(150, 0 - personImage.getHeight()/2);
     }
 
@@ -153,7 +153,7 @@ public class ArenaConversationScreen extends AbstractoScreen {
         dialogue = new ArrayList<>();
         GamePreferences gamePreferences = game.getGamePreferences();
         gamePreferences.load();
-        dialogue.add("Do you have what \nit takes to be \na stack master?");
+        dialogue.add("Do you have what \nit takes to be \na queue master?");
         dialogue.add("Let's see if you \ncan defeat me.");
     }
 

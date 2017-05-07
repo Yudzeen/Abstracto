@@ -3,23 +3,25 @@ package ics.yudzeen.abstracto.screens.queue;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
+import ics.yudzeen.abstracto.screens.queue.duel.ArenaConversationScreen;
 import ics.yudzeen.abstracto.screens.queue.duel.InstructionScreen;
-import ics.yudzeen.abstracto.screens.queue.games.ArcadeMapScreen;
-import ics.yudzeen.abstracto.screens.queue.school.SchoolScreen;
-import ics.yudzeen.abstracto.screens.stack.duel.DuelScreen;
+import ics.yudzeen.abstracto.screens.queue.games.ArcadeConversationScreen;
+import ics.yudzeen.abstracto.screens.queue.school.QueueSchoolConversationScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
+import ics.yudzeen.abstracto.utils.GamePreferences;
 
 /**
  * Screen of the queue map
@@ -28,6 +30,9 @@ import ics.yudzeen.abstracto.utils.GameConstants;
 public class QueueMapScreen extends AbstractoScreen {
 
     public static final String TAG = QueueMapScreen.class.getName();
+
+    public static final Color THEME = new Color(91/255.0f, 164/255.0f, 216/255.0f, 1.0f);
+    public static final Color LABEL_COLOR = new Color(16/255.0f, 29/255.0f, 38/255.0f, 1.0f);
 
     private Image backgroundImage;
     private Image locationLabelImage;
@@ -42,6 +47,15 @@ public class QueueMapScreen extends AbstractoScreen {
     private Label arcadeLabel;
     private Label arenaLabel;
 
+    private Image schoolDescBackground;
+    private Label schoolDescLabel;
+
+    private Image arcadeDescBackground;
+    private Label arcadeDescLabel;
+
+    private Image arenaDescBackground;
+    private Label arenaDescLabel;
+
     public QueueMapScreen(Abstracto game) {
         super(game);
         init();
@@ -51,12 +65,23 @@ public class QueueMapScreen extends AbstractoScreen {
         initBackgroundImage();
         initLocationLabel();
         initWorldMapButton();
+
         initSchoolButton();
         initArcadeButton();
         initArenaButton();
+
         initSchoolLabel();
         initArcadeLabel();
         initArenaLabel();
+
+        initSchoolDescBackground();
+        initSchoolDescLabel();
+
+        initArcadeDescBackground();
+        initArcadeDescLabel();
+
+        initArenaDescBackground();
+        initArenaDescLabel();
     }
 
     @Override
@@ -72,6 +97,15 @@ public class QueueMapScreen extends AbstractoScreen {
         stage.addActor(schoolLabel);
         stage.addActor(arcadeLabel);
         stage.addActor(arenaLabel);
+
+        stage.addActor(schoolDescBackground);
+        stage.addActor(schoolDescLabel);
+
+        stage.addActor(arcadeDescBackground);
+        stage.addActor(arcadeDescLabel);
+
+        stage.addActor(arenaDescBackground);
+        stage.addActor(arenaDescLabel);
     }
 
     @Override
@@ -80,8 +114,14 @@ public class QueueMapScreen extends AbstractoScreen {
     }
 
     private void initBackgroundImage() {
-        backgroundImage = new Image(assets.images.background_grass);
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGBA8888);
+        //pixmap.setColor(74/255.0f,143/255.0f,231/255.0f,1);
+        //pixmap.setColor(0,0,0,1);
+        pixmap.setColor(THEME);
+        pixmap.fill();
+        backgroundImage = new Image(new Texture(pixmap));
         backgroundImage.setPosition(0,0);
+        pixmap.dispose();
     }
 
     private void initLocationLabel() {
@@ -103,51 +143,235 @@ public class QueueMapScreen extends AbstractoScreen {
 
     private void initSchoolButton() {
         schoolButton = ButtonFactory.createImageButton(assets.buttons.school);
-        schoolButton.setPosition(80, GameConstants.HEIGHT - schoolButton.getHeight() - 150);
+        schoolButton.setPosition(80, GameConstants.HEIGHT - schoolButton.getHeight() - 100);
         schoolButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new SchoolScreen(game));
+                GamePreferences gamePreferences = game.getGamePreferences();
+                gamePreferences.load();
+                //if(gamePreferences.queueSchoolDialogueDone) {
+                //    game.setScreen(new SchoolScreen(game));
+                //}
+                //else {
+                    game.setScreen(new QueueSchoolConversationScreen(game));
+                //}
+            }
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                schoolDescBackground.setVisible(true);
+                schoolDescLabel.setVisible(true);
+            }
+
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                schoolDescBackground.setVisible(false);
+                schoolDescLabel.setVisible(false);
+            }
+
+        });
+        schoolButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                schoolDescBackground.setVisible(true);
+                schoolDescLabel.setVisible(true);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                schoolDescBackground.setVisible(false);
+                schoolDescLabel.setVisible(false);
             }
         });
+    }
+
+    private void initSchoolDescBackground() {
+        Pixmap pixmap = new Pixmap(180, 70, Pixmap.Format.RGBA8888);
+        pixmap.setColor(new Color(146/255.0f, 167/255.0f, 206/255.0f, 0.9f));
+        pixmap.fill();
+        pixmap.setColor(new Color(45/255.0f, 51/255.0f, 63/255.0f, 0.9f));
+        for (int i = 0; i < pixmap.getWidth(); i++) {
+            for (int j = 0; j < pixmap.getHeight(); j++) {
+                if (i < 5 || j < 5 || i >= pixmap.getWidth() - 5 || j >= pixmap.getHeight() - 5) {
+                    pixmap.drawPixel(i, j);
+                }
+            }
+        }
+
+        schoolDescBackground = new Image(new Texture(pixmap));
+        pixmap.dispose();
+
+        schoolDescBackground.setPosition(schoolButton.getX() + schoolButton.getWidth()*3/4,
+                schoolButton.getY() + schoolButton.getHeight()/4);
+        schoolDescBackground.setVisible(false);
+    }
+
+    private void initSchoolDescLabel() {
+        String description = "Learn and simulate \nqueue";
+        schoolDescLabel = LabelFactory.createLabel(description, assets.fonts.verdana_16, Color.BLACK);
+        schoolDescLabel.setPosition(schoolDescBackground.getX() + schoolDescBackground.getWidth()/2 - schoolDescLabel.getWidth()/2,
+                schoolDescBackground.getY() + schoolDescBackground.getHeight()/2 - schoolDescLabel.getHeight()/2);
+        schoolDescLabel.setVisible(false);
     }
 
     private void initArcadeButton() {
         arcadeButton = ButtonFactory.createImageButton(assets.buttons.arcade);
-        arcadeButton.setPosition(320, 50);
+        arcadeButton.setPosition(schoolButton.getX() + schoolButton.getWidth() + 200, schoolButton.getY());
         arcadeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ArcadeMapScreen(game));
+                GamePreferences gamePreferences = game.getGamePreferences();
+                gamePreferences.load();
+                //if(gamePreferences.queueArcadeDialogueDone) {
+                    game.setScreen(new ArcadeConversationScreen(game));
+                //}
+                //else {
+                //    game.setScreen(new ArcadeMapScreen(game));
+                    //game.setScreen(new ArcadeConversationScreen(game));
+                //}
+            }
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                arcadeDescBackground.setVisible(true);
+                arcadeDescLabel.setVisible(true);
+            }
+
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                arcadeDescBackground.setVisible(false);
+                arcadeDescLabel.setVisible(false);
+            }
+
+        });
+        arcadeButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                arcadeDescBackground.setVisible(true);
+                arcadeDescLabel.setVisible(true);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                arcadeDescBackground.setVisible(false);
+                arcadeDescLabel.setVisible(false);
             }
         });
+    }
+
+    private void initArcadeDescBackground() {
+        Pixmap pixmap = new Pixmap(180, 70, Pixmap.Format.RGBA8888);
+        pixmap.setColor(new Color(146/255.0f, 167/255.0f, 206/255.0f, 0.9f));
+        pixmap.fill();
+        pixmap.setColor(new Color(45/255.0f, 51/255.0f, 63/255.0f, 0.9f));
+        for (int i = 0; i < pixmap.getWidth(); i++) {
+            for (int j = 0; j < pixmap.getHeight(); j++) {
+                if (i < 5 || j < 5 || i >= pixmap.getWidth() - 5 || j >= pixmap.getHeight() - 5) {
+                    pixmap.drawPixel(i, j);
+                }
+            }
+        }
+
+        arcadeDescBackground = new Image(new Texture(pixmap));
+        pixmap.dispose();
+
+        arcadeDescBackground.setPosition(arcadeButton.getX() + arcadeButton.getWidth()/4,
+                arcadeButton.getY() + arcadeButton.getHeight()*3/4);
+        arcadeDescBackground.setVisible(false);
+    }
+
+    private void initArcadeDescLabel() {
+        String description = "Play and learn \nqueue applications";
+        arcadeDescLabel = LabelFactory.createLabel(description, assets.fonts.verdana_16, Color.BLACK);
+        arcadeDescLabel.setPosition(arcadeDescBackground.getX() + arcadeDescBackground.getWidth()/2 - arcadeDescLabel.getWidth()/2,
+                arcadeDescBackground.getY() + arcadeDescBackground.getHeight()/2 - arcadeDescLabel.getHeight()/2);
+        arcadeDescLabel.setVisible(false);
     }
 
     private void initArenaButton() {
         arenaButton = ButtonFactory.createImageButton(assets.buttons.arena);
-        arenaButton.setPosition(schoolButton.getX() + schoolButton.getWidth() + 200, schoolButton.getY() + 50);
+        arenaButton.setPosition(320, 50);
         arenaButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new InstructionScreen(game));
+                GamePreferences gamePreferences = game.getGamePreferences();
+                gamePreferences.load();
+                //if(gamePreferences.queueArenaDialogueDone) {
+                 //   game.setScreen(new InstructionScreen(game));
+                //}
+                //else {
+                    game.setScreen(new ArenaConversationScreen(game));
+                    //game.setScreen(new InstructionScreen(game));
+                //}
+            }
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                arenaDescBackground.setVisible(true);
+                arenaDescLabel.setVisible(true);
+            }
+
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                arenaDescBackground.setVisible(false);
+                arenaDescLabel.setVisible(false);
+            }
+        });
+        arenaButton.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                arenaDescBackground.setVisible(true);
+                arenaDescLabel.setVisible(true);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                arenaDescBackground.setVisible(false);
+                arenaDescLabel.setVisible(false);
             }
         });
     }
 
+    private void initArenaDescBackground() {
+        Pixmap pixmap = new Pixmap(180, 70, Pixmap.Format.RGBA8888);
+        pixmap.setColor(new Color(146/255.0f, 167/255.0f, 206/255.0f, 0.9f));
+        pixmap.fill();
+        pixmap.setColor(new Color(45/255.0f, 51/255.0f, 63/255.0f, 0.9f));
+        for (int i = 0; i < pixmap.getWidth(); i++) {
+            for (int j = 0; j < pixmap.getHeight(); j++) {
+                if (i < 5 || j < 5 || i >= pixmap.getWidth() - 5 || j >= pixmap.getHeight() - 5) {
+                    pixmap.drawPixel(i, j);
+                }
+            }
+        }
+
+        arenaDescBackground = new Image(new Texture(pixmap));
+        pixmap.dispose();
+
+        arenaDescBackground.setPosition(arenaButton.getX() + arenaButton.getWidth()/4,
+                arenaButton.getY() + arenaButton.getHeight()*3/4);
+        arenaDescBackground.setVisible(false);
+    }
+
+    private void initArenaDescLabel() {
+        String description = "Test your skills \nagainst the queue \nmaster";
+        arenaDescLabel = LabelFactory.createLabel(description, assets.fonts.verdana_16, Color.BLACK);
+        arenaDescLabel.setPosition(arenaDescBackground.getX() + arenaDescBackground.getWidth()/2 - arenaDescLabel.getWidth()/2,
+                arenaDescBackground.getY() + arenaDescBackground.getHeight()/2 - arenaDescLabel.getHeight()/2);
+        arenaDescLabel.setVisible(false);
+    }
+
     private void initSchoolLabel() {
-        schoolLabel = LabelFactory.createLabel("SCHOOL", assets.fonts.defaultBig, Color.WHITE);
+        schoolLabel = LabelFactory.createLabel("SCHOOL", assets.fonts.verdana_30, LABEL_COLOR);
         schoolLabel.setPosition(schoolButton.getX() + schoolButton.getWidth()/2 - schoolLabel.getWidth()/2,
                 schoolButton.getY() - schoolLabel.getHeight() - 5);
     }
 
     private void initArcadeLabel() {
-        arcadeLabel = LabelFactory.createLabel("ARCADE", assets.fonts.defaultBig, Color.WHITE);
+        arcadeLabel = LabelFactory.createLabel("ARCADE", assets.fonts.verdana_30, LABEL_COLOR);
         arcadeLabel.setPosition(arcadeButton.getX() + arcadeButton.getWidth()/2 - arcadeLabel.getWidth()/2,
                 arcadeButton.getY() - arcadeLabel.getHeight() - 5);
     }
 
     private void initArenaLabel() {
-        arenaLabel = LabelFactory.createLabel("ARENA", assets.fonts.defaultBig, Color.WHITE);
+        arenaLabel = LabelFactory.createLabel("ARENA", assets.fonts.verdana_30, LABEL_COLOR);
         arenaLabel.setPosition(arenaButton.getX() + arenaButton.getWidth()/2 - arenaLabel.getWidth()/2,
                 arenaButton.getY() - arenaLabel.getHeight() - 5);
     }

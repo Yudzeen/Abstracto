@@ -137,13 +137,13 @@ class Customer extends Actor {
             orderingFinished = true;
             switch (type) {
                 case TYPE_1:
-                    texture = gameScreen.getAssets().games.man;
+                    texture = gameScreen.getAssets().games.man_dark;
                     break;
                 case TYPE_2:
-                    texture = gameScreen.getAssets().games.woman;
+                    texture = gameScreen.getAssets().games.woman_dark;
                     break;
                 case TYPE_3:
-                    texture = gameScreen.getAssets().games.kid;
+                    texture = gameScreen.getAssets().games.kid_dark;
                     break;
                 default:
                     Gdx.app.debug(TAG, "Unknown type.");

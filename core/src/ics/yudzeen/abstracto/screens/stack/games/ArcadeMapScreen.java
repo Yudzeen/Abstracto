@@ -88,7 +88,7 @@ public class ArcadeMapScreen extends AbstractoScreen {
                 GameConstants.HEIGHT/2 - personImage.getHeight()/2);
     }
     private void initBalancingSymbolsButton() {
-        balancingSymbolsButton = ButtonFactory.createImageButton(assets.buttons.balancing_apps);
+        balancingSymbolsButton = ButtonFactory.createImageButton(assets.buttons.balancing_game);
         balancingSymbolsButton.setPosition(GameConstants.WIDTH*3/4 - balancingSymbolsButton.getWidth()/2 - 80,
                 GameConstants.HEIGHT - balancingSymbolsButton.getHeight() - 150);
         balancingSymbolsButton.addListener(new ClickListener() {
@@ -100,7 +100,7 @@ public class ArcadeMapScreen extends AbstractoScreen {
     }
 
     private void initPostfixExpressionButton() {
-        postfixExpressionButton = ButtonFactory.createImageButton(assets.buttons.postfix_apps);
+        postfixExpressionButton = ButtonFactory.createImageButton(assets.buttons.postfix_game);
         postfixExpressionButton.setPosition(balancingSymbolsButton.getX(),
                 balancingSymbolsButton.getY() - 60 - postfixExpressionButton.getHeight());
         postfixExpressionButton.addListener(new ClickListener() {

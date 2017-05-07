@@ -90,8 +90,8 @@ public class InfoPage1 extends AbstractoScreen {
     }
 
     private void initTeacherImage() {
-        teacherImage = new Image(assets.images.teacher);
-        teacherImage.setPosition(50, 0 - teacherImage.getHeight()/2);
+        teacherImage = new Image(assets.images.old_guy);
+        teacherImage.setPosition(100, 0 - teacherImage.getHeight()/2);
     }
 
     private void initNextButton() {
