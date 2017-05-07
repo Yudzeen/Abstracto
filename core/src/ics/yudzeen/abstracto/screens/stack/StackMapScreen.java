@@ -15,11 +15,14 @@ import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.WorldMapScreen;
 import ics.yudzeen.abstracto.screens.stack.duel.InstructionScreen;
+import ics.yudzeen.abstracto.screens.stack.games.ArcadeConversationScreen;
 import ics.yudzeen.abstracto.screens.stack.games.ArcadeMapScreen;
 import ics.yudzeen.abstracto.screens.stack.school.SchoolScreen;
+import ics.yudzeen.abstracto.screens.stack.school.TeacherScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
+import ics.yudzeen.abstracto.utils.GamePreferences;
 
 /**
  * Screen of the stack map
@@ -144,7 +147,14 @@ public class StackMapScreen extends AbstractoScreen {
         schoolButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new SchoolScreen(game));
+                GamePreferences gamePreferences = game.getGamePreferences();
+                gamePreferences.load();
+                if(gamePreferences.stackSchoolDialogueDone) {
+                    game.setScreen(new SchoolScreen(game));
+                }
+                else {
+                    game.setScreen(new TeacherScreen(game));
+                }
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -209,7 +219,14 @@ public class StackMapScreen extends AbstractoScreen {
         arcadeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new ArcadeMapScreen(game));
+                GamePreferences gamePreferences = game.getGamePreferences();
+                gamePreferences.load();
+                if(gamePreferences.stackArcadeDialogueDone) {
+                    game.setScreen(new ArcadeMapScreen(game));
+                }
+                else {
+                    game.setScreen(new ArcadeConversationScreen(game));
+                }
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {

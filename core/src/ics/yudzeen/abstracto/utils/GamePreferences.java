@@ -15,6 +15,9 @@ public class GamePreferences {
     public String character;
     public String name;
     public boolean introDone;
+    public boolean stackSchoolDialogueDone;
+    public boolean stackArcadeDialogueDone;
+    public boolean stackArenaDialogueDone;
 
     private Preferences prefs;
 
@@ -27,12 +30,19 @@ public class GamePreferences {
         character = prefs.getString("character", "");
         name = prefs.getString("name", "");
         introDone = prefs.getBoolean("introDone", false);
+        stackSchoolDialogueDone = prefs.getBoolean("stackSchoolDialogueDone", false);
+        stackArcadeDialogueDone = prefs.getBoolean("stackArcadeDialogueDone", false);
+        stackArenaDialogueDone = prefs.getBoolean("stackArenaDialogueDone", false);
     }
 
     public void save() {
         prefs.putString("character", character);
         prefs.putString("name", name);
         prefs.putBoolean("introDone", introDone);
+        prefs.putBoolean("stackSchoolDialogueDone", stackSchoolDialogueDone);
+        prefs.putBoolean("stackArcadeDialogueDone", stackArcadeDialogueDone);
+        prefs.putBoolean("stackArenaDialogueDone", stackArenaDialogueDone);
+
         prefs.flush();
     }
 

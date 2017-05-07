@@ -14,7 +14,6 @@ import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.stack.StackMapScreen;
 import ics.yudzeen.abstracto.screens.stack.school.applications.ApplicationsScreen;
-import ics.yudzeen.abstracto.screens.stack.school.info.MainScreen;
 import ics.yudzeen.abstracto.screens.stack.school.simulator.StackSimulatorScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
@@ -31,6 +30,7 @@ public class SchoolScreen extends AbstractoScreen {
     private static Color LABEL_COLOR = new Color(66/255.0f, 76/255.0f, 59/255.0f, 1.0f);
 
     private Image backgroundImage;
+    private Image teacherImage;
 
     private ImageButton infoButton;
     private ImageButton appsButton;
@@ -69,6 +69,8 @@ public class SchoolScreen extends AbstractoScreen {
 
         initSimulatorDescBackground();
         initSimulatorDescLabel();
+
+        initTeacherImage();
     }
 
     @Override
@@ -89,6 +91,8 @@ public class SchoolScreen extends AbstractoScreen {
 
         stage.addActor(simulatorDescBackground);
         stage.addActor(simulatorDescLabel);
+
+        stage.addActor(teacherImage);
     }
 
     @Override
@@ -125,11 +129,11 @@ public class SchoolScreen extends AbstractoScreen {
 
     private void initInfoButton() {
         infoButton = ButtonFactory.createImageButton(assets.buttons.book);
-        infoButton.setPosition(200, GameConstants.HEIGHT - infoButton.getHeight() - 150);
+        infoButton.setPosition(340, GameConstants.HEIGHT - infoButton.getHeight() - 150);
         infoButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new MainScreen(game));
+                game.setScreen(new TeacherScreen(game));
             }
         });
         infoButton.addListener(new ActorGestureListener() {
@@ -243,7 +247,7 @@ public class SchoolScreen extends AbstractoScreen {
     }
 
     private void initInfoLabel() {
-        infoLabel = LabelFactory.createLabel("INFO", assets.fonts.verdana_30, LABEL_COLOR);
+        infoLabel = LabelFactory.createLabel("STACK INFO", assets.fonts.verdana_30, LABEL_COLOR);
         infoLabel.setPosition(infoButton.getX() + infoButton.getWidth() + 40,
                 infoButton.getY() + infoButton.getHeight()/2 - infoLabel.getHeight()/2);
     }
@@ -258,6 +262,13 @@ public class SchoolScreen extends AbstractoScreen {
         simulatorLabel = LabelFactory.createLabel("SIMULATOR", assets.fonts.verdana_30, LABEL_COLOR);
         simulatorLabel.setPosition(appsLabel.getX(),
                 simulatorButton.getY() + simulatorButton.getHeight()/2 - simulatorLabel.getHeight()/2);
+    }
+
+    private void initTeacherImage() {
+        teacherImage = new Image(assets.images.teacher);
+        teacherImage.setPosition(GameConstants.WIDTH/4 - teacherImage.getWidth()/2 - 40,
+                GameConstants.HEIGHT/2 - teacherImage.getHeight()/2 - 30);
+
     }
 
 }
