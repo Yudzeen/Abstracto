@@ -128,7 +128,8 @@ public class InfoPage1 extends AbstractoScreen {
     }
 
     private void initDescriptionLabel() {
-        String text = "- a structure where manipulations \n" +
+        String text = "- models a last-in first-out\n" +
+                "  structure where manipulations \n" +
                 "  can only be performed in one\n" +
                 "  position called top of stack";
         descriptionLabel = LabelFactory.createLabel(text, assets.fonts.chalk_20, Color.WHITE);

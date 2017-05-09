@@ -123,7 +123,8 @@ public class InfoPage1 extends AbstractoScreen {
     }
 
     private void initDescriptionLabel() {
-        String text = "- a structure where insertion is done on\n" +
+        String text = "- models a first-in first-out\n" +
+                "  structure where insertion is done on\n" +
                 "  the tail end and deletion is performed \n" +
                 "  on the head end";
         descriptionLabel = LabelFactory.createLabel(text, assets.fonts.chalk_20, Color.WHITE);
