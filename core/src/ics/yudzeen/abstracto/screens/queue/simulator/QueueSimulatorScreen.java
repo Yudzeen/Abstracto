@@ -50,6 +50,8 @@ public class QueueSimulatorScreen extends AbstractoScreen {
 
     private QueueContainer queueContainer;
 
+    private int nodeName;
+
     public QueueSimulatorScreen(Abstracto game) {
         super(game);
         init();
@@ -57,6 +59,7 @@ public class QueueSimulatorScreen extends AbstractoScreen {
 
     private void init() {
         nodeFactory = new NodeFactory(getAssets());
+        nodeName = 1;
 
         initBackgroundImage();
         initTitleBar();
@@ -153,10 +156,11 @@ public class QueueSimulatorScreen extends AbstractoScreen {
     }
 
     private void spawnNode() {
-        final Node node = nodeFactory.createNode("-");
+        final Node node = nodeFactory.createNode(Integer.toString(nodeName));
         node.setPosition(GameConstants.WIDTH/2 - node.getWidth()/2, GameConstants.HEIGHT/2 - node.getHeight()/2);
         addNodeListeners(node);
         stage.addActor(node);
+        nodeName++;
     }
 
     public void addNodeListeners(final Node node) {

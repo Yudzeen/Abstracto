@@ -51,6 +51,8 @@ public class StackSimulatorScreen extends AbstractoScreen {
     private Label helpLabel;
     private boolean helpVisible = false;
 
+    private int nodeName;
+
     public StackSimulatorScreen(Abstracto game) {
         super(game);
         init();
@@ -58,6 +60,7 @@ public class StackSimulatorScreen extends AbstractoScreen {
 
     private void init() {
         nodeFactory = new NodeFactory(game.getAssets());
+        nodeName = 1;
 
         initBackgroundImage();
         initTitleBar();
@@ -135,10 +138,11 @@ public class StackSimulatorScreen extends AbstractoScreen {
     }
 
     private void spawnNode() {
-        final ics.yudzeen.abstracto.screens.stack.school.simulator.Node node = nodeFactory.createNode("-");
+        final ics.yudzeen.abstracto.screens.stack.school.simulator.Node node = nodeFactory.createNode(Integer.toString(nodeName));
         node.setPosition(GameConstants.WIDTH/2 - node.getWidth()/2, GameConstants.HEIGHT/2 - node.getHeight()/2);
         addNodeListeners(node);
         stage.addActor(node);
+        nodeName++;
     }
 
     public void addNodeListeners(final ics.yudzeen.abstracto.screens.stack.school.simulator.Node node) {
