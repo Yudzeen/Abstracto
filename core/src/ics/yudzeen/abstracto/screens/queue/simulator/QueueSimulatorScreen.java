@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.AbstractoScreen;
 import ics.yudzeen.abstracto.screens.queue.QueueMapScreen;
+import ics.yudzeen.abstracto.screens.queue.school.SchoolScreen;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.GameConstants;
@@ -92,7 +93,7 @@ public class QueueSimulatorScreen extends AbstractoScreen {
 
     @Override
     protected void backKeyPressed() {
-        game.setScreen(new QueueMapScreen(game));
+        game.setScreen(new SchoolScreen(game));
     }
 
     private void initBackgroundImage() {
