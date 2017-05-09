@@ -143,7 +143,7 @@ class GameNode extends Actor {
                 setPosition(poppedNodes.getTempNodes()[poppedPosition].getX(), poppedNodes.getTempNodes()[poppedPosition].getY());
                 setPopping(false);
             }
-            final float mergingAnimationSpeed = 50;
+            final float mergingAnimationSpeed = 250;
             final float targetX = 397.5f;
             final float targetY = 355f;
             float x = getX();

@@ -117,7 +117,7 @@ class GameNode extends Actor {
 
     private void animateMerging(float delta) {
         blink(delta);
-        final float mergingAnimationSpeed = 50;
+        final float mergingAnimationSpeed = 250;
         float x = getX();
         float targetX = GameConstants.WIDTH/2 - WIDTH/2;
         if (!isCurrentNode()) {
