@@ -6,315 +6,322 @@ filter: Nearest,Nearest
 repeat: none
 blank_portal
   rotate: false
-  xy: 2, 395
+  xy: 2, 381
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 cashier
   rotate: false
-  xy: 888, 860
+  xy: 888, 846
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
   index: -1
 cashier_light
   rotate: false
-  xy: 690, 142
+  xy: 773, 115
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
   index: -1
 chip
   rotate: false
-  xy: 773, 225
+  xy: 888, 765
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
   index: -1
 chip_light
   rotate: false
-  xy: 888, 779
+  xy: 888, 684
   size: 79, 79
   orig: 79, 79
   offset: 0, 0
   index: -1
 dequeue
   rotate: false
-  xy: 2, 36
+  xy: 2, 22
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 enqueue
   rotate: false
-  xy: 690, 361
+  xy: 690, 251
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 exit_icon
   rotate: false
-  xy: 888, 941
+  xy: 888, 927
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 gray_circle
   rotate: false
-  xy: 366, 35
+  xy: 924, 627
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 heart
   rotate: false
-  xy: 520, 52
+  xy: 969, 701
   size: 37, 38
   orig: 37, 38
   offset: 0, 0
   index: -1
 kid
   rotate: false
-  xy: 891, 656
+  xy: 891, 561
   size: 30, 59
   orig: 30, 59
   offset: 0, 0
   index: -1
 kid_dark
   rotate: false
-  xy: 862, 565
+  xy: 862, 470
   size: 30, 59
   orig: 30, 59
   offset: 0, 0
   index: -1
 kid_light
   rotate: false
-  xy: 862, 504
+  xy: 862, 409
   size: 30, 59
   orig: 30, 59
   offset: 0, 0
   index: -1
 light_yellow_circle
   rotate: false
-  xy: 423, 35
+  xy: 613, 41
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 man
   rotate: false
-  xy: 971, 935
+  xy: 856, 217
   size: 30, 87
   orig: 30, 87
   offset: 0, 0
   index: -1
 man_dark
   rotate: false
-  xy: 969, 846
+  xy: 971, 921
   size: 30, 87
   orig: 30, 87
   offset: 0, 0
   index: -1
 man_light
   rotate: false
-  xy: 334, 2
+  xy: 969, 832
   size: 30, 87
   orig: 30, 87
   offset: 0, 0
   index: -1
 pause
   rotate: false
-  xy: 480, 52
+  xy: 670, 58
   size: 38, 38
   orig: 38, 38
   offset: 0, 0
   index: -1
 pop
   rotate: false
-  xy: 168, 36
+  xy: 168, 22
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 portal
   rotate: false
-  xy: 2, 699
+  xy: 2, 685
   size: 196, 323
   orig: 196, 323
   offset: 0, 0
   index: -1
 portal_balancing
   rotate: false
-  xy: 200, 720
+  xy: 200, 706
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_dequeue1
   rotate: false
-  xy: 2, 91
+  xy: 2, 77
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_dequeue2
   rotate: false
-  xy: 372, 720
+  xy: 372, 706
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_dequeue3
   rotate: false
-  xy: 544, 720
+  xy: 544, 706
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_dequeue4
   rotate: false
-  xy: 716, 720
+  xy: 716, 706
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_dequeue5
   rotate: false
-  xy: 174, 395
+  xy: 174, 381
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_enqueue1
   rotate: false
-  xy: 174, 91
+  xy: 174, 77
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_enqueue2
   rotate: false
-  xy: 346, 416
+  xy: 346, 402
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_enqueue3
   rotate: false
-  xy: 346, 112
+  xy: 346, 98
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_pop1
   rotate: false
-  xy: 518, 416
+  xy: 518, 402
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_postfix
   rotate: false
-  xy: 518, 112
+  xy: 518, 98
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 portal_push1
   rotate: false
-  xy: 690, 416
+  xy: 690, 402
   size: 170, 302
   orig: 170, 302
   offset: 0, 0
   index: -1
 process_blue
   rotate: false
-  xy: 200, 700
+  xy: 200, 686
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_blue_light
   rotate: false
-  xy: 346, 92
+  xy: 346, 78
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_dark
   rotate: false
-  xy: 2, 16
+  xy: 2, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_red
   rotate: false
-  xy: 435, 92
+  xy: 435, 78
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_red_light
   rotate: false
-  xy: 91, 16
+  xy: 91, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_yellow
   rotate: false
-  xy: 524, 92
+  xy: 524, 78
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 process_yellow_light
   rotate: false
-  xy: 180, 16
+  xy: 180, 2
   size: 87, 18
   orig: 87, 18
   offset: 0, 0
   index: -1
 push
   rotate: false
-  xy: 690, 306
+  xy: 690, 196
   size: 164, 53
   orig: 164, 53
   offset: 0, 0
   index: -1
 retry_icon
   rotate: false
-  xy: 690, 223
+  xy: 690, 113
   size: 81, 81
   orig: 81, 81
   offset: 0, 0
   index: -1
 stopwatch
   rotate: false
-  xy: 888, 717
+  xy: 862, 622
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
+too_slow
+  rotate: false
+  xy: 690, 306
+  size: 218, 94
+  orig: 218, 94
+  offset: 0, 0
+  index: -1
 woman
   rotate: false
-  xy: 856, 325
+  xy: 969, 741
   size: 27, 89
   orig: 27, 89
   offset: 0, 0
   index: -1
 woman_dark
   rotate: false
-  xy: 969, 755
+  xy: 888, 215
   size: 27, 89
   orig: 27, 89
   offset: 0, 0
   index: -1
 woman_light
   rotate: false
-  xy: 862, 626
+  xy: 862, 531
   size: 27, 89
   orig: 27, 89
   offset: 0, 0

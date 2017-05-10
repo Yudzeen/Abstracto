@@ -22,7 +22,7 @@ class DuelScreen extends AbstractoScreen {
     }
 
     private void init() {
-        gameController = new GameController();
+        gameController = new GameController(this);
         gameRenderer = new GameRenderer(this, gameController);
     }
 

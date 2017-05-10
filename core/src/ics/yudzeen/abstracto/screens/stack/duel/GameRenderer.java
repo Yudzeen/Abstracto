@@ -17,6 +17,7 @@ import java.util.List;
 
 import ics.yudzeen.abstracto.Abstracto;
 import ics.yudzeen.abstracto.screens.objects.Cloud;
+import ics.yudzeen.abstracto.screens.queue.duel.*;
 import ics.yudzeen.abstracto.ui.ButtonFactory;
 import ics.yudzeen.abstracto.ui.LabelFactory;
 import ics.yudzeen.abstracto.utils.Assets;
@@ -47,14 +48,19 @@ class GameRenderer {
     private Image enemyBodyImage;
     private List<Cloud> cloudList;
 
-    private HPBar playerHPBar;
-    private HPBar enemyHPBar;
-    private Portal portal;
+    HPBar playerHPBar;
+    HPBar enemyHPBar;
+    Portal portal;
 
     private Label vsLabel;
 
     private ImageButton pushButton;
     private ImageButton popButton;
+
+    private Image blackImage; // for dimming
+    private Label readySetGoLabel;
+
+    ChatBubble tooSlowImage;
 
     public GameRenderer(DuelScreen gameScreen, GameController gameController) {
         this.gameScreen = gameScreen;
@@ -78,6 +84,11 @@ class GameRenderer {
         initPopButton();
         initPortal();
         initClouds();
+
+        initReadySetGoLabel();
+        initBlackImage();
+
+        initTooSlowImage();
     }
 
     void buildStage(Stage stage) {
@@ -97,9 +108,26 @@ class GameRenderer {
         stage.addActor(pushButton);
         stage.addActor(popButton);
         stage.addActor(portal);
+
+        stage.addActor(readySetGoLabel);
+        stage.addActor(blackImage);
+
+        stage.addActor(tooSlowImage);
+
     }
 
     void render() {
+        boolean gameStarted = gameController.gameStarted;
+
+        if(gameStarted) {
+            blackImage.setVisible(false);
+            readySetGoLabel.remove();
+        }
+        else {
+            blackImage.setVisible(true);
+            renderReadySetGoText();
+        }
+
         if(gameController.gameOver) {
             disablePushAndPopButtons(true);
             final Abstracto game = gameScreen.getGame();
@@ -199,7 +227,7 @@ class GameRenderer {
     }
 
     private void initVsLabel() {
-        vsLabel = LabelFactory.createLabel("VS", assets.fonts.verdana_50, Color.FIREBRICK);
+        vsLabel = LabelFactory.createLabel("VS", assets.fonts.defaultLarge, Color.FIREBRICK);
         vsLabel.setPosition(GameConstants.WIDTH/2 - vsLabel.getWidth()/2, GameConstants.HEIGHT - vsLabel.getHeight() - 20);
     }
 
@@ -236,6 +264,39 @@ class GameRenderer {
         cloudList.add(new Cloud(gameScreen.getGame(), Cloud.TYPE_1));
         cloudList.add(new Cloud(gameScreen.getGame(), Cloud.TYPE_2));
         cloudList.add(new Cloud(gameScreen.getGame(), Cloud.TYPE_3));
+    }
+
+    private void initReadySetGoLabel() {
+        readySetGoLabel = LabelFactory.createLabel("READY", assets.fonts.defaultLarge, Color.RED);
+        readySetGoLabel.setPosition(GameConstants.WIDTH/2-readySetGoLabel.getWidth()/2, GameConstants.HEIGHT/2-readySetGoLabel.getHeight()/2);
+    }
+
+    private void initBlackImage() {
+        Pixmap pixmap = new Pixmap(GameConstants.WIDTH, GameConstants.HEIGHT, Pixmap.Format.RGB888);
+        pixmap.setColor(new Color(0,0,0,1.0f));
+        pixmap.fill();
+        Texture texture = new Texture(pixmap);
+        texture.draw(pixmap,0,0);
+        blackImage = new Image(texture);
+        blackImage.setColor(0,0,0,0.70f);
+        pixmap.dispose();
+    }
+
+    private void initTooSlowImage() {
+        tooSlowImage = new ChatBubble(gameScreen);
+        tooSlowImage.setPosition(GameConstants.WIDTH - tooSlowImage.getWidth() - 50,
+                enemyHPBar.getY() - tooSlowImage.getHeight() - 30);
+        tooSlowImage.setVisible(false);
+    }
+
+    private void renderReadySetGoText() {
+        readySetGoLabel.toFront();
+        readySetGoLabel.setText(gameController.readySetGoText);
+        float width = readySetGoLabel.getGlyphLayout().width;
+        float height = readySetGoLabel.getGlyphLayout().height;
+        readySetGoLabel.setPosition(GameConstants.WIDTH/2 - width/2, GameConstants.HEIGHT/2 - height/2);
+        readySetGoLabel.setWidth(width);
+        readySetGoLabel.setHeight(height);
     }
 
     private void onPushPressed() {

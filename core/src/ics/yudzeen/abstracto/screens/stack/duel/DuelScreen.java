@@ -12,8 +12,8 @@ public class DuelScreen extends AbstractoScreen {
 
     public static final String TAG = DuelScreen.class.getName();
 
-    private GameController gameController;
-    private GameRenderer gameRenderer;
+    GameController gameController;
+    GameRenderer gameRenderer;
 
     public DuelScreen(Abstracto game) {
         super(game);
@@ -21,7 +21,7 @@ public class DuelScreen extends AbstractoScreen {
     }
 
     private void init() {
-        gameController = new GameController();
+        gameController = new GameController(this);
         gameRenderer = new GameRenderer(this, gameController);
     }
 

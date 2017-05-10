@@ -15,6 +15,9 @@ class GameController {
 
     static final int MAX_HP = 10;
     static final int PUSH_POP_COUNT = 25;
+    static final int ANSWER_TIME_LIMIT = 5;
+
+    DuelScreen duelScreen;
 
     int selfHP;
     int enemyHP;
@@ -26,7 +29,13 @@ class GameController {
     boolean gameWin;
     boolean gameOver;
 
-    GameController() {
+    boolean gameStarted;
+    String readySetGoText;
+
+    float answerTimer;
+
+    GameController(DuelScreen duelScreen) {
+        this.duelScreen = duelScreen;
         init();
     }
 
@@ -39,10 +48,51 @@ class GameController {
     }
 
     void update(float delta) {
+        if (!gameStarted) {
+            updateReadySetGo(delta);
+        }
+        else {
+            updateAnswerTimer(delta);
+        }
+    }
 
+    private void updateAnswerTimer(float delta) {
+        answerTimer += delta;
+        if(answerTimer >= ANSWER_TIME_LIMIT) {
+            selfHP--;
+            if (selfHP == 0) {
+                lose();
+            }
+            Gdx.app.debug(TAG, "Self HP: " + selfHP + ", Enemy HP: " + enemyHP);
+            enqueueDequeueList.remove(0);
+            duelScreen.gameRenderer.playerHPBar.setCurrentHP(duelScreen.gameRenderer.playerHPBar.getCurrentHP() - 1);
+            duelScreen.gameRenderer.tooSlowImage.show(1.5f);
+            duelScreen.gameRenderer.portal.nextPortalImage();
+            answerTimer = 0;
+        }
+    }
+
+    private void updateReadySetGo(float delta) {
+        timeElapsed += delta;
+        if (timeElapsed < 1) {
+            readySetGoText = "Ready";
+        }
+        else if (timeElapsed < 2) {
+            readySetGoText = "Set";
+        }
+        else if (timeElapsed < 3) {
+            readySetGoText = "Go!";
+        }
+        else {
+            if(!gameStarted) {
+                gameStarted = true;
+                Gdx.app.debug(TAG, "Game Started.");
+            }
+        }
     }
 
     boolean onEnqueuePressed() {
+        answerTimer = 0;
         if(validateAnswer("ENQUEUE")) {
             enemyHP--;
             if (enemyHP == 0) {
@@ -62,6 +112,7 @@ class GameController {
     }
 
     boolean onDequeuePressed() {
+        answerTimer = 0;
         if(validateAnswer("DEQUEUE")) {
             enemyHP--;
             if (enemyHP == 0) {

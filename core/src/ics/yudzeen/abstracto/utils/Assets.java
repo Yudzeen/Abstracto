@@ -411,6 +411,8 @@ public class Assets implements AssetErrorListener, Disposable {
         public AtlasRegion kid_light;
         public AtlasRegion kid_dark;
 
+        public AtlasRegion too_slow;
+
         public AssetGames(TextureAtlas atlas) {
             heart = atlas.findRegion("heart");
             pause = atlas.findRegion("pause");
@@ -468,6 +470,8 @@ public class Assets implements AssetErrorListener, Disposable {
             portal_enqueue1 = atlas.findRegion("portal_enqueue1");
             portal_enqueue2 = atlas.findRegion("portal_enqueue2");
             portal_enqueue3 = atlas.findRegion("portal_enqueue3");
+
+            too_slow = atlas.findRegion("too_slow");
         }
     }
 }

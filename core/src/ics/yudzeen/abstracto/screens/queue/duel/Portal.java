@@ -96,7 +96,7 @@ class Portal extends Actor {
         }
 
         glowDuration+=delta;
-        if(glowDuration > 2) {
+        if(glowDuration > 1.5) {
             glowDuration = 0;
             glow = false;
         }

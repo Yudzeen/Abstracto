@@ -69,7 +69,8 @@ public class InstructionScreen extends AbstractoScreen {
 
     private void initBodyLabel() {
         String text = "- Determine if the image in the middle\n  is a push or a pop operation\n\n" +
-                "- Avoid mistakes and reduce your \n opponents HP";
+                "- Correct answers reduce your \n  opponents HP\n\n" +
+                "- Wrong answer/failing to answer\n  on time reduces your own HP";
         bodyLabel = LabelFactory.createLabel(text, assets.fonts.chalk_20, Color.WHITE);
         bodyLabel.setPosition(150, instructionsLabel.getY() - bodyLabel.getHeight() - 20);
     }
